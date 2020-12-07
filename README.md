@@ -1,9 +1,9 @@
-# COVID-19 Business Grants
+# Additional Restrictions Grant
 
-**NOTE: This application is based on the work in
-[Discretionary Business Grants](https://github.com/LBHackney-IT/discretionary-business-grants) - which
+**NOTE: This application is based on the work in [Mandatory Business Grants](https://github.com/LBHackney-IT/mandatory-business-grants)
+(which in turn is based on [Discretionary Business Grants](https://github.com/LBHackney-IT/discretionary-business-grants) (we know this is not good...) - which
 provides all the groundwork for this application. The clone of the work is to enable this application, and
-the Discretionary Business Grants application to be running at the same time while being able to rapidly
+the Mandatory Business Grants application to be running at the same time while being able to rapidly
 change each application without affecting the other.**
 
 ## Table of Contents
@@ -64,7 +64,7 @@ that applications are re-enabled, the back end should read the same environment 
 
 If the application is re-enabled - when users upload supporting documents they will be stored in S3 with the
 wrong MIME type set.
-See [here](https://github.com/LBHackney-IT/mandatory-business-grants/blob/master/docs/S3-METADATA.md) for a
+See [here](https://github.com/LBHackney-IT/arg-business-grants/blob/master/docs/S3-METADATA.md) for a
 complete description and fix.
 
 ## Getting Started
@@ -84,7 +84,7 @@ the time of writing, but you can view the environment variables on the AWS Lambd
 So that the auth token from using Staging/Production can work with your local environment, and you will be
 able to access the admin section etc., add the following to your `/etc/hosts` file:
 
-    127.0.0.1    dev.covidbusinessgrants.hackney.gov.uk
+    127.0.0.1    dev.additionalrestrictionsgrant.hackney.gov.uk
 
 Run the development server:
 
@@ -173,12 +173,12 @@ AWS Systems Manager.
 5. Select an instance (there should only be 1)
 6. Click 'Start Session' - This should open up a terminal like window in your browser
 7. Run `source ~/.bashrc` to prepare the exported environment variable
-8. Run `cd ~/mandatory-business-grants/ && git pull && npm run dbmigrate up`
+8. Run `cd ~/arg-business-grants/ && git pull && npm run dbmigrate up`
 
 To seed the AWS database, start a session as above. Then, run the following command:
 
 ```sh
-$ cd ~/mandatory-business-grants/ && cat db/seeds.sql | psql $DATABASE_URL
+$ cd ~/arg-business-grants/ && cat db/seeds.sql | psql $DATABASE_URL
 ```
 
 ### PostgresSQL command line access
@@ -231,11 +231,11 @@ CloudFormation), but in the meantime, below are the steps to recreate it manuall
   ```
   - Clone the repository
   ```bash
-  cd ~ && git clone git@github.com:LBHackney-IT/mandatory-business-grants.git
+  cd ~ && git clone git@github.com:LBHackney-IT/arg-business-grants.git
   ```
   - Install dependencies
   ```bash
-  cd ~/mandatory-business-grants && npm install
+  cd ~/arg-business-grants && npm install
   ```
   - Add the DATABASE_URL environment variable (you can get the database details from the Lambda environment
     variables)
