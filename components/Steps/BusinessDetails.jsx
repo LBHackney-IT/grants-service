@@ -1,11 +1,12 @@
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
-import { Button, TextInput, Select } from 'components/Form';
+import { Button, TextInput, Select, Radios, TextArea } from 'components/Form';
 import { stepPath, getInputProps } from 'components/Steps';
 import AddressLookup from 'components/Form/AddressLookup/AddressLookup';
+import { FREE_TEXT } from '../../lib/dbMapping';
 
-const businessIdetifyNumber = (businessType) => {
+const businessIdentifyNumber = (businessType) => {
   switch (businessType) {
     case 'Company Number':
       return 'businessIdentifyNumberCompanyNumber';
@@ -29,74 +30,205 @@ const Step1 = (props) => {
     Router.push(stepPath, props.nextStep);
   };
   const businessIdentifyType = watch('business.businessIdentifyType');
+  const selectedBusinessStructure = watch('business.businessStructure');
+  const selectedBusinessPremisesDescription = watch(
+    'business.businessPremisesDescription'
+  );
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>Business Details</h1>
-      <TextInput
-        {...getInputProps('business', 'businessName', { register }, errors)}
-      />
-      <TextInput
-        {...getInputProps('business', 'registeredName', { register }, errors)}
-      />
-      <Select
-        {...getInputProps(
-          'business',
-          'businessIdentifyType',
-          { register },
-          errors
-        )}
-      />
-      {businessIdentifyType && (
-        <TextInput
-          {...getInputProps(
-            'business',
-            businessIdetifyNumber(businessIdentifyType),
-            { register },
-            errors
+      <div className="govuk-form-group">
+        <fieldset
+          className="govuk-fieldset"
+          role="group"
+          aria-describedby="step-hint"
+        >
+          <h1>Business Details</h1>
+          <Radios
+            {...getInputProps(
+              'business',
+              'liableForBusinessRates',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          <Radios
+            {...getInputProps(
+              'business',
+              'businessSizeId',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'howManyEmployees',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          <Select
+            {...getInputProps(
+              'business',
+              'businessCategory',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessReferenceNumber',
+              { register },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessDescription',
+              { register },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps('business', 'businessName', { register }, errors)}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'registeredName',
+              { register },
+              errors
+            )}
+          />
+          <Select
+            {...getInputProps(
+              'business',
+              'businessStructure',
+              { register },
+              errors
+            )}
+          />
+          {FREE_TEXT.includes(selectedBusinessStructure) && (
+            <TextInput
+              {...getInputProps(
+                'business',
+                'businessStructureText',
+                {
+                  register,
+                },
+                errors
+              )}
+            />
           )}
-          name="business.businessIdentifyNumber"
-          error={errors.business?.businessIdentifyNumber}
-        />
-      )}
-      <TextInput
-        {...getInputProps(
-          'business',
-          'businessRatesAccountNumber',
-          { register },
-          errors
-        )}
-      />
-      <TextInput
-        {...getInputProps(
-          'business',
-          'businessRatesPayer',
-          { register },
-          errors
-        )}
-      />
-      <AddressLookup
-        {...getInputProps(
-          'business',
-          'businessTradingAddress',
-          { register },
-          errors
-        )}
-      />
-      <AddressLookup
-        {...getInputProps('business', 'businessAddress', { register }, errors)}
-      />
-      <TextInput
-        {...getInputProps(
-          'business',
-          'businessAnnualRent',
-          { register },
-          errors
-        )}
-      />
-      <TextInput
-        {...getInputProps('business', 'businessWebsite', { register }, errors)}
-      />
-      <Button className="govuk-button" text="Next" type="submit" />
+          <Select
+            {...getInputProps(
+              'business',
+              'businessIdentifyType',
+              { register },
+              errors
+            )}
+          />
+          {businessIdentifyType && (
+            <TextInput
+              {...getInputProps(
+                'business',
+                businessIdentifyNumber(businessIdentifyType),
+                { register },
+                errors
+              )}
+              name="business.businessIdentifyNumber"
+              error={errors.business?.businessIdentifyNumber}
+            />
+          )}
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessRatesAccountNumber',
+              { register },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessRatesPayer',
+              { register },
+              errors
+            )}
+          />
+          <AddressLookup
+            {...getInputProps(
+              'business',
+              'businessTradingAddress',
+              { register },
+              errors
+            )}
+          />
+          <AddressLookup
+            {...getInputProps(
+              'business',
+              'businessAddress',
+              { register },
+              errors
+            )}
+          />
+          <Select
+            {...getInputProps(
+              'business',
+              'businessPremisesDescription',
+              { register },
+              errors
+            )}
+          />
+          {FREE_TEXT.includes(selectedBusinessPremisesDescription) && (
+            <TextInput
+              {...getInputProps(
+                'business',
+                'businessPremisesText',
+                {
+                  register,
+                },
+                errors
+              )}
+            />
+          )}
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessRatableValue',
+              { register },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessWebsite',
+              { register },
+              errors
+            )}
+          />
+          <TextArea
+            {...getInputProps(
+              'business',
+              'businessImpactStatement',
+              { register },
+              errors
+            )}
+          />
+          <Button className="govuk-button" text="Next" type="submit" />
+        </fieldset>
+      </div>
     </form>
   );
 };

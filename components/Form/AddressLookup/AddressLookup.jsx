@@ -75,7 +75,7 @@ const AddressLookup = ({ name, label, hint, register, error }) => (
 AddressLookup.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  hint: PropTypes.string,
+  hint: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   register: PropTypes.func,
   error: PropTypes.shape({ message: PropTypes.string }),
 };
