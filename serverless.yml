@@ -1,11 +1,11 @@
-service: covid-business-grants
+service: additional-restrictions-grant
 
 provider:
   name: aws
   runtime: nodejs12.x
   region: eu-west-2
   stage: ${opt:stage}
-  dbname: covidBusinessGrantsDbUpdated
+  dbname: additionalRestrictionsGrantDb
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -20,7 +20,7 @@ package:
     - ./**
 
 functions:
-  covid-business-grants:
+  additional-restrictions-grant:
     name: ${self:service}-${self:provider.stage}
     handler: lambda.handler
     timeout: 20
@@ -46,14 +46,14 @@ functions:
     vpc:
       securityGroupIds:
         - Fn::GetAtt:
-          - covidBusinessGrantsDbSecurityGroup
+          - additionalRestrictionsGrantDbSecurityGroup
           - GroupId
       subnetIds: ${self:custom.subnets.${self:provider.stage}}
     environment:
       ENV: ${self:provider.stage}
       HOST:
         Fn::GetAtt:
-          - covidBusinessGrantsDbUpdated
+          - additionalRestrictionsGrantDb
           - Endpoint.Address
       USERNAME: ${env:MASTER_USERNAME}
       PASSWORD: ${env:MASTER_USER_PASSWORD}
@@ -79,7 +79,7 @@ functions:
 
 resources:
   Resources:
-    covidBusinessGrantsSupportingDocumentsBucket:
+    additionalRestrictionsGrantSupportingDocumentsBucket:
         Type: AWS::S3::Bucket
         Properties:
           BucketName: ${self:custom.bucket}
@@ -92,6 +92,8 @@ resources:
             ServerSideEncryptionConfiguration:
               - ServerSideEncryptionByDefault:
                   SSEAlgorithm: AES256
+          VersioningConfiguration:
+            Status: Enabled
           CorsConfiguration:
             CorsRules:
               -
@@ -103,21 +105,21 @@ resources:
                   - PUT
                   - POST
                 MaxAge: 3000
-    covidBusinessGrantsDbSecurityGroup:
+    additionalRestrictionsGrantDbSecurityGroup:
       Type: AWS::EC2::SecurityGroup
       Properties:
-        GroupDescription: Access to Postgres
+        GroupDescription: Allow internal VPC
         SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: '5432'
           ToPort: '5432'
-          CidrIp: 0.0.0.0/0
+          CidrIp: 172.31.0.0/16
 
-    covidBusinessGrantsDbUpdated:
+    additionalRestrictionsGrantDb:
       Type: AWS::RDS::DBInstance
       Properties:
         AllocatedStorage: 5
-        DBInstanceIdentifier: "covid-business-grants-db-${self:provider.stage}-updated"
+        DBInstanceIdentifier: "${self:service}-db-${self:provider.stage}"
         DBInstanceClass: "db.t2.small"
         DBName: ${self:provider.dbname}
         DeletionProtection: true
@@ -130,12 +132,12 @@ resources:
         StorageEncrypted: true
         VPCSecurityGroups:
         - Fn::GetAtt:
-          - covidBusinessGrantsDbSecurityGroup
+          - additionalRestrictionsGrantDbSecurityGroup
           - GroupId
         Tags:
           -
             Key: "Name"
-            Value: "covidBusinessGrantsDbUpdated"
+            Value: "additionalRestrictionsGrantsDb"
       DeletionPolicy: "Snapshot"
 
     CloudFrontDistribution:
@@ -187,8 +189,8 @@ custom:
         - eu-west-2
         - amazonaws.com
   aliases:
-    staging: staging-covidbusinessgrants.hackney.gov.uk
-    production: covidbusinessgrants.hackney.gov.uk
+    staging: staging-additionalrestrictionsgrant.hackney.gov.uk
+    production: additionalrestrictionsgrant.hackney.gov.uk
   certificate-arn:
     staging: arn:aws:acm:us-east-1:715003523189:certificate/8f7fa30c-a4e5-4775-b827-ade824a33c9a
     production: arn:aws:acm:us-east-1:153306643385:certificate/71728a39-cd3e-4570-a440-e87f84ef9a0d
@@ -202,5 +204,5 @@ custom:
       - subnet-03431a6c898502c99
       - subnet-0f02c86bab1d62956
   allowed-groups:
-    staging: 'Covid Business Grants (Mandatory) - Staging'
-    production: 'Covid Business Grants (Mandatory)'
+    staging: 'Additional Restrictions Grant - Staging'
+    production: 'Additional Restrictions Grant - Admin'
