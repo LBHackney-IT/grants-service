@@ -13,10 +13,17 @@ const Step1 = (props) => {
   const [showError, setShowError] = useState(false);
   const onSubmit = (data) => {
     let eligible = true;
+
     Object.entries(data.eligibilityCriteria).forEach(([key, value]) => {
-      if (key == 'servedLegalNotices' && value == 'Yes') {
+      if (key === 'servedLegalNotices' && value === 'Yes') {
         eligible = false;
-      } else if (key != 'servedLegalNotices' && value == 'No') {
+      } else if (key === 'eligibleForLrsgClosedGrant' && value === 'Yes') {
+        eligible = false;
+      } else if (
+        key !== 'servedLegalNotices' &&
+        key !== 'eligibleForLrsgClosedGrant' &&
+        value === 'No'
+      ) {
         eligible = false;
       }
     });
@@ -80,6 +87,17 @@ const Step1 = (props) => {
           {...getInputProps(
             'eligibilityCriteria',
             'tradingOn041120',
+            {
+              register,
+            },
+            errors
+          )}
+          onChange={() => setShowError(false)}
+        />
+        <Radios
+          {...getInputProps(
+            'eligibilityCriteria',
+            'eligibleForLrsgClosedGrant',
             {
               register,
             },

@@ -41,14 +41,17 @@ export const inputLabels = {
           Additional Restrictions Grant:
           <ul>
             <li>
-              Your business was legally required to close between 5th November -
-              2nd December 2020 but you are not a business rates payer/account
-              holder
+              Your business was legally required to close between 5th November
+              2020 - 2nd December 2020, but you are not a business rates
+              payer/account holder;{' '}
+              <strong>
+                <u>or</u>
+              </strong>
             </li>
             <li>
               Your business was not legally required to close between 5th
-              November - 2nd December 2020 but has been severely impacted by the
-              restrictions put in place to prevent the spread of COVID-19
+              November 2020 - 2nd December 2020, but has been severely impacted
+              by the restrictions put in place to prevent the spread of COVID-19
             </li>
           </ul>
         </>
