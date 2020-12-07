@@ -34,11 +34,56 @@ export const inputLabels = {
       validation: { required: true },
       adminValidation: true,
     },
-    liableForRates: {
-      label: 'Is your business liable for business rates?',
+    meetsArgCriteria: {
+      label: (
+        <>
+          Does your business meet one of the following criteria for the
+          Additional Restrictions Grant:
+          <ul>
+            <li>
+              Your business was legally required to close between 5th November -
+              2nd December 2020 but you are not a business rates payer/account
+              holder
+            </li>
+            <li>
+              Your business was not legally required to close between 5th
+              November - 2nd December 2020 but has been severely impacted by the
+              restrictions put in place to prevent the spread of COVID-19
+            </li>
+          </ul>
+        </>
+      ),
       validation: { required: true },
       adminValidation: true,
     },
+    servedLegalNotices: {
+      label:
+        'Is your business in administration, insolvent or in receipt of a striking off notice?',
+      validation: { required: true },
+      adminValidation: true,
+    },
+    tradingOn041120: {
+      label: 'Was your business trading on the 4th November 2020?',
+      validation: { required: true },
+      adminValidation: true,
+    },
+    eligibleForLrsgClosedGrant: {
+      label: (
+        <>
+          Is your business eligible for the{' '}
+          <a
+            href="https://www.gov.uk/guidance/check-if-your-business-is-eligible-for-a-coronavirus-grant-due-to-national-restrictions-for-closed-businesses"
+            target="_blank"
+            rel="noopener"
+          >
+            Local Restrictions Support Grant (Closed) Addendum
+          </a>
+          ?
+        </>
+      ),
+    },
+    validation: { required: true },
+    adminValidation: true,
   },
   eligibilityCriteriaDetails: {
     businessSizeId: {
@@ -131,30 +176,6 @@ export const inputLabels = {
         </>
       ),
       validation: { required: true },
-    },
-    tradingOn041120: {
-      label: (
-        <>
-          Does your business meet the following criteria for the Local
-          Restrictions Support Grant (for closed businesses):
-          <ul>
-            <li>Business was trading and open on the 4th November 2020</li>
-            <li>
-              Business was required to close on the 5th November 2020, due to
-              the national lockdown
-            </li>
-          </ul>
-        </>
-      ),
-      hint:
-        'Please note, your business is still eligible to receive a Local Restrictions Support Grant (for closed businesses) if you are offering a delivery/ takeaway/ click and collect service, provided this was not your primary method of trading prior to the 5th November 2020.',
-      validation: { required: true },
-    },
-    servedLegalNotices: {
-      label:
-        'Is your business in administration, insolvent or in receipt of a striking off notice?',
-      validation: { required: true },
-      adminValidation: true,
     },
   },
   contact: {
