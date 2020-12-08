@@ -1,82 +1,87 @@
 {
   "eligibilityCriteria": {
     "tradingInHackney": "Yes",
-    "liableForRates": "Yes"
-  },
-  "eligibilityCriteriaDetails": {
-    "businessSizeId": "Micro",
-    "howManyEmployees": "12",
-    "businessCategory": "Retail",
-    "tradingOn220320": "Yes",
-    "tradingOn161020": "No",
+    "meetsArgCriteria": "Yes",
+    "servedLegalNotices": "No",
     "tradingOn041120": "Yes",
-    "servedLegalNotices": "Yes",
-    "businessSubCategory": "Other Non-Essential Retail",
-    "businessCustomCategory": "other category"
+    "eligibleForLrsgClosedGrant": "No"
   },
   "business": {
-    "businessName": "Business Name",
-    "registeredName": "Business Registered Name",
+    "liableForBusinessRates": "Yes",
+    "businessSizeId": "Micro",
+    "howManyEmployees": "2",
+    "businessCategory": "Section C: Manufacturing",
+    "businessReferenceNumber": "1231",
+    "businessDescription": "Jewellery making",
+    "businessName": "Trading Name",
+    "registeredName": "Registered Name",
+    "businessStructure": "Charity",
     "businessIdentifyType": "Company Number",
-    "businessIdentifyNumber": "131212321",
-    "businessRatesAccountNumber": "61231231X",
-    "businessRatesPayer": "asd",
+    "businessRatesAccountNumber": "612345678",
+    "businessRatesPayer": "Business Rates Payer",
     "businessTradingAddress": {
-      "buildName": "flat x",
+      "buildName": "",
       "streetNumber": "1",
-      "street": "street name",
-      "town": "town",
-      "postcode": "e83as"
-    },
-    "businessAddress": {
-      "buildName": "flat y",
-      "streetNumber": "2",
       "street": "street",
       "town": "town",
-      "postcode": "e83as"
+      "postcode": "SW1A 2AA"
     },
-    "businessAnnualRent": "123",
-    "businessWebsite": "http://asd.com"
+    "businessAddress": {
+      "buildName": "",
+      "streetNumber": "2",
+      "street": "street2",
+      "town": "town2",
+      "postcode": "SW1A 2BB"
+    },
+    "businessPremisesDescription": "Individual office",
+    "businessRateableValue": "321",
+    "businessWebsite": "https://example.com",
+    "businessImpactStatement": "Well bad.",
+    "businessIdentifyNumber": "12345678"
   },
   "contact": {
-    "firstName": "First name",
-    "lastName": "Last name",
-    "emailAddress": "test@example.com",
-    "telephoneNumber": "07777777",
+    "firstName": "Yusuf",
+    "lastName": "Bee",
+    "emailAddress": "email@address.com",
+    "telephoneNumber": "0123456789",
     "address": {
-      "buildName": "3",
-      "streetNumber": "2",
-      "street": "contact street",
-      "town": "Town name",
-      "postcode": "e83as"
-    },
-    "dateOfBirth": "2000-12-20"
-  },
-  "supplementaryInformation": {
-    "bankStatement": ["faked_it_out_for_local_testing.ext"],
-    "ratesBill": [
-      "faked_it_out_for_local_testing.ext",
-      "asd@asd.com/<gen>/test.jpg"
-    ]
+      "buildName": "",
+      "streetNumber": "3",
+      "street": "street3",
+      "town": "town3",
+      "postcode": "SW1A 2CC"
+    }
   },
   "businessBankAccount": {
-    "bankName": "Big Bank",
-    "accountHolder": "Mr Account Holder",
-    "accountNumber": "12312312",
-    "accountSortcode": "123123"
+    "bankName": "Bank",
+    "accountHolder": "Account",
+    "accountNumber": "12345678",
+    "accountSortcode": "123456"
+  },
+  "supplementaryInformation": {
+    "bankStatement": [
+      "faked_it_out_for_local_testing.ext",
+      "test.png"
+    ],
+    "ratesBill": [],
+    "leaseOrRentalAgreement": [],
+    "employeesConfirmation": [],
+    "photoId": [
+      "faked_it_out_for_local_testing.ext"
+    ],
+    "taxReturn": []
   },
   "declaration": {
-    "name": "Declaration Name",
-    "contactTypeId": "Owner (Sole Trader)",
+    "name": "Yusuf Bee",
+    "contactTypeId": "Agent (Authorised to act)",
     "authoriseOnBehalf": true,
     "businessMeetsCriteria": true,
-    "businessIntendsReopen": true,
     "businessIWillInform": true,
     "businessNotExceed": true,
     "businessNotUndertaking": true,
-    "businessNotRatePayer": true,
+    "recoverableAgreement": true,
     "businessPermitData": true,
     "businessShareWithBEIS": true,
-    "businessHappyContacted": false
+    "businessHappyContacted": true
   }
 }
