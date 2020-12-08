@@ -5,46 +5,24 @@ import { stepPath, stepKeys } from 'components/Steps';
 export default function Home({ date, expirationDate }) {
   return (
     <div>
-      <h1>Apply for the COVID-19 Local Authority Business Grants Fund</h1>
+      <h1>Apply for the COVID-19 Additional Restrictions Grant</h1>
       <p className="govuk-body">
         The Government has announced a series of grants for certain businesses
         affected by the COVID-19 pandemic, the tier restrictions introduced in
         London from October 2020, and the subsequent national lockdown period
-        from 5 November 2020.
+        from 5 November 2020 to 2 December 2020.
       </p>
       <p className="govuk-body">
-        By completing this application form, you will be considered for:
+        By completing this application form, you will be considered for the
+        COVID-19{' '}
+        <a
+          className="govuk-link"
+          href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-additional-restrictions-grant"
+        >
+          Additional Restrictions Grant
+        </a>
+        .
       </p>
-      <ul className="govuk-list govuk-list--bullet">
-        <li>
-          grant 1 -{' '}
-          <a
-            className="govuk-link"
-            href="https://www.gov.uk/guidance/check-if-your-business-is-eligible-for-a-coronavirus-grant-due-to-national-restrictions-for-closed-businesses"
-          >
-            Local restrictions support grant (for closed businesses)
-          </a>
-        </li>
-        <li>
-          grant 2 -{' '}
-          <a
-            className="govuk-link"
-            href="https://www.gov.uk/guidance/check-if-your-nightclub-dance-hall-or-adult-entertainment-business-is-eligible-for-a-coronavirus-grant-due-to-national-restrictions"
-          >
-            Local restrictions support grant (sector)
-          </a>
-        </li>
-        <li>
-          grant 3 -{' '}
-          <a
-            className="govuk-link"
-            href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-local-restrictions-support-grant-for-open-businesses"
-          >
-            Local restrictions support grant (open) for the Tier 2 restrictions
-            period
-          </a>
-        </li>
-      </ul>
       <p className="govuk-body">
         For further information, please go to{' '}
         <a className="govuk-link" href="https://hackney.gov.uk/business-grants">

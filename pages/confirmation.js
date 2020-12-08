@@ -21,8 +21,8 @@ export default function confirmation() {
       </div>
       <div className="govuk-!-margin-9">
         <p className="govuk-body">
-          Thank you for completing the COVID-19 Local Authority Business Grants
-          Fund application.
+          Thank you for completing the COVID-19 Additional Restrictions Grant
+          application.
         </p>
         <p className="govuk-body">
           Your unique reference code is <strong>{ref}</strong> Kindly make a
