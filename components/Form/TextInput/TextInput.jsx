@@ -44,9 +44,9 @@ const TextInput = ({
 );
 
 TextInput.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   labelSize: PropTypes.oneOf(['s', 'm', 'l', 'xl']),
-  hint: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  hint: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   name: PropTypes.string.isRequired,
   error: PropTypes.shape({
     message: PropTypes.string.isRequired,

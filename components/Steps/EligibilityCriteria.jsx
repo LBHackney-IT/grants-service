@@ -12,12 +12,25 @@ const Step1 = (props) => {
   });
   const [showError, setShowError] = useState(false);
   const onSubmit = (data) => {
-    const hasSomeDeclines = Object.entries(data.eligibilityCriteria).some(
-      // eslint-disable-next-line no-unused-vars
-      ([key, value]) => value === 'No'
-    );
-    setShowError(hasSomeDeclines);
-    if (!hasSomeDeclines) {
+    let eligible = true;
+
+    Object.entries(data.eligibilityCriteria).forEach(([key, value]) => {
+      if (key === 'servedLegalNotices' && value === 'Yes') {
+        eligible = false;
+      } else if (key === 'eligibleForLrsgClosedGrant' && value === 'Yes') {
+        eligible = false;
+      } else if (
+        key !== 'servedLegalNotices' &&
+        key !== 'eligibleForLrsgClosedGrant' &&
+        value === 'No'
+      ) {
+        eligible = false;
+      }
+    });
+
+    setShowError(!eligible);
+
+    if (eligible) {
       props.saveData(data);
       Router.push(stepPath, props.nextStep);
     }
@@ -51,7 +64,40 @@ const Step1 = (props) => {
         <Radios
           {...getInputProps(
             'eligibilityCriteria',
-            'liableForRates',
+            'meetsArgCriteria',
+            {
+              register,
+            },
+            errors
+          )}
+          onChange={() => setShowError(false)}
+        />
+        <Radios
+          {...getInputProps(
+            'eligibilityCriteria',
+            'servedLegalNotices',
+            {
+              register,
+            },
+            errors
+          )}
+          onChange={() => setShowError(false)}
+        />
+        <Radios
+          {...getInputProps(
+            'eligibilityCriteria',
+            'tradingOn041120',
+            {
+              register,
+            },
+            errors
+          )}
+          onChange={() => setShowError(false)}
+        />
+        <Radios
+          {...getInputProps(
+            'eligibilityCriteria',
+            'eligibleForLrsgClosedGrant',
             {
               register,
             },
