@@ -275,10 +275,10 @@ export const inputLabels = {
       },
     },
     businessPremisesText: {},
-    businessRatableValue: {
+    businessRateableValue: {
       label: 'Business Premises Rateable Value (if applicable):',
       type: 'number',
-      validation: { min: 0 },
+      inputMode: 'numeric',
     },
     businessWebsite: {
       label: 'Business Website Address (if applicable):',

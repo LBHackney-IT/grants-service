@@ -205,7 +205,7 @@ const Step1 = (props) => {
           <TextInput
             {...getInputProps(
               'business',
-              'businessRatableValue',
+              'businessRateableValue',
               { register },
               errors
             )}
