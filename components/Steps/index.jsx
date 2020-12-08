@@ -278,7 +278,7 @@ export const inputLabels = {
     businessRatableValue: {
       label: 'Business Premises Rateable Value (if applicable):',
       type: 'number',
-      validation: { min: 0, validate: (value) => value > 0 },
+      validation: { min: 0 },
     },
     businessWebsite: {
       label: 'Business Website Address (if applicable):',
@@ -423,6 +423,7 @@ export const inputLabels = {
         validate: (value) => value !== '',
       },
     },
+    contactTypeIdText: {},
     authoriseOnBehalf: {
       label:
         'I confirm that I am authorised to submit this form on behalf of the business',
@@ -430,12 +431,7 @@ export const inputLabels = {
     },
     businessMeetsCriteria: {
       label:
-        'I declare that the business meets the criteria for the grant/grants I am applying for and that the information I have provided is complete and accurate',
-      validation: { required: true },
-    },
-    businessIntendsReopen: {
-      label:
-        'I confirm that my business intends to re-open, if it has not already done so (subject to Government guidance)',
+        'I declare that the business meets the criteria for the Additional Restrictions Grant that I am applying for and that the information I have provided is complete and accurate',
       validation: { required: true },
     },
     businessIWillInform: {
@@ -449,8 +445,8 @@ export const inputLabels = {
             </li>
             <li>
               My business ceases trading permanently, or goes into
-              administration, becomes insolvent, is in receipt of a striking off
-              notice
+              administration, becomes insolvent, or is in receipt of a striking
+              off notice
             </li>
             <li>
               My business no longer meets any other grant eligibility criteria
@@ -464,10 +460,10 @@ export const inputLabels = {
       label: (
         <>
           <p>
-            LRSG (Closed), LRSG (Sector) and LRSG (Open) grants all count
-            towards the total de minimis state aid you are permitted to receive
-            over a 3 year period which is €200,000. If you have reached the de
-            minimis threshold, you may still be eligible for funding under the{' '}
+            The Additional Restrictions Grant counts towards the total de
+            minimis state aid you are permitted to receive over a 3 year period
+            which is €200,000. If you have reached the de minimis threshold, you
+            may still be eligible for funding under the{' '}
             <a
               href="https://ec.europa.eu/competition/state_aid/what_is_new/covid_19.html"
               target="_blank"
@@ -479,7 +475,7 @@ export const inputLabels = {
           </p>
           <p>
             I confirm that, including receipt of this grant, the business will
-            not exceed the relevant State Aid threshold limits.
+            not exceed the relevant State Aid threshold.
           </p>
         </>
       ),
@@ -502,17 +498,26 @@ export const inputLabels = {
       ),
       validation: { required: true },
     },
-    businessNotRatePayer: {
+    recoverableAgreement: {
       label:
-        'I understand that if the recipient of the grant was not the ratepayer on the eligible day, or is paid in error it will be recoverable from the recipient.',
+        'I understand that if the grant is paid in error it will be recoverable from the recipient.',
       validation: { required: true },
     },
     businessPermitData: {
       label: (
         <>
           I permit the data provided in this form to be used to determine my
-          eligibility and process my application for current, and future rounds
-          of the{' '}
+          eligibility and process my application for the Additional Restrictions
+          Grant. I understand that my data will be kept on record and may be
+          used to determine my eligibility for any future rounds of the{' '}
+          <a
+            href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-additional-restrictions-grant"
+            target="_blank"
+            rel="noopener"
+          >
+            Additional Restrictions Grant
+          </a>
+          , and the{' '}
           <a
             href="https://www.gov.uk/guidance/check-if-your-business-is-eligible-for-a-coronavirus-grant-due-to-national-restrictions-for-closed-businesses"
             target="_blank"
@@ -536,7 +541,7 @@ export const inputLabels = {
           >
             Local Restrictions Support Grant (Sector)
           </a>{' '}
-          .
+          where applicable.
         </>
       ),
       validation: { required: true },

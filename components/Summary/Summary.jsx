@@ -83,11 +83,6 @@ const sections = [
     slug: 'eligibility-criteria',
   },
   {
-    name: 'eligibilityCriteriaDetails',
-    title: 'Eligibility Criteria Details',
-    slug: 'eligibility-criteria-details',
-  },
-  {
     name: 'business',
     title: 'Business details',
     slug: 'business-details',
@@ -98,14 +93,14 @@ const sections = [
     slug: 'your-details',
   },
   {
-    name: 'supplementaryInformation',
-    title: 'Supplementary Information',
-    slug: 'supplementary-information',
-  },
-  {
     name: 'businessBankAccount',
     title: 'Bank details',
     slug: 'bank-details',
+  },
+  {
+    name: 'supplementaryInformation',
+    title: 'Supplementary Information',
+    slug: 'supplementary-information',
   },
   {
     name: 'declaration',

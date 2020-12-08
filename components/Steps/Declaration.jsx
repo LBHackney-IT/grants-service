@@ -3,15 +3,17 @@ import Router from 'next/router';
 
 import { Button, Checkbox, Select, TextInput } from 'components/Form';
 import { stepPath, getInputProps } from 'components/Steps';
+import { FREE_TEXT } from '../../lib/dbMapping';
 
 const Declaration = (props) => {
-  const { register, errors, handleSubmit } = useForm({
+  const { register, errors, handleSubmit, watch } = useForm({
     defaultValues: props.formData,
   });
   const onSubmit = (data) => {
     props.saveData(data);
     Router.push(stepPath, props.nextStep);
   };
+  const selectedContactTypeId = watch('declaration.contactTypeId');
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h1>Declaration</h1>
@@ -35,6 +37,18 @@ const Declaration = (props) => {
           errors
         )}
       />
+      {FREE_TEXT.includes(selectedContactTypeId) && (
+        <TextInput
+          {...getInputProps(
+            'declaration',
+            'contactTypeIdText',
+            {
+              register,
+            },
+            errors
+          )}
+        />
+      )}
       <Checkbox
         {...getInputProps(
           'declaration',
@@ -49,16 +63,6 @@ const Declaration = (props) => {
         {...getInputProps(
           'declaration',
           'businessMeetsCriteria',
-          {
-            register,
-          },
-          errors
-        )}
-      />
-      <Checkbox
-        {...getInputProps(
-          'declaration',
-          'businessIntendsReopen',
           {
             register,
           },
@@ -98,7 +102,7 @@ const Declaration = (props) => {
       <Checkbox
         {...getInputProps(
           'declaration',
-          'businessNotRatePayer',
+          'recoverableAgreement',
           {
             register,
           },
@@ -140,14 +144,18 @@ const Declaration = (props) => {
         The Council will not accept deliberate manipulation and fraud. Any
         business caught falsifying their records to gain additional grant money
         will face prosecution and any funding issued will be subject to
-        clawback. We will use your information to assess your application for
-        financial support. In doing so we will confirm information about you and
-        your account from Council departments and credit reference agencies to
+        clawback.{' '}
+      </p>
+
+      <p className="govuk-body">
+        We will use your information to assess your application for financial
+        support. In doing so we will confirm information about you and your
+        account from Council departments and credit reference agencies to
         confirm account validity and your identity. If you provide false or
         inaccurate information, we will record this. If you would like full
         details on how we use your information, please refer to our{' '}
         <a href="https://hackney.gov.uk/privacy" target="_blank" rel="noopener">
-          privacy policy
+          privacy statement
         </a>
         .
       </p>
