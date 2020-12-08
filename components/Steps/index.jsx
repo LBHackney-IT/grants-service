@@ -234,7 +234,6 @@ export const inputLabels = {
       hint:
         'A nine digit number starting with a 6 - this is shown on your business rates bill. ',
       validation: {
-        required: true,
         pattern: {
           value: /^6(\d{8}|\d{7}x)$/i,
         },
@@ -243,9 +242,6 @@ export const inputLabels = {
     businessRatesPayer: {
       label: 'Name of Business Rates Payer (if applicable):',
       hint: 'As shown on your business rates bill.',
-      validation: {
-        required: true,
-      },
     },
     businessTradingAddress: {
       label: 'Business Registered Trading Address:',
@@ -282,7 +278,7 @@ export const inputLabels = {
     businessRatableValue: {
       label: 'Business Premises Rateable Value (if applicable):',
       type: 'number',
-      validation: { required: true, min: 0, validate: (value) => value > 0 },
+      validation: { min: 0, validate: (value) => value > 0 },
     },
     businessWebsite: {
       label: 'Business Website Address (if applicable):',
@@ -290,7 +286,7 @@ export const inputLabels = {
     businessImpactStatement: {
       label: 'How has your business been impacted?',
       hint: `Please provide a short written statement setting out how your business has been severely impacted by the
-      lockdown between 5 November 2020 - 2 December 2020. This should include details on why and how your business was 
+      lockdown between 5 November 2020 - 2 December 2020. This should include details on why and how your business was
       severely impacted. You should also set out if you are able to trade online, the scale of your Coronavirus related
       losses, and any ongoing fixed business costs you have.`,
     },
@@ -374,6 +370,44 @@ export const inputLabels = {
         },
       },
       adminValidation: true,
+    },
+  },
+  supplementaryInformation: {
+    bankStatement: {
+      label: 'Bank Statement:',
+      hint:
+        'Please provide your November 2020 business bank statement - this must correspond with the bank account details provided in this application form. If you do not have your November bank statement, please submit your most recent bank statement.',
+      validation: {
+        validate: (value) => value.length > 0 || 'Document required',
+      },
+    },
+    ratesBill: {
+      label: 'Business Rates Bill:',
+      hint:
+        'Please provide a copy of your latest business rates bill. If you do not have a copy of this bill you may still submit your grant application, but please note that processing may take longer.',
+    },
+    leaseOrRentalAgreement: {
+      label: 'Business premises lease or rental agreement:',
+      hint:
+        'For businesses operating from a commercial premises please provide a copy of your business premises lease, rental agreement, mortgage statement, or market trading licence.',
+    },
+    employeesConfirmation: {
+      label: 'Confirmation of the amount of employees in your business:',
+      hint:
+        'Please provide a copy of your most up to date business payroll record showing the number of people employed by your business. If a payroll record is not available please provide another form of evidence which verifies the number of people employed by your business.',
+    },
+    photoId: {
+      label: 'Photographic ID:',
+      hint:
+        'Please provide a form of photo identification such as a passport or driving licence.',
+      validation: {
+        validate: (value) => value.length > 0 || 'Document required',
+      },
+    },
+    taxReturn: {
+      label: 'HMRC self assessment tax return:',
+      hint:
+        'If you are a sole trader or are self employed please provide a copy of your latest HMRC self assessment tax return.',
     },
   },
   declaration: {
@@ -526,21 +560,6 @@ export const inputLabels = {
     businessHappyContacted: {
       label:
         'I confirm that I am happy to be contacted by Hackney Council in the future for details of new business funding opportunities and in relation to other business initiatives',
-    },
-  },
-  supplementaryInformation: {
-    bankStatement: {
-      label: 'Bank Statement:',
-      hint:
-        'Please provide your November 2020 business bank statement - this must correspond with the bank account details provided in this application form. If you do not have your November bank statement, please submit your most recent bank statement.',
-      validation: {
-        validate: (value) => value.length > 0 || 'Document required',
-      },
-    },
-    ratesBill: {
-      label: 'Business Rates Bill:',
-      hint:
-        'Please provide a copy of your latest business rates bill. If you do not have a copy of this bill you may still submit your grant application, but please note that processing may take longer.',
     },
   },
 };
