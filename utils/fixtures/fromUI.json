@@ -7,7 +7,7 @@
     "eligibleForLrsgClosedGrant": "No"
   },
   "business": {
-    "liableForBusinessRates": "Yes",
+    "liableForRates": "Yes",
     "businessSizeId": "Micro",
     "howManyEmployees": "2",
     "businessCategory": "Section C: Manufacturing",

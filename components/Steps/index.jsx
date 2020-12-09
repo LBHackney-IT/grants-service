@@ -87,7 +87,7 @@ export const inputLabels = {
     adminValidation: true,
   },
   business: {
-    liableForBusinessRates: {
+    liableForRates: {
       label: 'Is your business liable for business rates?',
       validation: { required: true },
       adminValidation: true,

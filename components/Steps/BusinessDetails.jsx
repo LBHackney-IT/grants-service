@@ -46,7 +46,7 @@ const Step1 = (props) => {
           <Radios
             {...getInputProps(
               'business',
-              'liableForBusinessRates',
+              'liableForRates',
               {
                 register,
               },
