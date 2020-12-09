@@ -498,7 +498,7 @@ export const inputLabels = {
       ),
       validation: { required: true },
     },
-    recoverableAgreement: {
+    businessRecoverableAgreement: {
       label:
         'I understand that if the grant is paid in error it will be recoverable from the recipient.',
       validation: { required: true },

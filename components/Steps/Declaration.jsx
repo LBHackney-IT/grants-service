@@ -102,7 +102,7 @@ const Declaration = (props) => {
       <Checkbox
         {...getInputProps(
           'declaration',
-          'recoverableAgreement',
+          'businessRecoverableAgreement',
           {
             register,
           },

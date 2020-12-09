@@ -79,7 +79,7 @@
     "businessIWillInform": true,
     "businessNotExceed": true,
     "businessNotUndertaking": true,
-    "recoverableAgreement": true,
+    "businessRecoverableAgreement": true,
     "businessPermitData": true,
     "businessShareWithBEIS": true,
     "businessHappyContacted": true
