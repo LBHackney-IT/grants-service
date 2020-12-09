@@ -148,20 +148,11 @@ const ApplicationsList = ({
       )}
 
       <BasicSelect
-        options={Object.keys(BUSINESS_CATEGORIES)}
+        options={BUSINESS_CATEGORIES}
         label="Filter by Business Category:"
         value={filters.businessCategory}
         onChange={(businessCategory) => setValues({ businessCategory })}
       />
-
-      {filters.businessCategory && (
-        <BasicSelect
-          options={BUSINESS_CATEGORIES[filters.businessCategory]}
-          label="Filter by Business Subcategory:"
-          value={filters.businessSubcategory}
-          onChange={(businessSubcategory) => setValues({ businessSubcategory })}
-        />
-      )}
 
       <TextInput
         name="searchByApplicationId"
