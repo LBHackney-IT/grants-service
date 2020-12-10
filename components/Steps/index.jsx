@@ -397,9 +397,10 @@ export const inputLabels = {
       label:
         'Business premises lease, rental agreement, mortgage statement or market pitch licence:',
       hint: `Please provide a copy of your business premises lease, rental agreement, mortgage statement, or market trading
-        licence.`,
+        licence. If you are unable to provide this, you must upload another form of evidence setting out the ongoing fixed
+        costs that your business has to pay (e.g. utility bills, storage fees).`,
       validation: {
-        required: true,
+        validate: (value) => value.length > 0 || 'Document required',
       },
     },
     employeesConfirmation: {
