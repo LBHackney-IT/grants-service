@@ -103,14 +103,14 @@ Below is a short guide to get started with configuring the database for your loc
 1.  Create the database:
 
     ```sh
-    $ createdb dbg
+    $ createdb arg
     ```
 
 2.  Add the database URL as an environment variable in `.env`. On Linux, you may need to provide a username
     and password.
 
     ```sh
-    $ echo DATABASE_URL=postgresql://localhost/dbg >> .env
+    $ echo DATABASE_URL=postgresql://localhost/arg >> .env
     ```
 
 3.  Run all migrations
@@ -125,7 +125,7 @@ To seed your database with data to get going quickly, you can run the file under
 following:
 
 ```sh
-$ cat db/seeds.sql | psql dbg
+$ cat db/seeds.sql | psql arg
 ```
 
 #### Migrations
@@ -204,7 +204,7 @@ CloudFormation), but in the meantime, below are the steps to recreate it manuall
     out the other end as "instance_role"
   - "Access to Postgres" security group
   - SessionManagerKey
-  - Name “RDS Jump Box - Covid Business Grants"
+  - Name “RDS Jump Box - Additional Restrictions Grant"
 - Then you probably need to add it to Systems Manager
   - Go to AWS Systems Manager Quick Setup
   - Client "Edit all"
