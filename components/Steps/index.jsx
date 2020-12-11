@@ -383,8 +383,8 @@ export const inputLabels = {
   supplementaryInformation: {
     bankStatement: {
       label: 'Bank Statement:',
-      hint: `Please provide 3 months business bank statements from September 2020 - November 2020 (inclusive). This must
-        correspond with the bank account details provided in this application form.`,
+      hint: `Please provide 3 months business bank statements from September 2020 - November 2020 (inclusive). The bank statements must
+      correspond with the bank account details provided in this application form.`,
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
