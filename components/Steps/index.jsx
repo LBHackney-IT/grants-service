@@ -381,9 +381,8 @@ export const inputLabels = {
   supplementaryInformation: {
     bankStatement: {
       label: 'Bank Statement:',
-      hint: `Please provide your November 2020 business bank statement - this must correspond with the bank account details
-        provided in this application form. If you do not have your November bank statement, please submit your most
-        recent bank statement.`,
+      hint: `Please provide 3 months business bank statements from September 2020 - November 2020 (inclusive). This must
+        correspond with the bank account details provided in this application form.`,
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
