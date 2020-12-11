@@ -33,8 +33,8 @@ export default function confirmation() {
           application.
         </WarningText>
         <p className="govuk-body">
-          To help us improve this service, all applicants are encouraged to
-          complete the{' '}
+          To ensure our services reach the people who need them, all applicants
+          are encouraged to complete the{' '}
           <a
             className="govuk-link"
             href={process.env.NEXT_PUBLIC_EQUALITIES_GOOGLE_FORM_URL}
