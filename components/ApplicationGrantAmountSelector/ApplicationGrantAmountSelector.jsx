@@ -7,10 +7,12 @@ import { GRANT_AMOUNT, FREE_TEXT } from '../../lib/dbMapping';
 export const handleOnChange = (
   setError,
   setValue,
-  setCustomValueVisible
+  setCustomValueVisible,
+  setSuccessMessage
 ) => async (grantAmountAwarded) => {
   setError(false);
   try {
+    setSuccessMessage(false);
     setValue(grantAmountAwarded);
 
     if (FREE_TEXT.includes(grantAmountAwarded)) {
@@ -29,7 +31,9 @@ export const handleSubmit = async (
   grantApplicationPatcher,
   applicationId,
   storeAs,
-  setError
+  setError,
+  onChange,
+  setSuccessMessage
 ) => {
   const grantAmountAwarded = FREE_TEXT.includes(value) ? customValue : value;
 
@@ -38,6 +42,8 @@ export const handleSubmit = async (
     await grantApplicationPatcher(applicationId, {
       [storeAs]: grantAmountAwarded,
     });
+    onChange(grantAmountAwarded);
+    setSuccessMessage(true);
   } catch (e) {
     setError(e.response.data);
   }
@@ -50,8 +56,10 @@ const ApplicationGrantAmountSelector = ({
   label,
   options,
   storeAs,
+  onChange,
 }) => {
   const [error, setError] = useState();
+  const [successMessage, setSuccessMessage] = useState(false);
   const [value, setValue] = useState(
     GRANT_AMOUNT.includes(grantAmountAwarded) ? grantAmountAwarded : 'Other'
   );
@@ -65,7 +73,12 @@ const ApplicationGrantAmountSelector = ({
         name={name}
         label={label}
         options={options}
-        onChange={handleOnChange(setError, setValue, setCustomValueVisible)}
+        onChange={handleOnChange(
+          setError,
+          setValue,
+          setCustomValueVisible,
+          setSuccessMessage
+        )}
         value={value}
         error={error && { message: error }}
         isUnselectable={false}
@@ -85,11 +98,26 @@ const ApplicationGrantAmountSelector = ({
             patchApplication,
             applicationId,
             storeAs,
-            setError
+            setError,
+            onChange,
+            setSuccessMessage
           )
         }
+        className="govuk-button govuk-!-margin-0"
         text="Award grant amount"
       />
+      {successMessage && (
+        <div
+          class="govuk-notification-banner govuk-notification-banner--success"
+          role="alert"
+          aria-labelledby="govuk-notification-banner-title"
+          data-module="govuk-notification-banner"
+        >
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-body">Grant amount awarded</p>
+          </div>
+        </div>
+      )}
     </>
   );
 };
