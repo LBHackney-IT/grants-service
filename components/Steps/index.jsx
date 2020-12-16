@@ -177,6 +177,7 @@ export const inputLabels = {
         required: 'Business Structure is required',
         validate: (value) => value !== '',
       },
+      adminValidation: true,
     },
     businessStructureText: {},
     businessIdentifyType: {
@@ -187,7 +188,6 @@ export const inputLabels = {
       validation: {
         required: true,
       },
-      adminValidation: true,
     },
     businessIdentifyNumber: {
       validation: {
