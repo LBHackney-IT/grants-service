@@ -114,7 +114,9 @@ const ApplicationGrantAmountSelector = ({
           data-module="govuk-notification-banner"
         >
           <div class="govuk-notification-banner__content">
-            <p class="govuk-body">Grant amount awarded</p>
+            <p class="govuk-body">
+              Grant amount set to £{value === 'Other' ? customValue : value}
+            </p>
           </div>
         </div>
       )}
