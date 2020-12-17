@@ -1,18 +1,14 @@
 import * as HttpStatus from 'http-status-codes';
 import { signedUrl } from '../../../../../lib/usecases/getSignedDocumentUrl';
-import { mimeType } from '../../../../../utils/mimeTypes';
 
 export default async (req, res) => {
   switch (req.method) {
     case 'GET':
       // eslint-disable-next-line no-case-declarations
       const s3Path = req.query.s3Path;
-      // eslint-disable-next-line no-case-declarations
-      const mime = mimeType(s3Path);
       try {
         res.writeHead(HttpStatus.MOVED_TEMPORARILY, {
           Location: await signedUrl({ s3Path }),
-          'Content-Type': mime,
         });
         res.end();
       } catch (error) {
