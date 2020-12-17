@@ -1,8 +1,12 @@
 # Fixing Mime Types in AWS
 
-## The Issue
+## Update - Issue fixed
 
-Part of the application process requires users to upload supporting documentation for their claims. E.G: Annual Accounts.  
+Commit 2b4e03c fixes this issue so you should not need to run this manual script any longer.
+
+## The Old Issue
+
+Part of the application process requires users to upload supporting documentation for their claims. E.G: Annual Accounts.
 During processing these files are then reviewed by Grant Officers.
 
 The upload functionality does not set the file-type metadata correctly. Files are all set as "binary/octet-stream". This means that when a Grant Officer wishes to view a file, the browser doesn't know how to display it and forces a download instead of viewing in a new tab.
@@ -32,11 +36,11 @@ In addition to setting the correct content type, the system requires a metadata 
 ## Steps
 
 1. Log in to the AWS cli on the command line.
-1. Create a local list of all the files in the bucket.  
+1. Create a local list of all the files in the bucket.
    `aws s3 ls s3://your-bucket-name/ --recursive --profile your-aws-cli-profile > my-bucket-ls.txt` 1. See [my-bucket-ls.txt](my-bucket-ls.txt) for example output.
-1. Trim the first 2 columns from the listing. Required information is in the s3 keys.  
+1. Trim the first 2 columns from the listing. Required information is in the s3 keys.
    `cat my-bucket-ls.txt | cut -c 32- > my-bucket-ls-trimmed.txt`
-1. Get a list of all the file extensions.  
+1. Get a list of all the file extensions.
    `cat my-bucket-ls-trimmed.txt | grep -o -E '\.[[:alpha:]]{1,}$' | sort | uniq > my-bucket-extensions.txt`
    1. Review the [buildcps.sh](buildcps.sh) script to ensure extensions are covered. Unhandled extensions will have the mime type: `binary/octet-stream`.
 1. Generate the AWS cp commands
@@ -44,18 +48,20 @@ In addition to setting the correct content type, the system requires a metadata 
    - `input=` The `*-ls-trimmed.txt` file from above.
    - `bucket=` The AWS s3 bucket.
    - `aws_profile=` your-aws-cli-profile.
-   1. Make the script executable:  
+   1. Make the script executable:
       `chmod +x buildcps.sh`
-   1. Run, redirecting the commands to a new file.  
+   1. Run, redirecting the commands to a new file.
       `./buildcps.sh > awscp.txt`
    1. Review the generated commands in `awscp.txt`.
-1. **Backup** the original files to an archive dir in the same bucket.  
-   **Note:** The command uses the `--dryrun` argument to permit validation. Remove to actually execute.  
-   `aws s3 cp s3://your-bucket-name/ s3://your-bucket-name/archive/ --recursive --dryrun --profile your-aws-cli-profile` 1. Go to the AWS console and manually check the files are archived.
-1. Run the generated commands against s3, redirecting output to a log file.  
+1. **Backup** the original files to an archive dir in the same bucket.
+   **Note:** The command uses the `--dryrun` argument to permit validation. Remove to actually execute.
+   `aws s3 cp s3://your-bucket-name/ s3://your-bucket-name/archive/ --recursive --dryrun --profile your-aws-cli-profile`
+1. Go to the AWS console and manually check the files are archived.
+1. Run the generated commands against s3, redirecting output to a log file.
    `xargs -d '\n' -t -i bash -c '{}' < awscp.txt > awscp_log.txt`
 
-   1. **Optional:** If `awscp.txt` is large, [split](https://kb.iu.edu/d/afar) it into a number of files to run smaller batches. The previous `xargs` command will need adjusting for each output file.  
+   1. **Optional:** If `awscp.txt` is large, [split](https://kb.iu.edu/d/afar) it into a number of files to run smaller batches. The previous `xargs` command will need adjusting for each output file.
       `split -l 500 awscp.txt awscp_`
+      NB: osX users won't have the right options for `xargs` available, but can use [Homebrew findutils](https://formulae.brew.sh/formula/findutils) to use `gxargs` in its place.
 
 1. Manually check the files Metadata in the AWS console.
