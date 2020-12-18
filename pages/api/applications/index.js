@@ -1,5 +1,5 @@
 import * as HttpStatus from 'http-status-codes';
-import { nanoid } from 'nanoid';
+import { customAlphabet } from 'nanoid';
 import AppContainer from '../../../containers/AppContainer';
 import { getUserStringFromCookie } from 'utils/auth';
 import {
@@ -94,6 +94,10 @@ export default async (req, res) => {
       }
 
       try {
+        const nanoid = customAlphabet(
+          '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz0123456789',
+          21
+        );
         const clientGeneratedId = nanoid();
         const validApplication = await isValidApplication(req.body);
         await uploadApplication({ ...validApplication, clientGeneratedId });
