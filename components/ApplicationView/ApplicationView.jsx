@@ -9,6 +9,7 @@ import ExpandableDetails from 'components/ExpandableDetails/ExpandableDetails';
 import ApplicationGrantAmountSelector from 'components/ApplicationGrantAmountSelector/ApplicationGrantAmountSelector';
 import ApplicationStateSelector from 'components/ApplicationStateSelector/ApplicationStateSelector';
 import Comments from 'components/Comments/Comments';
+import { Checkbox } from 'components/Form';
 
 const ApplicationView = ({ applicationId }) => {
   const [data, setData] = useState();
@@ -96,6 +97,11 @@ const ApplicationView = ({ applicationId }) => {
                     </p>
                   )}
                 </div>
+                <Checkbox
+                  name="nfi_check"
+                  label="NFI Check"
+                  register={register}
+                />
               </div>
               <div className="govuk-grid-column-one-third">
                 <ApplicationStateSelector
