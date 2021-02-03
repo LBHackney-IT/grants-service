@@ -170,7 +170,11 @@ export const inputLabels = {
       label: (
         <>
           Is your business eligible for the{' '}
-          <a href="#" target="_blank" rel="noopener">
+          <a
+            href="https://hackney.gov.uk/business-grants"
+            target="_blank"
+            rel="noopener"
+          >
             Local Restrictions Support Grants
           </a>
           ?
