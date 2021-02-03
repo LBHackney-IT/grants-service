@@ -1,0 +1,3 @@
+ALTER TABLE eligibility_criteria DROP COLUMN meets_arg_criteria_round_2;
+ALTER TABLE eligibility_criteria DROP COLUMN trading_on_01_12_20;
+ALTER TABLE eligibility_criteria DROP COLUMN eligible_for_lrsg_grants;
