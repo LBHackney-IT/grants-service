@@ -64,7 +64,40 @@ const Step1 = (props) => {
         <Radios
           {...getInputProps(
             'eligibilityCriteria',
+            'meetsArgCriteriaRound2',
+            {
+              register,
+            },
+            errors
+          )}
+          onChange={() => setShowError(false)}
+        />
+        <Radios
+          {...getInputProps(
+            'eligibilityCriteria',
             'servedLegalNotices',
+            {
+              register,
+            },
+            errors
+          )}
+          onChange={() => setShowError(false)}
+        />
+        <Radios
+          {...getInputProps(
+            'eligibilityCriteria',
+            'tradingOn011220',
+            {
+              register,
+            },
+            errors
+          )}
+          onChange={() => setShowError(false)}
+        />
+        <Radios
+          {...getInputProps(
+            'eligibilityCriteria',
+            'eligibleForLrsgGrants',
             {
               register,
             },

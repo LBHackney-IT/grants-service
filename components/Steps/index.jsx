@@ -85,6 +85,52 @@ export const inputLabels = {
       ),
       validation: { required: true },
     },
+    meetsArgCriteriaRound2: {
+      label: (
+        <>
+          Does your business meet one of the following criteria for the
+          Additional Restrictions Grant - Round 2:
+          <ul>
+            <li>
+              Your business was legally required to close by the Government in
+              December due to the tier restrictions (either during Tier 2, Tier
+              3, and/or Tier 4){' '}
+              <span className="govuk-!-font-weight-bold">and</span> the national
+              lockdown from 5 January 2021 onwards{' '}
+              <span className="govuk-!-font-weight-bold">and</span> you are not
+              a Hackney business rates account holder;{' '}
+              <strong>
+                <u>or</u>
+              </strong>
+            </li>
+            <li>
+              Your business was not legally required to close by the Government
+              during the December 2020 tier restriction or the national lockdown
+              from 5 January 2021 onwards but has been severely impacted by the
+              tier and national lockdown restrictions put in place to prevent
+              the spread of COVID-19 from the 2 December 2020 onwards.
+            </li>
+          </ul>
+          If you are unsure if your business was legally required to close by
+          the Government in December or January please review the documents
+          below:
+          <ul>
+            <li>
+              <a href="#" target="_blank" rel="noopener">
+                December 2020: Tiers 1-4 restrictions and required business
+                closures
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" rel="noopener">
+                January 2021: National lockdown and required business closures
+              </a>
+            </li>
+          </ul>
+        </>
+      ),
+      validation: { required: true },
+    },
     servedLegalNotices: {
       label:
         'Is your business in administration, insolvent or in receipt of a striking off notice?',
@@ -93,6 +139,13 @@ export const inputLabels = {
     },
     tradingOn041120: {
       label: 'Was your business trading on the 4th November 2020?',
+      validation: { required: true },
+      adminValidation: true,
+    },
+    tradingOn011220: {
+      label: 'Was your business trading on 1 December 2020?',
+      hint:
+        'Your business is still considered to have been trading on 1 December 2020 if it was an active business at this time, even if your business was closed to the public due to Government restrictions.',
       validation: { required: true },
       adminValidation: true,
     },
@@ -108,6 +161,46 @@ export const inputLabels = {
             Local Restrictions Support Grant (Closed) Addendum
           </a>
           ?
+        </>
+      ),
+      adminValidation: true,
+      validation: { required: true },
+    },
+    eligibleForLrsgGrants: {
+      label: (
+        <>
+          Is your business eligible for the{' '}
+          <a href="#" target="_blank" rel="noopener">
+            Local Restrictions Support Grants
+          </a>
+          ?
+        </>
+      ),
+      hint: (
+        <>
+          <p>
+            If you are eligible for the Local Restrictions Support Grants then
+            you are not eligible for the Additional Restrictions Grant and you
+            should apply for the Local Restrictions Support Grants instead.
+            Visit{' '}
+            <a
+              href="https://hackney.gov.uk/business-grants"
+              target="_blank"
+              rel="noopener"
+            >
+              Hackney Business Grants
+            </a>{' '}
+            to read the criteria for the Local Restrictions Support Grants to
+            make sure you are applying for the correct grant for your business.
+          </p>
+          <p>
+            If you are a Hackney business rates account holder (including if you
+            receive rates relief and do not pay for your business rates as a
+            result), and your business is in the retail, hospitality or leisure
+            sectors then it is likely you will be eligible for a Local
+            Restrictions Support Grant and not the Additional Restrictions
+            Grant.
+          </p>
         </>
       ),
       adminValidation: true,
