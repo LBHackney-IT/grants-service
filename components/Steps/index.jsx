@@ -547,9 +547,8 @@ export const inputLabels = {
   },
   supplementaryInformation: {
     bankStatement: {
-      label: 'Bank Statement:',
-      hint: `Please provide 3 months business bank statements from September 2020 - November 2020 (inclusive). The bank statements must
-      correspond with the bank account details provided in this application form.`,
+      label: 'Business Bank Statement:',
+      hint: `Please provide 3 months business bank statements from November 2020 to January 2021 (inclusive). The bank account details in the bank statements provided must correspond with the bank account details provided in this application form.`,
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
@@ -560,25 +559,20 @@ export const inputLabels = {
         'If applicable, please provide a copy of your latest London Borough of Hackney business rates bill.',
     },
     leaseOrRentalAgreement: {
-      label:
-        'Business premises lease, rental agreement, mortgage statement or market pitch licence:',
-      hint: `Please provide a copy of your business premises lease, rental agreement, mortgage statement, or market trading
-        licence. If you are unable to provide this, you must upload another form of evidence setting out the ongoing fixed
-        costs that your business has to pay (e.g. utility bills, storage fees).`,
+      label: 'Business premises lease or rental agreement:',
+      hint: `For businesses operating from a commercial business premises please provide a copy of your business premises lease, rental agreement, mortgage statement, or market trading licence.`,
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
     },
     employeesConfirmation: {
       label: 'Confirmation of the amount of employees in your business:',
-      hint: `If your business employs staff, please provide a copy of your most up to date business payroll record showing
-        the number of people employed by your business. If a payroll record is not available, please provide another
-        form of evidence which verifies the number of people employed by your business.`,
+      hint: `Please provide a copy of your most up to date business payroll record showing the number of people employed by your business on a PAYE full time basis. If a payroll record is not available please provide another form of evidence which verifies the number of people employed by your business.`,
     },
     photoId: {
       label: 'Photographic ID:',
       hint:
-        'Please provide a current form of photo identification such as a passport or driving licence.',
+        'Please provide a form of photo identification such as a passport or driving licence.',
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
