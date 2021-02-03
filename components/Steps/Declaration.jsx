@@ -112,7 +112,7 @@ const Declaration = (props) => {
       <Checkbox
         {...getInputProps(
           'declaration',
-          'businessPermitData',
+          'businessPermitDataRound2',
           {
             register,
           },

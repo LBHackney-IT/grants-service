@@ -719,6 +719,33 @@ export const inputLabels = {
       ),
       validation: { required: true },
     },
+    businessPermitDataRound2: {
+      label: (
+        <>
+          I permit the data provided in this form to be used to determine my
+          eligibility and process my application for the Additional Restrictions
+          Grant. I understand that my data will be kept on record and may be
+          used to determine my eligibility for any future rounds of the{' '}
+          <a
+            href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-additional-restrictions-grant"
+            target="_blank"
+            rel="noopener"
+          >
+            Additional Restrictions Grant
+          </a>
+          , the{' '}
+          <a href="#" target="_blank" rel="noopener">
+            Local Restrictions Support Grants
+          </a>
+          , or the{' '}
+          <a href="#" target="_blank" rel="noopener">
+            Closed Business Lockdown Payment
+          </a>{' '}
+          where applicable.
+        </>
+      ),
+      validation: { required: true },
+    },
     businessShareWithBEIS: {
       label: (
         <>
