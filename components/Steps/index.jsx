@@ -226,9 +226,24 @@ export const inputLabels = {
       adminValidation: true,
     },
     howManyEmployees: {
-      label: 'How many employees does your business have?',
-      hint: `Full time equivalents. Please note this figure should not include the business owner, so if you are a sole
-      trader, or self employed, and/or your business has no employees other than yourself, this figure should be 0.`,
+      label:
+        'How many employees does your business have? (Full time equivalent PAYE employees)',
+      hint: (
+        <>
+          <p>
+            Please note you must be able to evidence the number of full time
+            employees your business has by submitting evidence of your business
+            PAYE payroll records with this application form. If you are unable
+            to provide this evidence then you must not include these employees
+            in your response to this question.
+          </p>
+          <p>
+            If you are a company director but are also an employee of the
+            business who is paid via PAYE rather than via dividends then you are
+            able to count yourself as an employee.
+          </p>
+        </>
+      ),
       inputClassName: 'govuk-input--width-10',
       type: 'number',
       inputMode: 'numeric',
@@ -265,8 +280,8 @@ export const inputLabels = {
     businessReferenceNumber: {
       label: (
         <>
-          If you are able to, please provide the reference number that best
-          describes your business from the business classification website (
+          Please provide the reference number that best describes your business
+          from the business classification website (
           <a
             href="http://resources.companieshouse.gov.uk/sic/"
             target="_blank"
@@ -413,11 +428,17 @@ export const inputLabels = {
     },
     businessImpactStatement: {
       label: 'How has your business been impacted?',
-      hint: `Please provide a short written statement setting out how your business was severely impacted by the
-      lockdown between 5 November 2020 - 2 December 2020. This must include details on why and how your business was
-      severely impacted by the lockdown, if you were able to trade online, the financial scale of Coronavirus related
-      losses (for example % drop in sales, loss of income in £s), and any monthly ongoing fixed business costs you have
-      and what these are e.g rent, utility bills.`,
+      hint: (
+        <p>
+          Please provide a short written statement setting out how your business
+          has been severely impacted by the tier restrictions from 2 December
+          2020 and the national lockdown from 5 January 2021. This should
+          include details on why and how your business was severely impacted.
+          You should also set out if you are able to trade online, the scale of
+          your Coronavirus related losses, and any ongoing fixed business costs
+          you may have.
+        </p>
+      ),
       validation: {
         required: true,
       },
