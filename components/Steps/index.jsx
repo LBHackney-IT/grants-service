@@ -29,6 +29,35 @@ export const inputLabels = {
   eligibilityCriteria: {
     tradingInHackney: {
       label: 'Is your business based in and trading in Hackney?',
+      hint: (
+        <>
+          <p>
+            Your business must be physically based in either a commercial or
+            domestic premises in Hackney and you must conduct your business
+            operations from this premises.
+          </p>
+          <p>
+            If you are currently working from home as a result of Covid-19 but
+            your business would normally operate from a commercial premises{' '}
+            <span className="govuk-!-font-weight-bold">in Hackney</span>, then
+            please provide your commercial premises address in Hackney on your
+            application form.
+          </p>
+          <p>
+            If your business is a home based business operating from a
+            residential premises{' '}
+            <span className="govuk-!-font-weight-bold">in Hackney</span> and
+            this was your usual mode of operating prior to the Covid-19 pandemic
+            then please provide this address.
+          </p>
+          <p>
+            Businesses who use a virtual office/business address in the London
+            Borough of Hackney but who do not physically conduct their business
+            operations on a full time basis from these premises are not eligible
+            for a grant.
+          </p>
+        </>
+      ),
       validation: { required: true },
       adminValidation: true,
     },
