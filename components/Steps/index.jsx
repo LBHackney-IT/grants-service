@@ -116,13 +116,27 @@ export const inputLabels = {
           below:
           <ul>
             <li>
-              <a href="#" target="_blank" rel="noopener">
+              <a
+                href={
+                  process.env
+                    .NEXT_PUBLIC_DECEMBER_BUSINESS_CLOSURES_GUIDANCE_GOOGLE_URL
+                }
+                target="_blank"
+                rel="noopener"
+              >
                 December 2020: Tiers 1-4 restrictions and required business
                 closures
               </a>
             </li>
             <li>
-              <a href="#" target="_blank" rel="noopener">
+              <a
+                href={
+                  process.env
+                    .NEXT_PUBLIC_JANUARY_BUSINESS_CLOSURES_GUIDANCE_GOOGLE_URL
+                }
+                target="_blank"
+                rel="noopener"
+              >
                 January 2021: National lockdown and required business closures
               </a>
             </li>
