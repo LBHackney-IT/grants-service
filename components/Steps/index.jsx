@@ -733,12 +733,12 @@ export const inputLabels = {
           >
             Additional Restrictions Grant
           </a>
-          , the{' '}
-          <a href="#" target="_blank" rel="noopener">
-            Local Restrictions Support Grants
-          </a>
-          , or the{' '}
-          <a href="#" target="_blank" rel="noopener">
+          , the Local Restrictions Support Grants, or the{' '}
+          <a
+            href="https://www.gov.uk/guidance/check-if-your-business-is-eligible-for-the-coronavirus-closed-businesses-lockdown-payment"
+            target="_blank"
+            rel="noopener"
+          >
             Closed Business Lockdown Payment
           </a>{' '}
           where applicable.
