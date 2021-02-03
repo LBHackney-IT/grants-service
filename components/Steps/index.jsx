@@ -212,6 +212,17 @@ export const inputLabels = {
     },
   },
   business: {
+    previouslyApplied: {
+      label:
+        'Have you applied for an Additional Restrictions Grant (Round 1) from Hackney Council?',
+      validation: { required: true },
+    },
+    previousApplicationId: {
+      label:
+        'Please provide your Round 1 grant application ID number (if known):',
+      hint:
+        'This can be found in the subject header of your previous grant application confirmation email (e.g qf4InsCv6uL30sELgI43O)',
+    },
     liableForRates: {
       label: 'Is your business liable for business rates?',
       validation: { required: true },
@@ -418,6 +429,12 @@ export const inputLabels = {
       },
     },
     businessPremisesText: {},
+    tradingDaysPerWeek: {
+      label:
+        'If you are a market trader please state how many days per week you usually trade in Hackney (prior to the COVID-19 pandemic):',
+      type: 'number',
+      inputMode: 'numeric',
+    },
     businessRateableValue: {
       label: 'Business Premises Rateable Value (if applicable):',
       type: 'number',

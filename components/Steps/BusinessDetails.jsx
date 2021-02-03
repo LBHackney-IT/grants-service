@@ -34,6 +34,7 @@ const Step1 = (props) => {
   const selectedBusinessPremisesDescription = watch(
     'business.businessPremisesDescription'
   );
+  const hasPreviouslyApplied = watch('business.previouslyApplied');
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="govuk-form-group">
@@ -43,6 +44,27 @@ const Step1 = (props) => {
           aria-describedby="step-hint"
         >
           <h1>Business Details</h1>
+          <Radios
+            {...getInputProps(
+              'business',
+              'previouslyApplied',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          {hasPreviouslyApplied === 'Yes' && (
+            <TextInput
+              {...getInputProps(
+                'business',
+                'previousApplicationId',
+                { register },
+                errors
+              )}
+              errors
+            />
+          )}
           <Radios
             {...getInputProps(
               'business',
@@ -202,6 +224,14 @@ const Step1 = (props) => {
               )}
             />
           )}
+          <TextInput
+            {...getInputProps(
+              'business',
+              'tradingDaysPerWeek',
+              { register },
+              errors
+            )}
+          />
           <TextInput
             {...getInputProps(
               'business',
