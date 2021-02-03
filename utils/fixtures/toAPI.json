@@ -1,12 +1,14 @@
 {
   "eligibilityCriteria": {
     "tradingInHackney": true,
-    "meetsArgCriteria": true,
+    "meetsArgCriteriaRound2": true,
     "servedLegalNotices": false,
-    "tradingOn041120": true,
-    "eligibleForLrsgClosedGrant": false
+    "tradingOn011220": true,
+    "eligibleForLrsgGrants": false
   },
   "business": {
+    "previouslyApplied": true,
+    "previousApplicationId": "qf4InsCv6uL30sELgI43O",
     "liableForRates": true,
     "businessSizeId": "Micro",
     "howManyEmployees": "2",
@@ -34,6 +36,7 @@
       "postcode": "SW1A 2BB"
     },
     "businessPremisesDescription": "Individual office",
+    "tradingDaysPerWeek": "4",
     "businessRateableValue": "321",
     "businessWebsite": "https://example.com",
     "businessImpactStatement": "Well bad.",
@@ -82,7 +85,7 @@
     "businessNotExceed": true,
     "businessNotUndertaking": true,
     "businessRecoverableAgreement": true,
-    "businessPermitData": true,
+    "businessPermitDataRound2": true,
     "businessShareWithBEIS": true,
     "businessHappyContacted": true
   }
