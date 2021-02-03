@@ -17,11 +17,11 @@ const Step1 = (props) => {
     Object.entries(data.eligibilityCriteria).forEach(([key, value]) => {
       if (key === 'servedLegalNotices' && value === 'Yes') {
         eligible = false;
-      } else if (key === 'eligibleForLrsgClosedGrant' && value === 'Yes') {
+      } else if (key === 'eligibleForLrsgGrants' && value === 'Yes') {
         eligible = false;
       } else if (
         key !== 'servedLegalNotices' &&
-        key !== 'eligibleForLrsgClosedGrant' &&
+        key !== 'eligibleForLrsgGrants' &&
         value === 'No'
       ) {
         eligible = false;
