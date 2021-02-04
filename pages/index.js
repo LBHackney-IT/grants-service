@@ -5,7 +5,7 @@ import { stepPath, stepKeys } from 'components/Steps';
 export default function Home({ date, expirationDate }) {
   return (
     <div>
-      <h1>Apply for the COVID-19 Additional Restrictions Grant</h1>
+      <h1>Apply for the COVID-19 Additional Restrictions Grant - Round 2</h1>
       <p className="govuk-body">
         The Government has announced a series of grants for certain businesses
         affected by the COVID-19 pandemic, the tier restrictions introduced in
