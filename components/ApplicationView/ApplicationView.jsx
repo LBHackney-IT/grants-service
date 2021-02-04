@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 
-import { GRANT_AMOUNT } from 'lib/dbMapping';
+import { GRANT_AMOUNT, GRANT_AMOUNT_ROUND_2 } from 'lib/dbMapping';
 import { fetchApplication, patchApplication } from 'utils/api/applications';
 import Summary from 'components/Summary/Summary';
 import ExpandableDetails from 'components/ExpandableDetails/ExpandableDetails';
@@ -124,8 +124,18 @@ const ApplicationView = ({ applicationId }) => {
                 <ApplicationGrantAmountSelector
                   storeAs="grantAmountAwarded"
                   name="arg"
-                  label="Grant Amount"
+                  label="Round 1 Grant Amount"
                   options={GRANT_AMOUNT}
+                  grantAmountAwarded={data.grantAmountAwarded}
+                  applicationId={applicationId}
+                  onChange={setGrantAwardedAmount}
+                />
+
+                <ApplicationGrantAmountSelector
+                  storeAs="grantAmountAwarded"
+                  name="arg-round-2"
+                  label="Round 2 Grant Amount"
+                  options={GRANT_AMOUNT_ROUND_2}
                   grantAmountAwarded={data.grantAmountAwarded}
                   applicationId={applicationId}
                   onChange={setGrantAwardedAmount}
