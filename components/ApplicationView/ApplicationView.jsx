@@ -96,6 +96,17 @@ const ApplicationView = ({ applicationId }) => {
                       </a>
                     </p>
                   )}
+                  {data.business.previousApplicationId && (
+                    <p className="govuk-body">
+                      Previous Application:{' '}
+                      <a
+                        href={`/admin/applications/${data.business.previousApplicationId}`}
+                        target="_blank"
+                      >
+                        {data.business.previousApplicationId}
+                      </a>
+                    </p>
+                  )}
                 </div>
                 <Checkbox
                   name="nfi_check"
