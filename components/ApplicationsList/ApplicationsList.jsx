@@ -10,6 +10,7 @@ import {
   APPLICATION_STATE,
   BUSINESS_CATEGORIES,
   BUSINESS_SIZE,
+  DATES,
   TYPE_OF_BUSINESS,
 } from 'lib/dbMapping';
 import { fetchGrantOfficers } from '../../utils/api/grantOfficers';
@@ -171,6 +172,12 @@ const ApplicationsList = ({
         label="Filter by Business Premises:"
         value={filters.businessPremises}
         onChange={(businessPremises) => setValues({ businessPremises })}
+      />
+
+      <BasicSelect
+        options={Object.keys(DATES)}
+        label="Filter by ARG round:"
+        onChange={(date) => setValues({ date: DATES[date] })}
       />
 
       <TextInput
