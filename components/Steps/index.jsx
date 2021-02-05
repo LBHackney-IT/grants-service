@@ -90,7 +90,7 @@ export const inputLabels = {
         <>
           Does your business meet one of the following criteria for the
           Additional Restrictions Grant - Round 2:
-          <ul>
+          <ul className="govuk-!-font-size-19">
             <li>
               Your business was legally required to close by the Government in
               December due to the tier restrictions (either during Tier 2, Tier
@@ -111,10 +111,12 @@ export const inputLabels = {
               the spread of COVID-19 from the 2 December 2020 onwards.
             </li>
           </ul>
-          If you are unsure if your business was legally required to close by
-          the Government in December or January please review the documents
-          below:
-          <ul>
+          <p className="govuk-body govuk-!-font-size-19">
+            If you are unsure if your business was legally required to close by
+            the Government in December or January please review the documents
+            below:
+          </p>
+          <ul className="govuk-!-font-size-19">
             <li>
               <a
                 href={
@@ -181,19 +183,8 @@ export const inputLabels = {
       validation: { required: true },
     },
     eligibleForLrsgGrants: {
-      label: (
-        <>
-          Is your business eligible for the{' '}
-          <a
-            href="https://hackney.gov.uk/business-grants"
-            target="_blank"
-            rel="noopener"
-          >
-            Local Restrictions Support Grants
-          </a>
-          ?
-        </>
-      ),
+      label:
+        'Is your business eligible for the Local Restrictions Support Grants?',
       hint: (
         <>
           <p>
@@ -574,14 +565,14 @@ export const inputLabels = {
     },
     leaseOrRentalAgreement: {
       label: 'Business premises lease or rental agreement:',
-      hint: `For businesses operating from a commercial business premises please provide a copy of your business premises lease, rental agreement, mortgage statement, or market trading licence.`,
+      hint: `Please provide a copy of your business premises lease, rental agreement, mortgage statement, or market trading licence. If you do not have an up to date business premises lease, rental agreement or licence please provide another up to date form of evidence to demonstrate your business is physically based in Hackney e.g a signed and dated letter from your landlord, recent utility bill for your business premises.`,
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
     },
     employeesConfirmation: {
       label: 'Confirmation of the amount of employees in your business:',
-      hint: `Please provide a copy of your most up to date business payroll record showing the number of people employed by your business on a PAYE full time basis. If a payroll record is not available please provide another form of evidence which verifies the number of people employed by your business.`,
+      hint: `If applicable and you employ PAYE staff, please provide a copy of your most up to date business payroll record showing the number of people employed by your business on a PAYE full time basis. If a payroll record is not available please provide another form of evidence which verifies the number of people employed by your business.`,
     },
     photoId: {
       label: 'Photographic ID:',
