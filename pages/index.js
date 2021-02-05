@@ -8,9 +8,7 @@ export default function Home({ date, expirationDate }) {
       <h1>Apply for the COVID-19 Additional Restrictions Grant - Round 2</h1>
       <p className="govuk-body">
         The Government has announced a series of grants for certain businesses
-        affected by the COVID-19 pandemic, the tier restrictions introduced in
-        London from October 2020, and the subsequent national lockdown period
-        from 5 November 2020 to 2 December 2020.
+        affected by the COVID-19 pandemic.
       </p>
       <p className="govuk-body">
         By completing this application form, you will be considered for the
