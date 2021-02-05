@@ -6,9 +6,9 @@ import { Button, TextInput, Select, Radios, TextArea } from 'components/Form';
 import { stepPath, getInputProps } from 'components/Steps';
 import AddressLookup from 'components/Form/AddressLookup/AddressLookup';
 import { FREE_TEXT } from '../../lib/dbMapping';
-import { fetchApplication } from '../../utils/api/applications';
 
 import ErrorSummary from '../ErrorSummary/ErrorSummary';
+import { fetchPreviousApplicationId } from '../../utils/api/applications';
 
 const businessIdentifyNumber = (businessType) => {
   switch (businessType) {
@@ -44,13 +44,18 @@ const Step1 = (props) => {
 
   useEffect(() => {
     let mounted = true;
-    fetchApplication(hasPreviousApplicationId)
-      .then((application) => {
-        if (mounted) {
-          setData(application.application);
-        }
-      })
-      .catch(() => {});
+
+    (async function anyNameFunction() {
+      try {
+        const response = await fetchPreviousApplicationId(
+          hasPreviousApplicationId
+        );
+
+        if (mounted) setData(response.application);
+        // eslint-disable-next-line no-empty
+      } catch {}
+    })();
+
     return () => (mounted = false);
   }, [hasPreviousApplicationId]);
 
@@ -274,14 +279,14 @@ const Step1 = (props) => {
               errors
             )}
           />
+          {(data || hasPreviouslyApplied === 'No') && (
+            <Button className="govuk-button" text="Next" type="submit" />
+          )}
           {hasPreviouslyApplied === 'Yes' && !data && (
             <ErrorSummary
               title="Unfortunately, your previous application was not found."
               body="Check your previous submitted application ID is correct."
             />
-          )}
-          {(data || hasPreviouslyApplied === 'No') && (
-            <Button className="govuk-button" text="Next" type="submit" />
           )}
         </fieldset>
       </div>
