@@ -17,13 +17,6 @@ export const fetchApplication = async (applicationId) => {
   return data;
 };
 
-export const fetchPreviousApplicationId = async (previousApplicationId) => {
-  const { data } = await axios.get(
-    `/api/previous-applications/${previousApplicationId}`
-  );
-  return data;
-};
-
 export const postApplication = async (applicationData) => {
   const { data } = await axios.post('/api/applications', applicationData);
   return data;

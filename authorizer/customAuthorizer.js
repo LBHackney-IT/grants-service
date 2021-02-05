@@ -3,7 +3,6 @@ const path = require('path');
 const publicList = [
   { path: '/api/applications', methods: ['POST'] },
   { path: '/api/postcode', methods: ['GET'] },
-  { path: '/api/previous-applications', methods: ['GET'] },
   { path: '/api/urls', methods: ['POST'] },
 ];
 
