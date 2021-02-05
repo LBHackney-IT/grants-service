@@ -99,12 +99,20 @@ const ApplicationView = ({ applicationId }) => {
                   {data.business.previousApplicationId && (
                     <p className="govuk-body">
                       Previous Application:{' '}
-                      <a
-                        href={`/admin/applications/${data.business.previousApplicationId}`}
-                        target="_blank"
-                      >
-                        {data.business.previousApplicationId}
-                      </a>
+                      {parseInt(data.business.previousApplicationFound) ===
+                      1 ? (
+                        <a
+                          href={`/admin/applications/${data.business.previousApplicationId}`}
+                          target="_blank"
+                        >
+                          {data.business.previousApplicationId}
+                        </a>
+                      ) : (
+                        <span>
+                          {data.business.previousApplicationId} (Application ID
+                          not found)
+                        </span>
+                      )}
                     </p>
                   )}
                 </div>
