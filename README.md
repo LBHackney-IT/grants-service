@@ -73,7 +73,7 @@ complete description and fix.
 
 You must have the following installed
 
-- Node.js 12 if you have [NVM](https://github.com/nvm-sh/nvm) installed, run `$ nvm use` in your terminal.
+- Node.js 14 if you have [NVM](https://github.com/nvm-sh/nvm) installed, run `$ nvm use` in your terminal.
 - PostgreSQL 11 installed and running
 
 ### Install
@@ -236,9 +236,9 @@ CloudFormation), but in the meantime, below are the steps to recreate it manuall
   ```bash
   sudo yum install -y git
   ```
-  - Install Node.js 12
+  - Install Node.js 14
   ```bash
-  curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
+  curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
   sudo yum install -y nodejs
   ```
   - Clone the repository
