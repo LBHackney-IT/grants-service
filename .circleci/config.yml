@@ -1,13 +1,14 @@
 version: 2.1
 
 orbs:
+  browser-tools: circleci/browser-tools@1.2.4
   aws-cli: circleci/aws-cli@1.0.0
   aws_assume_role: lbh-hackit/aws_assume_role@0.1.0
 
 executors:
   node-executor:
     docker:
-      - image: circleci/node:12.9.1-browsers
+      - image: cimg/node:14.18.3-browsers
   docker-python:
     docker:
       - image: circleci/python:3.7
@@ -24,6 +25,7 @@ jobs:
     steps:
       - *attach_workspace
       - checkout
+      - browser-tools/install-firefox
       - run:
           name: Install dependencies
           command: yarn
@@ -98,34 +100,34 @@ workflows:
   continuous-delivery:
     jobs:
       - install-dependencies-and-test
-      - assume-role-staging:
-          context: api-assume-role-staging-context
-          requires:
-            - install-dependencies-and-test
-          filters:
-            branches:
-              only: master
-      - build-deploy-staging:
-          requires:
-            - install-dependencies-and-test
-            - assume-role-staging
-          filters:
-            branches:
-              only:
-                - master
-      - permit-deploy-production:
-          type: approval
-          requires:
-            - build-deploy-staging
-      - assume-role-production:
-          context: api-assume-role-production-context
-          requires:
-            - install-dependencies-and-test
-            - permit-deploy-production
-          filters:
-            branches:
-              only: master
-      - build-deploy-production:
-          requires:
-            - permit-deploy-production
-            - assume-role-production
+      # - assume-role-staging:
+      #     context: api-assume-role-staging-context
+      #     requires:
+      #       - install-dependencies-and-test
+      #     filters:
+      #       branches:
+      #         only: main
+      # - build-deploy-staging:
+      #     requires:
+      #       - install-dependencies-and-test
+      #       - assume-role-staging
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      # - permit-deploy-production:
+      #     type: approval
+      #     requires:
+      #       - build-deploy-staging
+      # - assume-role-production:
+      #     context: api-assume-role-production-context
+      #     requires:
+      #       - install-dependencies-and-test
+      #       - permit-deploy-production
+      #     filters:
+      #       branches:
+      #         only: master
+      # - build-deploy-production:
+      #     requires:
+      #       - permit-deploy-production
+      #       - assume-role-production
