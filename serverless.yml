@@ -104,6 +104,7 @@ resources:
                   - PUT
                   - POST
                 MaxAge: 3000
+                
     additionalRestrictionsGrantDbSecurityGroup:
       Type: AWS::EC2::SecurityGroup
       Properties:
@@ -114,6 +115,18 @@ resources:
           FromPort: 5432
           ToPort: 5432
           CidrIp: 172.31.0.0/16
+
+    additionalRestrictionsGrantDbSubnetGroup:
+      Type: AWS::RDS::DBSubnetGroup
+      Properties: 
+        DBSubnetGroupDescription: "Additional Restrictions Grant DB Subnet Group"
+        DBSubnetGroupName: "additionalRestrictionsGrantDb-${self:provider.stage}"
+        SubnetIds: 
+          - ${self:custom.subnets.${self:provider.stage}}
+        Tags:
+          -
+            Key: "Name"
+            Value: "additionalRestrictionsGrantsDb"
 
     additionalRestrictionsGrantDb:
       Type: AWS::RDS::DBInstance
@@ -130,6 +143,7 @@ resources:
         MultiAZ: true
         PubliclyAccessible: false
         StorageEncrypted: true
+        DBSubnetGroupName: "additionalRestrictionsGrantDb-${self:provider.stage}"
         VPCSecurityGroups:
         - Fn::GetAtt:
           - additionalRestrictionsGrantDbSecurityGroup
