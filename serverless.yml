@@ -108,6 +108,7 @@ resources:
       Type: AWS::EC2::SecurityGroup
       Properties:
         GroupDescription: Allow internal VPC
+        VpcId: ${self:custom.vpc-id.${self:provider.stage}}
         SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 5432
@@ -188,6 +189,9 @@ custom:
         - execute-api
         - eu-west-2
         - amazonaws.com
+  vpc-id:
+    staging: vpc-0047c1ec06d524b64
+    production: vpc-0c9c2cbf1865adb9e
   security-group-id:
     staging: sg-073fdfc54e08c0b7f
     production: sg-0bc53a349b857295c
