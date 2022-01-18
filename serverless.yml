@@ -44,9 +44,7 @@ functions:
       - http: ANY /{proxy+}
     vpc:
       securityGroupIds:
-        - Fn::GetAtt:
-          - additionalRestrictionsGrantDbSecurityGroup
-          - GroupId
+        - ${self:custom.security-group-id.${self:provider.stage}}
       subnetIds: 
         - ${self:custom.subnets.${self:provider.stage}}
     environment:
@@ -190,21 +188,22 @@ custom:
         - execute-api
         - eu-west-2
         - amazonaws.com
+  security-group-id:
+    staging: sg-073fdfc54e08c0b7f
+    production: sg-0bc53a349b857295c
   aliases:
     staging: staging-additionalrestrictionsgrant.hackney.gov.uk
     production: additionalrestrictionsgrant.hackney.gov.uk
   certificate-arn:
-    staging: arn:aws:acm:us-east-1:715003523189:certificate/8f7fa30c-a4e5-4775-b827-ade824a33c9a
-    production: arn:aws:acm:us-east-1:153306643385:certificate/71728a39-cd3e-4570-a440-e87f84ef9a0d
+    staging: arn:aws:acm:us-east-1:647298111750:certificate/9b54973b-c8d3-4f0f-8d34-50afd9b7011d
+    production: arn:aws:acm:us-east-1:812721144296:certificate/b2ccc8fd-f796-42dc-86d8-4267dd0c4ded
   subnets:
     staging:
-      - subnet-07e8364b
-      - subnet-723cb408
-      - subnet-48094621
+      - subnet-034d259953e54531a
+      - subnet-0e0152a2fc2b42498
     production:
       - subnet-034b2a03cd4955923
       - subnet-03431a6c898502c99
-      - subnet-0f02c86bab1d62956
   allowed-groups:
     staging: 'Additional Restrictions Grant - Staging'
     production: 'Additional Restrictions Grant - Admin'
