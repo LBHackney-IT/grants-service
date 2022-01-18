@@ -56,7 +56,7 @@ jobs:
       - *attach_workspace
       - run:
           name: deploy
-          command: yarn build && yarn --production=true && yarn deploy --stage staging
+          command: yarn build && yarn --production=true && yarn add serverless && yarn deploy --stage staging
           no_output_timeout: 45m
 
   build-deploy-production:
