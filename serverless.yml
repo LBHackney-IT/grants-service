@@ -76,7 +76,7 @@ functions:
         - node_modules/**
     environment:
       ALLOWED_GROUPS: ${self:custom.allowed-groups.${self:provider.stage}}
-      JWT_SECRET: ${ssm:hackney-jwt-secret}
+      JWT_SECRET: ${ssm:/grants-service/${self:provider.stage}/hackney-jwt-secret}
 
 resources:
   Resources:
