@@ -45,8 +45,7 @@ functions:
     vpc:
       securityGroupIds:
         - ${self:custom.security-group-id.${self:provider.stage}}
-      subnetIds: 
-        - ${self:custom.subnets.${self:provider.stage}}
+      subnetIds: ${self:custom.subnets.${self:provider.stage}}
     environment:
       ENV: ${self:provider.stage}
       HOST:
