@@ -22,7 +22,7 @@ const FormWizard = () => {
   Router.events.on('routeChangeComplete', () => {
     window.scrollTo(0, 0);
   });
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<any>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const router = useRouter();
   useBeforeunload(() => "You'll lose your data!");
@@ -31,7 +31,7 @@ const FormWizard = () => {
   if (
     stepId &&
     !isSubmitted &&
-    !formData['eligibilityCriteria'] &&
+    !formData.eligibilityCriteria &&
     stepId !== firstStep
   ) {
     typeof window !== 'undefined' && Router.replace(`/step/${firstStep}`);
