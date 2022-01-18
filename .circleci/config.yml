@@ -100,21 +100,20 @@ workflows:
   continuous-delivery:
     jobs:
       - install-dependencies-and-test
-      # - assume-role-staging:
-      #     context: api-assume-role-staging-context
-      #     requires:
-      #       - install-dependencies-and-test
-      #     filters:
-      #       branches:
-      #         only: main
-      # - build-deploy-staging:
-      #     requires:
-      #       - install-dependencies-and-test
-      #       - assume-role-staging
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
+      - assume-role-staging:
+          context: api-assume-role-regen-apps-staging-context
+          requires:
+            - install-dependencies-and-test
+          filters:
+            branches:
+              only: pipeline-setup
+      - build-deploy-staging:
+          requires:
+            - install-dependencies-and-test
+            - assume-role-staging
+          filters:
+            branches:
+              only: pipeline-setup
       # - permit-deploy-production:
       #     type: approval
       #     requires:
