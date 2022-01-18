@@ -45,7 +45,8 @@ functions:
     vpc:
       securityGroupIds:
         - ${self:custom.security-group-id.${self:provider.stage}}
-      subnetIds: ${self:custom.subnets.${self:provider.stage}}
+      subnetIds: 
+        - ${self:custom.subnets.${self:provider.stage}}
     environment:
       ENV: ${self:provider.stage}
       HOST:
@@ -120,8 +121,7 @@ resources:
       Properties: 
         DBSubnetGroupDescription: "Additional Restrictions Grant DB Subnet Group"
         DBSubnetGroupName: "additionalRestrictionsGrantDb-${self:provider.stage}"
-        SubnetIds: 
-          - ${self:custom.subnets.${self:provider.stage}}
+        SubnetIds: ${self:custom.subnets.${self:provider.stage}}
         Tags:
           -
             Key: "Name"
