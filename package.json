@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "yarn && next build && yarn --production=true && sls deploy --aws-profile hnserverless -s staging && yarn",
+    "deploy": "sls deploy",
     "sls-debug": "export SLS_DEBUG=* && node --inspect ./node_modules/serverless/bin/serverless offline -s staging --noAuth --noPrependStageInUrl",
     "preint-test": "yarn build",
     "unit-test": "jest",
@@ -69,6 +69,7 @@
     "prettier": "^2.2.0",
     "prop-types": "^15.7.2",
     "sass": "^1.26.8",
+    "serverless": "^2.72.0",
     "start-server-and-test": "^1.11.0"
   },
   "optionalDependencies": {
