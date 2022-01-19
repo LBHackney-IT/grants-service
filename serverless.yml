@@ -79,7 +79,7 @@ functions:
 
   database-migrator:
     name: ${self:service}-database-migrator-${self:provider.stage}
-    handler: database-migrator/handler
+    handler: database-migrator.handler
     package:
       include:
         - database-migrator/**
