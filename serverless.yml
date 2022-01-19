@@ -82,6 +82,7 @@ functions:
     handler: database-migrator.handler
     package:
       include:
+        - database.json
         - database-migrator/**
         - db/**
         - node_modules/**
