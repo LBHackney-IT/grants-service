@@ -4,9 +4,10 @@
   },
   "production": {
     "driver": "pg",
-    "host": { "ENV": "DATABASE_URL" },
-    "user": {"ENV": "MASTER_USERNAME"},
-    "password": {"ENV": "MASTER_USER_PASSWORD"},
+    "host": { "ENV": "HOST" },
+    "user": {"ENV": "USERNAME"},
+    "password": {"ENV": "PASSWORD"},
+    "database": {"ENV": "DATABASE"},
     "ssl": {
       "rejectUnauthorized": false
     }
