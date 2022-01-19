@@ -1,4 +1,5 @@
 const { promisify } = require('util');
+const { seedDatabase } = require('./seed');
 const exec = promisify(require('child_process').exec);
 
 module.exports.handler = async () => {
@@ -9,6 +10,8 @@ module.exports.handler = async () => {
   console.log(output.stdout);
 
   if (output.stderr) console.error(output.stderr);
+
+  await seedDatabase();
 
   return true;
 };
