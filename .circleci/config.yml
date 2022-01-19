@@ -55,13 +55,22 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          name: deploy
-          command: yarn build && yarn --production=true && yarn add serverless && yarn deploy --stage staging
+          name: build
+          command: yarn build
           no_output_timeout: 45m
+      - run:
+          name: add-dependencies
+          command: yarn --production=true && yarn add serverless db-migrate
+      - run:
+          name: deploy
+          command: yarn deploy --stage staging
+          no_output_timeout: 45m
+      - run:
+          name: migrate
+          command: yarn remote:migrate --stage staging
 
   build-deploy-production:
     executor: aws-cli/default
-
     steps:
       - *attach_workspace
       - run:
@@ -106,14 +115,14 @@ workflows:
             - install-dependencies-and-test
           filters:
             branches:
-              only: pipeline-setup
+              only: feature/database-migrator
       - build-deploy-staging:
           requires:
             - install-dependencies-and-test
             - assume-role-staging
           filters:
             branches:
-              only: pipeline-setup
+              only: feature/database-migrator
       # - permit-deploy-production:
       #     type: approval
       #     requires:
