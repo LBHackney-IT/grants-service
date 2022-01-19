@@ -80,6 +80,13 @@ functions:
   database-migrator:
     name: ${self:service}-database-migrator-${self:provider.stage}
     handler: database-migrator.handler
+    timeout: 90
+    vpc:
+      securityGroupIds:
+        - ${self:custom.security-group-id.${self:provider.stage}}
+      subnetIds:
+        - ${self:custom.subnets.${self:provider.stage}-1}
+        - ${self:custom.subnets.${self:provider.stage}-2}
     package:
       include:
         - database.json
