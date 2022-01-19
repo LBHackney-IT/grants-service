@@ -45,8 +45,9 @@ functions:
     vpc:
       securityGroupIds:
         - ${self:custom.security-group-id.${self:provider.stage}}
-      subnetIds: 
-        - ${self:custom.subnets.${self:provider.stage}}
+      subnetIds:
+        - ${self:custom.subnets.${self:provider.stage}-1}
+        - ${self:custom.subnets.${self:provider.stage}-2}
     environment:
       ENV: ${self:provider.stage}
       HOST:
@@ -121,7 +122,9 @@ resources:
       Properties: 
         DBSubnetGroupDescription: "Additional Restrictions Grant DB Subnet Group"
         DBSubnetGroupName: "additionalRestrictionsGrantDb-${self:provider.stage}"
-        SubnetIds: ${self:custom.subnets.${self:provider.stage}}
+        SubnetIds: 
+          - ${self:custom.subnets.${self:provider.stage}-1}
+          - ${self:custom.subnets.${self:provider.stage}-2}
         Tags:
           -
             Key: "Name"
@@ -215,12 +218,10 @@ custom:
     staging: arn:aws:acm:us-east-1:647298111750:certificate/9b54973b-c8d3-4f0f-8d34-50afd9b7011d
     production: arn:aws:acm:us-east-1:812721144296:certificate/b2ccc8fd-f796-42dc-86d8-4267dd0c4ded
   subnets:
-    staging:
-      - subnet-034d259953e54531a
-      - subnet-0e0152a2fc2b42498
-    production:
-      - subnet-034b2a03cd4955923
-      - subnet-03431a6c898502c99
+    staging-1: subnet-034d259953e54531a
+    staging-2: subnet-0e0152a2fc2b42498
+    production-1: subnet-034b2a03cd4955923
+    production-2: subnet-03431a6c898502c99
   allowed-groups:
     staging: 'Additional Restrictions Grant - Staging'
     production: 'Additional Restrictions Grant - Admin'
