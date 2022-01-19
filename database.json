@@ -4,6 +4,8 @@
   },
   "production": {
     "url": { "ENV": "DATABASE_URL" },
+    "user": {"ENV": "MASTER_USERNAME"},
+    "password": {"ENV": "MASTER_USER_PASSWORD"},
     "ssl": {
       "rejectUnauthorized": false
     }
