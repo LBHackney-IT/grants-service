@@ -86,15 +86,15 @@ functions:
         - database-migrator/**
         - db/**
         - node_modules/**
-      environment:
-        ENV: ${self:provider.stage}
-        HOST:
-          Fn::GetAtt:
-            - grantsServiceGrantDb
-            - Endpoint.Address
-        USERNAME: ${env:MASTER_USERNAME}
-        PASSWORD: ${env:MASTER_USER_PASSWORD}
-        DATABASE: ${self:custom.dbname}
+    environment:
+      ENV: ${self:provider.stage}
+      HOST:
+        Fn::GetAtt:
+          - grantsServiceGrantDb
+          - Endpoint.Address
+      USERNAME: ${env:MASTER_USERNAME}
+      PASSWORD: ${env:MASTER_USER_PASSWORD}
+      DATABASE: ${self:custom.dbname}
 
 resources:
   Resources:
