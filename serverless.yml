@@ -80,7 +80,7 @@ functions:
   database-migrator:
     name: ${self:service}-database-migrator-${self:provider.stage}
     handler: database-migrator.handler
-    timeout: 90
+    timeout: 180
     vpc:
       securityGroupIds:
         - ${self:custom.security-group-id.${self:provider.stage}}
