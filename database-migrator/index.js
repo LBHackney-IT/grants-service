@@ -2,8 +2,14 @@ const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
 
 module.exports.handler = async () => {
+  const output1 = await exec('ls node_modules/.bin/');
+  const output2 = await exec('ls db/migrations/');
+
+  console.log(output1.stdout);
+  console.log(output2.stdout);
+
   const output = await exec(
-    "node_modules/.bin/db-migrate --migrations-dir '../../db/migrations/' up"
+    "node_modules/.bin/db-migrate --migrations-dir 'db/migrations/' up"
   );
 
   console.log(output.stdout);
