@@ -60,7 +60,7 @@ jobs:
           no_output_timeout: 45m
       - run:
           name: add-dependencies
-          command: yarn --production=true && yarn add serverless db-migrate
+          command: yarn --production=true && yarn add serverless db-migrate db-migrate-pg
       - run:
           name: deploy
           command: yarn deploy --stage staging

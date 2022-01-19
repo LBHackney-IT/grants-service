@@ -18,7 +18,7 @@
     "dbmigratedry": "db-migrate --dry-run --migrations-dir 'db/migrations/'",
     "cypress-run": "cypress run --browser firefox",
     "int-test": "start-server-and-test start http://localhost:3000 cypress-run",
-    "remote:migrate": "sls invoke --function database-migrate"
+    "remote:migrate": "sls invoke --function database-migrator"
   },
   "dependencies": {
     "axios": "^0.19.2",
