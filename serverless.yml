@@ -235,7 +235,7 @@ custom:
     staging: sg-073fdfc54e08c0b7f
     production: sg-0bc53a349b857295c
   aliases:
-    staging: staging-grants-service.hackney.gov.uk
+    staging: grants-service-staging.hackney.gov.uk
     production: grants-service.hackney.gov.uk
   certificate-arn:
     staging: arn:aws:acm:us-east-1:647298111750:certificate/9b54973b-c8d3-4f0f-8d34-50afd9b7011d
