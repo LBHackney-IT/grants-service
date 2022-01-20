@@ -55,13 +55,22 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          name: deploy
-          command: yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy --stage staging
+          name: build
+          command: yarn build
           no_output_timeout: 45m
+      - run:
+          name: add-dependencies
+          command: yarn --production=true && yarn add serverless db-migrate db-migrate-pg
+      - run:
+          name: deploy
+          command: yarn deploy --stage staging
+          no_output_timeout: 45m
+      - run:
+          name: migrate
+          command: yarn remote:migrate --stage staging
 
   build-deploy-production:
     executor: aws-cli/default
-
     steps:
       - *attach_workspace
       - run:
@@ -100,21 +109,20 @@ workflows:
   continuous-delivery:
     jobs:
       - install-dependencies-and-test
-      # - assume-role-staging:
-      #     context: api-assume-role-staging-context
-      #     requires:
-      #       - install-dependencies-and-test
-      #     filters:
-      #       branches:
-      #         only: main
-      # - build-deploy-staging:
-      #     requires:
-      #       - install-dependencies-and-test
-      #       - assume-role-staging
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
+      - assume-role-staging:
+          context: api-assume-role-regen-apps-staging-context
+          requires:
+            - install-dependencies-and-test
+          filters:
+            branches:
+              only: main
+      - build-deploy-staging:
+          requires:
+            - install-dependencies-and-test
+            - assume-role-staging
+          filters:
+            branches:
+              only: main
       # - permit-deploy-production:
       #     type: approval
       #     requires:

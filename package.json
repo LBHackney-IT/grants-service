@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "yarn && next build && yarn --production=true && sls deploy --aws-profile hnserverless -s staging && yarn",
+    "deploy": "sls deploy",
     "sls-debug": "export SLS_DEBUG=* && node --inspect ./node_modules/serverless/bin/serverless offline -s staging --noAuth --noPrependStageInUrl",
     "preint-test": "yarn build",
     "unit-test": "jest",
@@ -17,7 +17,8 @@
     "dbmigratetest": "db-migrate --migrations-dir 'db/migrations/' -e test",
     "dbmigratedry": "db-migrate --dry-run --migrations-dir 'db/migrations/'",
     "cypress-run": "cypress run --browser firefox",
-    "int-test": "start-server-and-test start http://localhost:3000 cypress-run"
+    "int-test": "start-server-and-test start http://localhost:3000 cypress-run",
+    "remote:migrate": "sls invoke --function database-migrator"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -25,6 +26,8 @@
     "cookie": "^0.4.1",
     "date-fns": "^2.14.0",
     "dateformat": "^4.0.0",
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
     "google-spreadsheet": "^3.0.13",
     "govuk-frontend": "^3.6.0",
     "http-status-codes": "^1.4.0",
@@ -35,6 +38,7 @@
     "node-lambda-authorizer": "LBHackney-IT/node-lambda-authorizer.git#0fe9e7514882c8ffb4182fa984ee10b99bfd886c",
     "notifications-node-client": "^4.7.3",
     "objects-to-csv": "^1.3.6",
+    "pg": "^8.7.1",
     "pg-promise": "^10.5.6",
     "react": "16.13.1",
     "react-beforeunload": "^2.2.1",
@@ -55,8 +59,6 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.5.1",
     "cypress": "^7.1.0",
-    "db-migrate": "^0.11.11",
-    "db-migrate-pg": "^1.2.2",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-cypress": "^2.11.2",
@@ -70,8 +72,9 @@
     "prettier": "^2.2.0",
     "prop-types": "^15.7.2",
     "sass": "^1.26.8",
-    "start-server-and-test": "^1.11.0",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "serverless": "^2.72.0",
+    "start-server-and-test": "^1.11.0"
   },
   "optionalDependencies": {
     "@babel/core": "7.x"
