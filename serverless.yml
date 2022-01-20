@@ -11,7 +11,7 @@ provider:
         - s3:PutObject
         - s3:ListBucket
         - s3:GetObject
-      Resource: "arn:aws:s3:::${self:custom.bucket}/*"
+      Resource: 'arn:aws:s3:::${self:custom.bucket}/*'
 
 package:
   individually: true
@@ -77,84 +77,107 @@ functions:
       ALLOWED_GROUPS: ${self:custom.allowed-groups.${self:provider.stage}}
       JWT_SECRET: ${ssm:/grants-service/${self:provider.stage}/hackney-jwt-secret}
 
+  database-migrator:
+    name: ${self:service}-database-migrator-${self:provider.stage}
+    handler: database-migrator.handler
+    timeout: 180
+    vpc:
+      securityGroupIds:
+        - ${self:custom.security-group-id.${self:provider.stage}}
+      subnetIds:
+        - ${self:custom.subnets.${self:provider.stage}-1}
+        - ${self:custom.subnets.${self:provider.stage}-2}
+    package:
+      include:
+        - database.json
+        - database-migrator/**
+        - db/**
+        - node_modules/**
+    environment:
+      ENV: ${self:provider.stage}
+      HOST:
+        Fn::GetAtt:
+          - grantsServiceGrantDb
+          - Endpoint.Address
+      USERNAME: ${env:MASTER_USERNAME}
+      PASSWORD: ${env:MASTER_USER_PASSWORD}
+      DATABASE: ${self:custom.dbname}
+
 resources:
   Resources:
     grantsServiceGrantSupportingDocumentsBucket:
-        Type: AWS::S3::Bucket
-        Properties:
-          BucketName: ${self:custom.bucket}
-          PublicAccessBlockConfiguration:
-            BlockPublicAcls: true
-            BlockPublicPolicy: true
-            IgnorePublicAcls: true
-            RestrictPublicBuckets: true
-          BucketEncryption:
-            ServerSideEncryptionConfiguration:
-              - ServerSideEncryptionByDefault:
-                  SSEAlgorithm: AES256
-          VersioningConfiguration:
-            Status: Enabled
-          CorsConfiguration:
-            CorsRules:
-              -
-                AllowedOrigins:
-                  - '*'
-                AllowedHeaders:
-                  - '*'
-                AllowedMethods:
-                  - PUT
-                  - POST
-                MaxAge: 3000
-                
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.bucket}
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+        BucketEncryption:
+          ServerSideEncryptionConfiguration:
+            - ServerSideEncryptionByDefault:
+                SSEAlgorithm: AES256
+        VersioningConfiguration:
+          Status: Enabled
+        CorsConfiguration:
+          CorsRules:
+            - AllowedOrigins:
+                - '*'
+              AllowedHeaders:
+                - '*'
+              AllowedMethods:
+                - PUT
+                - POST
+              MaxAge: 3000
+
     grantsServiceGrantDbSecurityGroup:
       Type: AWS::EC2::SecurityGroup
       Properties:
-        GroupDescription: Allow internal VPC
+        GroupDescription: Allow access
         VpcId: ${self:custom.vpc-id.${self:provider.stage}}
         SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 5432
-          ToPort: 5432
-          CidrIp: 172.31.0.0/16
+          - IpProtocol: tcp
+            FromPort: 5432
+            ToPort: 5432
+            CidrIp: 0.0.0.0/0
 
     grantsServiceGrantDbSubnetGroup:
       Type: AWS::RDS::DBSubnetGroup
-      Properties: 
-        DBSubnetGroupDescription: "Grants Service Grant DB Subnet Group"
-        DBSubnetGroupName: "grantsServiceGrantDb-${self:provider.stage}"
+      Properties:
+        DBSubnetGroupDescription: 'Grants Service Grant DB Subnet Group'
+        DBSubnetGroupName: 'grantsServiceGrantDb-${self:provider.stage}'
         SubnetIds:
           - ${self:custom.subnets.${self:provider.stage}-1}
           - ${self:custom.subnets.${self:provider.stage}-2}
         Tags:
-          -
-            Key: "Name"
-            Value: "grantsServiceGrantDb"
+          - Key: 'Name'
+            Value: 'grantsServiceGrantDb'
 
     grantsServiceGrantDb:
       Type: AWS::RDS::DBInstance
       Properties:
         AllocatedStorage: 5
-        DBInstanceIdentifier: "${self:service}-db-${self:provider.stage}"
-        DBInstanceClass: "db.t2.small"
+        DBInstanceIdentifier: '${self:service}-db-${self:provider.stage}'
+        DBInstanceClass: 'db.t2.small'
         DBName: ${self:custom.dbname}
         DeletionProtection: false
-        Engine: "postgres"
-        EngineVersion: "11.7"
+        Engine: 'postgres'
+        EngineVersion: '11.7'
         MasterUsername: ${env:MASTER_USERNAME}
         MasterUserPassword: ${env:MASTER_USER_PASSWORD}
         MultiAZ: true
         PubliclyAccessible: false
         StorageEncrypted: true
-        DBSubnetGroupName: "grantsServiceGrantDb-${self:provider.stage}"
+        DBSubnetGroupName: 'grantsServiceGrantDb-${self:provider.stage}'
         VPCSecurityGroups:
-        - Fn::GetAtt:
-          - grantsServiceGrantDbSecurityGroup
-          - GroupId
+          - Fn::GetAtt:
+              - grantsServiceGrantDbSecurityGroup
+              - GroupId
         Tags:
-          -
-            Key: "Name"
-            Value: "grantsServiceGrantDb"
-      DeletionPolicy: "Snapshot"
+          - Key: 'Name'
+            Value: 'grantsServiceGrantDb'
+      DeletionPolicy: 'Snapshot'
 
     CloudFrontDistribution:
       Type: AWS::CloudFront::Distribution
@@ -212,7 +235,7 @@ custom:
     staging: sg-073fdfc54e08c0b7f
     production: sg-0bc53a349b857295c
   aliases:
-    staging: staging-grants-service.hackney.gov.uk
+    staging: grants-service-staging.hackney.gov.uk
     production: grants-service.hackney.gov.uk
   certificate-arn:
     staging: arn:aws:acm:us-east-1:647298111750:certificate/9b54973b-c8d3-4f0f-8d34-50afd9b7011d

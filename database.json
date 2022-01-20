@@ -3,7 +3,11 @@
     "url": { "ENV": "DATABASE_URL" }
   },
   "production": {
-    "url": { "ENV": "DATABASE_URL" },
+    "driver": "pg",
+    "host": { "ENV": "HOST" },
+    "user": {"ENV": "USERNAME"},
+    "password": {"ENV": "PASSWORD"},
+    "database": {"ENV": "DATABASE"},
     "ssl": {
       "rejectUnauthorized": false
     }
