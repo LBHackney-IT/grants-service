@@ -4,8 +4,8 @@ import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 import * as HttpStatus from 'http-status-codes';
 
-import { steps, stepPath, stepKeys } from 'components/Steps';
-import { isExpired } from 'utils/date';
+import { steps, stepPath, stepKeys } from '../../components/Steps';
+import { isExpired } from '../../utils/date';
 
 const getAdjacentSteps = (step) => {
   const currentStep = stepKeys.findIndex((s) => s === step);
@@ -22,7 +22,7 @@ const FormWizard = () => {
   Router.events.on('routeChangeComplete', () => {
     window.scrollTo(0, 0);
   });
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<any>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const router = useRouter();
   useBeforeunload(() => "You'll lose your data!");

@@ -54,6 +54,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.7.0",
     "@testing-library/react": "^10.0.4",
+    "@types/react": "^17.0.38",
     "aws-sdk": "^2.669.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.5.1",
@@ -71,12 +72,12 @@
     "prettier": "^2.2.0",
     "prop-types": "^15.7.2",
     "sass": "^1.26.8",
+    "typescript": "^4.5.4",
     "serverless": "^2.72.0",
     "start-server-and-test": "^1.11.0"
   },
   "optionalDependencies": {
-    "@babel/core": "7.x",
-    "typescript": "^3.9.5"
+    "@babel/core": "7.x"
   },
   "husky": {
     "hooks": {
