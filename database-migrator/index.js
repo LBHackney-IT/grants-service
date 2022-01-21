@@ -14,7 +14,6 @@ module.exports.handler = async () => {
 
   // Uncomment if you want to seed the database
   // await seedDatabase();
-
   await clearDatabase();
 
   return true;
