@@ -11,7 +11,7 @@
     "preint-test": "yarn build",
     "unit-test": "jest",
     "unit-test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
-    "lint": "eslint . --ext .js,.jsx && echo 'Lint complete.'",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx && echo 'Lint complete.'",
     "format": "prettier '**/*.{js,jsx,css,scss,md}' --write --list-different",
     "dbmigrate": "db-migrate --migrations-dir 'db/migrations/'",
     "dbmigratetest": "db-migrate --migrations-dir 'db/migrations/' -e test",

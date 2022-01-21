@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 
-import { getGrantBySlug, Grant } from '../../../../grants/grants';
+import { getGrantBySlug } from '../../../../grants/grants';
 import { GetServerSideProps } from 'next';
 import { convertErrorToStatusCode } from '../../../../utils/errors';
 
