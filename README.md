@@ -8,23 +8,29 @@ change each application without affecting the other.**
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [AWS Architecture](#aws-architecture)
-- [Technology](#technology)
-  - [PostgresSQL](#postgresql)
-- [Known Issues](#known-issues)
-  - [API and front end application submission blocking](#api-and-front-end-application-submission-blocking)
-  - [MIME types on S3 files](#mime-types-on-s3-files)
-- [Getting Started](#getting-started)
-  - [Install](#install)
-  - [Database](#database)
-    - [Setup](#setup)
-    - [Seed](#seed)
-    - [Migrations](#migrations)
-- [Staging/Production Environment](#stagingproduction-environment)
-  - [Migrations and seeding](#migrations-and-seeding)
-  - [PostgresSQL command line access](#postgressql-command-line-access)
-  - [RDS Jump Box setup](#rds-jump-box-setup)
+- [Additional Restrictions Grant](#additional-restrictions-grant)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [AWS Architecture](#aws-architecture)
+  - [Technology](#technology)
+    - [PostgreSQL](#postgresql)
+  - [Known Issues](#known-issues)
+    - [API and front end application submission blocking](#api-and-front-end-application-submission-blocking)
+    - [MIME types on S3 files](#mime-types-on-s3-files)
+  - [Getting Started](#getting-started)
+    - [Requirements](#requirements)
+    - [Install](#install)
+    - [Database](#database)
+      - [Setup](#setup)
+      - [Seed](#seed)
+      - [Migrations](#migrations)
+  - [Testing](#testing)
+    - [Security testing](#security-testing)
+  - [Staging/Production Environment](#stagingproduction-environment)
+    - [Migrations and seeding](#migrations-and-seeding)
+    - [PostgresSQL command line access](#postgressql-command-line-access)
+    - [RDS Jump Box setup](#rds-jump-box-setup)
+  - [Preventing submissions after a given date](#preventing-submissions-after-a-given-date)
 
 ## Overview
 
@@ -170,6 +176,16 @@ down migrations)
 ```sh
 $ yarn dbmigratedry up
 ```
+
+## Testing
+
+### Security testing
+
+On every code change an [OWASP Basline scan](https://www.zaproxy.org/docs/docker/baseline-scan/) is run, and checks for common security vulnerabilities in the Grant Service web server.
+
+The configuration for the scan, and what is deemed a `WARN` or a `FAIL` can be found in the [zap-baseline.conf](zap-baseline.conf) file.
+
+_**Note:** This does not replace the need for regular PEN tests, but provides useful regular insight into any security regressions as the codebase evolves._
 
 ## Staging/Production Environment
 
