@@ -14,12 +14,12 @@ context('Home', () => {
     cy.get('[data-testid=arg-govuk-link]')
       .should('have.attr', 'href')
       .and(
-        'match',
-        /https:\/\/www.gov.uk\/guidance\/check-if-youre-eligible-for-the-coronavirus-additional-restrictions-grant/
+        'eq',
+        'https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-additional-restrictions-grant'
       );
 
     cy.get('[data-testid=arg-hackney-link]')
       .should('have.attr', 'href')
-      .and('match', /https:\/\/hackney.gov.uk\/business-grants/);
+      .and('eq', 'https://hackney.gov.uk/business-grants');
   });
 });
