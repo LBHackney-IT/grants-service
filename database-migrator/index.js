@@ -1,5 +1,4 @@
 const { promisify } = require('util');
-const { clearDatabase } = require('./clear');
 // const { seedDatabase } = require('./seed');
 const exec = promisify(require('child_process').exec);
 
@@ -14,7 +13,6 @@ module.exports.handler = async () => {
 
   // Uncomment if you want to seed the database
   // await seedDatabase();
-  await clearDatabase();
 
   return true;
 };
