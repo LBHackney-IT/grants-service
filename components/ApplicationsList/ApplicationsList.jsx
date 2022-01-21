@@ -245,7 +245,6 @@ const ApplicationsList = ({
 
 export function getQueryParametersAsObject() {
   const nextRouter = useRouter();
-  console.log(nextRouter.asPath);
   const queryString = nextRouter.asPath.split(/\?/)[1];
 
   return Object.fromEntries(new URLSearchParams(queryString));
