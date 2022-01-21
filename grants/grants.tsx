@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
+import { NotFoundError } from '../utils/errors';
 
-type Grant = {
+export type Grant = {
   name: string;
   description: ReactElement;
 };
@@ -23,7 +24,7 @@ const grants: Map<string, Grant> = new Map([
 
 export const getGrantBySlug = (slug: string): Grant => {
   if (!grants.has(slug)) {
-    throw new Error(`Unable to find a grant with the slug ${slug}`);
+    throw new NotFoundError(`Unable to find a grant with the slug ${slug}`);
   }
 
   return grants.get(slug);
