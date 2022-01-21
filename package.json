@@ -17,6 +17,7 @@
     "dbmigratetest": "db-migrate --migrations-dir 'db/migrations/' -e test",
     "dbmigratedry": "db-migrate --dry-run --migrations-dir 'db/migrations/'",
     "cypress-run": "cypress run --browser firefox",
+    "cypress-open": "cypress open --browser firefox",
     "int-test": "start-server-and-test start http://localhost:3000 cypress-run",
     "remote:migrate": "sls invoke --function database-migrator"
   },
@@ -43,7 +44,7 @@
     "react": "17.0.2",
     "react-beforeunload": "^2.2.1",
     "react-dom": "17.0.2",
-    "react-hook-form": "^7.24.2",
+    "react-hook-form": "^6.15.8",
     "react-table": "^7.2.0",
     "restana": "^4.3.4",
     "serve-static": "^1.14.1",
@@ -57,7 +58,7 @@
     "@types/react": "^17.0.38",
     "aws-sdk": "^2.669.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^25.5.1",
+    "babel-jest": "^27.4.6",
     "cypress": "^9.3.1",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
@@ -78,6 +79,10 @@
   },
   "optionalDependencies": {
     "@babel/core": "7.x"
+  },
+  "resolutions": {
+    "mixme": "^0.5.4",
+    "ssh2": "^1.5.0"
   },
   "husky": {
     "hooks": {
