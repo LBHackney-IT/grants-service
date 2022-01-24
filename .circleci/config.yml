@@ -151,14 +151,14 @@ workflows:
             - install-dependencies-and-test
           filters:
             branches:
-              only: feature/add-grant-type-column
+              only: main
       - build-deploy-staging:
           requires:
             - install-dependencies-and-test
             - assume-role-staging
           filters:
             branches:
-              only: feature/add-grant-type-column
+              only: main
       # - permit-deploy-production:
       #     type: approval
       #     requires:
