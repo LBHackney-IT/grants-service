@@ -1,9 +1,11 @@
 import { ReactElement } from 'react';
 import { NotFoundError } from '../utils/errors';
+import { steps } from '../components/Steps';
 
 export type Grant = {
   name: string;
   description: ReactElement;
+  steps: any;
 };
 
 const grants: Map<string, Grant> = new Map([
@@ -18,6 +20,7 @@ const grants: Map<string, Grant> = new Map([
           </p>
         </>
       ),
+      steps: {},
     },
   ],
   [
@@ -31,6 +34,7 @@ const grants: Map<string, Grant> = new Map([
           </p>
         </>
       ),
+      steps: steps,
     },
   ],
 ]);

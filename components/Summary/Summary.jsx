@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import SummaryList from '../SummaryList/SummaryList';
 import ExpandableDetails from '../ExpandableDetails/ExpandableDetails';
-import { getInputProps, hasAdminValidation, stepPath } from '../Steps';
+import { getInputProps, hasAdminValidation } from '../Steps';
 
 const MultiValue = (value) => (
   <div key={value}>
@@ -68,7 +68,7 @@ export const SummarySection = ({
         Summary
       )}
       {hasChangeLink && (
-        <Link href={stepPath} as={`/step/${slug}`}>
+        <Link href="/grant/ohlg/step/[id]" as={`/grant/ohlg/step/${slug}`}>
           <a className="govuk-link">Change</a>
         </Link>
       )}

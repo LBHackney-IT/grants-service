@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, TextInput, Select, Radios, TextArea } from '../Form';
-import { stepPath, getInputProps } from './index';
+import { getInputProps } from './index';
 import AddressLookup from '../Form/AddressLookup/AddressLookup';
 import { FREE_TEXT } from '../../lib/dbMapping';
 
@@ -27,7 +27,7 @@ const Step1 = (props) => {
   });
   const onSubmit = (data) => {
     props.saveData(data);
-    Router.push(stepPath, props.nextStep);
+    Router.push(props.nextStep);
   };
   const businessIdentifyType = watch('business.businessIdentifyType');
   const selectedBusinessStructure = watch('business.businessStructure');

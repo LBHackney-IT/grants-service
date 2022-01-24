@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, Checkbox, Select, TextInput } from '../Form';
-import { stepPath, getInputProps } from './index';
+import { getInputProps } from './index';
 import { FREE_TEXT } from '../../lib/dbMapping';
 
 const Declaration = (props) => {
@@ -11,7 +11,7 @@ const Declaration = (props) => {
   });
   const onSubmit = (data) => {
     props.saveData(data);
-    Router.push(stepPath, props.nextStep);
+    Router.push(props.nextStep);
   };
   const selectedContactTypeId = watch('declaration.contactTypeId');
   return (

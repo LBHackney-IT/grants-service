@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 import * as HttpStatus from 'http-status-codes';
 
-import { steps, stepPath, stepKeys } from '../../components/Steps';
+import { steps, stepKeys } from '../../components/Steps';
 import { isExpired } from '../../utils/date';
 
 const getAdjacentSteps = (step) => {
@@ -45,7 +45,7 @@ const FormWizard = () => {
   return (
     <div className="govuk-width-container">
       {previousStep && !isSubmitted && (
-        <Link href={stepPath} as={previousStep}>
+        <Link href="/step/[id]" as={previousStep}>
           <a className="govuk-back-link">Back</a>
         </Link>
       )}

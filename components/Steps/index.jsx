@@ -13,8 +13,6 @@ import BusinessClassificationSummary from './Summaries/BusinessClassification';
 
 import * as options from '../../lib/dbMapping';
 
-export const stepPath = '/step/[id]';
-
 export const steps = {
   'eligibility-criteria': EligibilityCriteria,
   'business-details': BusinessDetails,
