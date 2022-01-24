@@ -107,9 +107,19 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          name: deploy
-          command: yarn build && yarn --production=true && sudo npm i -g serverless && sls deploy --stage production
+          name: build
+          command: yarn build
           no_output_timeout: 45m
+      - run:
+          name: add-dependencies
+          command: yarn --production=true && yarn add serverless db-migrate db-migrate-pg
+      - run:
+          name: deploy
+          command: yarn deploy --stage production
+          no_output_timeout: 45m
+      - run:
+          name: migrate
+          command: yarn remote:migrate --stage production
 
   assume-role-staging:
     executor: docker-python
@@ -159,19 +169,18 @@ workflows:
           filters:
             branches:
               only: main
-      # - permit-deploy-production:
-      #     type: approval
-      #     requires:
-      #       - build-deploy-staging
-      # - assume-role-production:
-      #     context: api-assume-role-production-context
-      #     requires:
-      #       - install-dependencies-and-test
-      #       - permit-deploy-production
-      #     filters:
-      #       branches:
-      #         only: master
-      # - build-deploy-production:
-      #     requires:
-      #       - permit-deploy-production
-      #       - assume-role-production
+      - permit-deploy-production:
+          type: approval
+          requires:
+            - build-deploy-staging
+      - assume-role-production:
+          context: api-assume-role-regen-apps-production-context
+          requires:
+            - install-dependencies-and-test
+            - permit-deploy-production
+          filters:
+            branches:
+              only: main
+      - build-deploy-production:
+          requires:
+            - assume-role-production

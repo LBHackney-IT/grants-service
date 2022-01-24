@@ -243,8 +243,8 @@ custom:
   subnets:
     staging-1: subnet-034d259953e54531a
     staging-2: subnet-0e0152a2fc2b42498
-    production-1: subnet-034b2a03cd4955923
-    production-2: subnet-03431a6c898502c99
+    production-1: subnet-056356c011224f114
+    production-2: subnet-067865bb76395b74e
   allowed-groups:
     staging: 'Additional Restrictions Grant - Staging'
     production: 'Additional Restrictions Grant - Admin'
