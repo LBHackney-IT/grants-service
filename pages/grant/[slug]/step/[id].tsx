@@ -35,6 +35,9 @@ const GrantStep: React.FC<{ slug: string; statusCode: number }> = ({
 };
 
 const FormWizard = ({ grant, grantSlug, stepId }) => {
+  const [formData, setFormData] = useState<any>({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   Router.events.on('routeChangeComplete', () => {
     window.scrollTo(0, 0);
   });
@@ -47,8 +50,6 @@ const FormWizard = ({ grant, grantSlug, stepId }) => {
     return null;
   }
 
-  const [formData, setFormData] = useState<any>({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const firstStep = stepKeys[0];
 
   if (
@@ -57,7 +58,7 @@ const FormWizard = ({ grant, grantSlug, stepId }) => {
     !formData.eligibilityCriteria &&
     stepId !== firstStep
   ) {
-    // typeof window !== 'undefined' && Router.replace(`/step/${firstStep}`);
+    // typeof window !== 'undefined' && Router.push(`/step/${firstStep}`);
     return null;
   }
 
@@ -66,7 +67,7 @@ const FormWizard = ({ grant, grantSlug, stepId }) => {
   return (
     <div className="govuk-width-container">
       {previousStep && !isSubmitted && (
-        <Link href="/" as={previousStep}>
+        <Link href={previousStep}>
           <a className="govuk-back-link">Back</a>
         </Link>
       )}
