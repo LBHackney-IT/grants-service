@@ -161,9 +161,9 @@ resources:
         DBInstanceIdentifier: '${self:service}-db-${self:provider.stage}'
         DBInstanceClass: 'db.t2.small'
         DBName: ${self:custom.dbname}
-        DeletionProtection: false
+        DeletionProtection: true
         Engine: 'postgres'
-        EngineVersion: '11.7'
+        EngineVersion: '11.12'
         MasterUsername: ${env:MASTER_USERNAME}
         MasterUserPassword: ${env:MASTER_USER_PASSWORD}
         MultiAZ: true
