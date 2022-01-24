@@ -44,12 +44,6 @@ const FormWizard = ({ grant, grantSlug, stepId }) => {
 
   useBeforeunload(() => "You'll lose your data!");
 
-  const Step = grant.steps[stepId];
-
-  if (!Step) {
-    return null;
-  }
-
   const firstStep = stepKeys[0];
 
   if (
@@ -59,6 +53,12 @@ const FormWizard = ({ grant, grantSlug, stepId }) => {
     stepId !== firstStep
   ) {
     // typeof window !== 'undefined' && Router.push(`/step/${firstStep}`);
+    return null;
+  }
+
+  const Step = grant.steps[stepId];
+
+  if (!Step) {
     return null;
   }
 
