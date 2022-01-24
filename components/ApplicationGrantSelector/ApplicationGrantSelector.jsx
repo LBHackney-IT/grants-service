@@ -22,7 +22,7 @@ const OhlgGrantSelector = ({ date, expirationDate }) => {
         !isExpired(new Date(expirationDate), new Date(date))) && (
         <button
           href="#"
-          role="button"
+          role="button-ohlg"
           draggable="false"
           className="govuk-button govuk-button--start govuk-!-margin-top-3"
           data-module="govuk-button"
