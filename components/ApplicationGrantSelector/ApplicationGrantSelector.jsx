@@ -15,7 +15,7 @@ const OhlgGrantSelector = ({ date, expirationDate }) => {
   return (
     <>
       <h1 data-testid="home-page-heading">
-        Apply for the Omnicron Hospitality and Leisure Grant
+        Apply for the Omicron Hospitality and Leisure Grant
       </h1>
       <p className="govuk-body">Some text here</p>
       {(!expirationDate ||
