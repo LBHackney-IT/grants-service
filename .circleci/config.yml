@@ -149,12 +149,12 @@ workflows:
           context: api-assume-role-regen-apps-staging-context
           requires:
             - install-dependencies-and-test
+            - owasp-zap-baseline-scan
           filters:
             branches:
               only: main
       - build-deploy-staging:
           requires:
-            - install-dependencies-and-test
             - assume-role-staging
           filters:
             branches:
