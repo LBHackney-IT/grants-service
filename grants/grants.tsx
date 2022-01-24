@@ -23,7 +23,7 @@ const grants: Map<string, Grant> = new Map([
   [
     'ohlg',
     {
-      name: 'Omnicron Hospitality and Leisure Grant',
+      name: 'Omicron Hospitality and Leisure Grant',
       description: (
         <>
           <p>
