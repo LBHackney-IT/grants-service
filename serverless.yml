@@ -163,7 +163,7 @@ resources:
         DBName: ${self:custom.dbname}
         DeletionProtection: true
         Engine: 'postgres'
-        EngineVersion: '11.7'
+        EngineVersion: '11.12'
         MasterUsername: ${env:MASTER_USERNAME}
         MasterUserPassword: ${env:MASTER_USER_PASSWORD}
         MultiAZ: true
