@@ -87,7 +87,7 @@ const ArgGrantSelector = ({ date, expirationDate }) => {
           draggable="false"
           className="govuk-button govuk-button--start govuk-!-margin-top-3"
           data-module="govuk-button"
-          onClick={() => Router.push(`/grant/arg/step/${stepKeys[0]}`)}
+          onClick={() => Router.push(`/grant/arg-3/step/${stepKeys[0]}`)}
         >
           Start now
           <svg

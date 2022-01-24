@@ -159,19 +159,19 @@ workflows:
           filters:
             branches:
               only: main
-      # - permit-deploy-production:
-      #     type: approval
-      #     requires:
-      #       - build-deploy-staging
-      # - assume-role-production:
-      #     context: api-assume-role-production-context
-      #     requires:
-      #       - install-dependencies-and-test
-      #       - permit-deploy-production
-      #     filters:
-      #       branches:
-      #         only: master
-      # - build-deploy-production:
-      #     requires:
-      #       - permit-deploy-production
-      #       - assume-role-production
+      - permit-deploy-production:
+          type: approval
+          requires:
+            - build-deploy-staging
+      - assume-role-production:
+          context: api-assume-role-production-context
+          requires:
+            - install-dependencies-and-test
+            - permit-deploy-production
+          filters:
+            branches:
+              only: main
+      - build-deploy-production:
+          requires:
+            - permit-deploy-production
+            - assume-role-production

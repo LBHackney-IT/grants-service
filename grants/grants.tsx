@@ -20,6 +20,19 @@ const grants: Map<string, Grant> = new Map([
       ),
     },
   ],
+  [
+    'ohlg',
+    {
+      name: 'Omnicron Hospitality and Leisure Grant',
+      description: (
+        <>
+          <p>
+            This is the JSX-based <strong>description</strong> for OHLG
+          </p>
+        </>
+      ),
+    },
+  ],
 ]);
 
 export const getGrantBySlug = (slug: string): Grant => {
