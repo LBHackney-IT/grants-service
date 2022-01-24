@@ -46,6 +46,7 @@ const StepsWizard = ({ grant, grantSlug, stepId }) => {
           formData={formData}
           saveData={(data) => setFormData({ ...formData, ...data })}
           nextStep={nextStep}
+          grantSlug={grantSlug}
           clearFormData={() => {
             setIsSubmitted(true);
             setFormData({});

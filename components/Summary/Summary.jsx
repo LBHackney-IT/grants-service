@@ -22,6 +22,7 @@ export const SummarySection = ({
   slug,
   register,
   isExpandable,
+  grantSlug,
 }) => {
   const Summary = (
     <SummaryList
@@ -68,7 +69,7 @@ export const SummarySection = ({
         Summary
       )}
       {hasChangeLink && (
-        <Link href="/grant/ohlg/step/[id]" as={`/grant/ohlg/step/${slug}`}>
+        <Link href={`/grant/${grantSlug}/step/${slug}`}>
           <a className="govuk-link">Change</a>
         </Link>
       )}

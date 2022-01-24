@@ -6,7 +6,7 @@ import ErrorSummary from '../ErrorSummary/ErrorSummary';
 import { set } from '../../utils/persistency';
 import { postApplication } from '../../utils/api/applications';
 
-const Result = ({ formData, clearFormData }) => {
+const Result = ({ formData, clearFormData, grantSlug }) => {
   const [error, setError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   useEffect(() => {
@@ -38,7 +38,7 @@ const Result = ({ formData, clearFormData }) => {
   return (
     <>
       <h1>Summary</h1>
-      <Summary formData={formData} hasChangeLink />
+      <Summary formData={formData} grantSlug={grantSlug} hasChangeLink />
       <button
         className="govuk-button"
         onClick={submitForm}
