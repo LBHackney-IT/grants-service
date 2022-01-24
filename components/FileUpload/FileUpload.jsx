@@ -25,6 +25,7 @@ const FileUpload = ({
     try {
       setUploading(true);
       setError(false);
+      // DEV: const fileKey = new Date().getMilliseconds() + '.txt';
       const fileKey = await fileUploader(file, uploadPrefix);
       setFileList([...fileList, fileKey]);
     } catch (e) {
