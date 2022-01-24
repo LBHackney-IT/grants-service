@@ -152,13 +152,13 @@ workflows:
             - owasp-zap-baseline-scan
           filters:
             branches:
-              only: fix/correct-db-version
+              only: main
       - build-deploy-staging:
           requires:
             - assume-role-staging
           filters:
             branches:
-              only: fix/correct-db-version
+              only: main
       # - permit-deploy-production:
       #     type: approval
       #     requires:
