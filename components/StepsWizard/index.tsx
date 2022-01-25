@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Router } from 'next/router';
+import Router from 'next/router';
 import { useBeforeunload } from 'react-beforeunload';
 import { stepKeys } from '../Steps';
 import Link from 'next/link';
@@ -22,7 +22,8 @@ const StepsWizard = ({ grant, grantSlug, stepId }) => {
     !formData.eligibilityCriteria &&
     stepId !== firstStep
   ) {
-    // typeof window !== 'undefined' && Router.push(`/step/${firstStep}`);
+    typeof window !== 'undefined' &&
+      Router.push(`/grant/${grantSlug}/step/${firstStep}`);
     return null;
   }
 
