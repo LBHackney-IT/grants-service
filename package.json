@@ -55,6 +55,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.7.0",
     "@testing-library/react": "^10.0.4",
+    "@testing-library/user-event": "^13.5.0",
     "@types/react": "^17.0.38",
     "aws-sdk": "^2.669.0",
     "babel-eslint": "^10.1.0",

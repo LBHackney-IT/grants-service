@@ -200,7 +200,7 @@ const ApplicationsList = ({
         <TextInput
           name="searchTerm"
           label="Search"
-          value={searchTermInput}
+          value={searchTermInput || ''}
           onChange={handleSearchTermChange}
         />
 

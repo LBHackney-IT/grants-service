@@ -1,4 +1,5 @@
-import { render, waitFor, screen } from '@testing-library/react';
+import { render, waitFor, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import ApplicationsList from './ApplicationsList';
 import { fetchApplications } from '../../utils/api/applications';
 jest.mock('next/router', () => ({
@@ -73,6 +74,25 @@ describe('<ApplicationsList />', () => {
 
     await waitFor(() => {
       screen.getByText('Test business name');
+    });
+  });
+
+  it('should fetch new applications using the inputted search term when the search button is pressed', async () => {
+    render(<ApplicationsList {...defaultProps} />);
+
+    await waitFor(() => {
+      screen.getByText('Loading...');
+    });
+
+    userEvent.type(screen.getByLabelText('Search'), 'some search term');
+    fireEvent.click(screen.getByRole('button', { name: 'Search' }));
+
+    await waitFor(() => {
+      expect(fetchApplications).toHaveBeenCalledWith(
+        expect.objectContaining({
+          searchTerm: 'some search term',
+        })
+      );
     });
   });
 });
