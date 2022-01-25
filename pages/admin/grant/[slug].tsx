@@ -30,13 +30,9 @@ const AdminManageGrantPage = (props) => {
         </ol>
       </div>
 
-<<<<<<< HEAD
       <span className="govuk-caption-xl" data-testid="admin-page-subheading">
         Hello {props.name}
       </span>
-=======
-      <span className="govuk-caption-xl">Hello {props.name}</span>
->>>>>>> feat: split the admin panel to support multiple grants
       <h1 className="govuk-heading-xl">{grant.name}</h1>
 
       <ApplicationsList {...props} grantType={slug} grantName={grant.name} />
