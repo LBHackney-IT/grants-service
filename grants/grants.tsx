@@ -10,7 +10,7 @@ export type Grant = {
 
 const grants: Map<string, Grant> = new Map([
   [
-    'arg-3',
+    'arg',
     {
       name: 'Additional Restrictions Grant – Round 3',
       description: (

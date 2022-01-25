@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Router, { useRouter } from 'next/router';
-import NextLink from 'next/link';
 
 import Table from '../Table/Table';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -20,6 +19,7 @@ import {
 import { fetchGrantOfficers } from '../../utils/api/grantOfficers';
 
 const ApplicationsList = ({
+  grantType,
   page,
   pageSize,
   sort,
@@ -29,6 +29,7 @@ const ApplicationsList = ({
   businessSize,
   businessPremises,
   applicationId,
+  searchTerm,
   groups,
   csvDownloadGroup,
 }) => {
@@ -39,7 +40,7 @@ const ApplicationsList = ({
         accessor: 'businessName',
       },
       {
-        Header: 'Application Id',
+        Header: 'Application ID',
         accessor: 'clientGeneratedId',
         disableSortBy: true,
       },
@@ -63,16 +64,18 @@ const ApplicationsList = ({
     businessCategory,
     businessSize,
     businessPremises,
+    searchTerm,
   });
   const [error, setError] = useState();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTermInput, setSearchTermInput] = useState(searchTerm);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageCount, setPageCount] = useState(0);
   const [officers, setOfficers] = useState([]);
-  const checkFilter = JSON.stringify(filters);
+
   const canDownloadCsvs = groups.includes(csvDownloadGroup);
   const csvExportProps = {};
+
   if (!canDownloadCsvs) {
     csvExportProps.disabled = true;
   }
@@ -88,34 +91,43 @@ const ApplicationsList = ({
         setOfficers(null);
       }
     };
+
     fetchOfficers();
   }, []);
+
   useEffect(() => {
     fetchData(filters);
-  }, [checkFilter]);
+  }, [filters]);
+
   const setValues = useCallback((state) =>
     setFilters({ ...filters, ...state })
   );
+
   const fetchData = useCallback(
     async ({ pageSize, pageIndex, sortBy, ...otherFilters }) => {
       if (isNaN(pageSize)) {
         return;
       }
+
       setLoading(true);
+
       const query = {
+        grantType,
         page: pageIndex + 1,
         pageSize,
         sort: sortBy && `${sortBy.desc ? '-' : '+'}${sortBy.id}`,
         ...otherFilters,
       };
+
       await Router.push(
-        '/admin',
+        `/admin/grant/${grantType}`,
         {
-          pathname: '/admin',
+          pathname: `/admin/grant/${grantType}`,
           query,
         },
         { shallow: true }
       );
+
       try {
         setError(null);
         const { applications, pagination } = await fetchApplications(query);
@@ -123,13 +135,22 @@ const ApplicationsList = ({
         setPageCount(pagination.totalPages);
         setLoading(false);
       } catch (e) {
-        e.response.status === 400
-          ? setValues({ pageIndex: 0, pageSize, sortBy, ...otherFilters })
-          : setError(e.response.data);
+        if (e.response.status === 400) {
+          setValues({ pageIndex: 0, pageSize, sortBy, ...otherFilters });
+          return;
+        }
+
+        if (e.response.status === 404) {
+          setError(e.message);
+          return;
+        }
+
+        setError(e.response.data);
       }
     },
     []
   );
+
   const handleCsvDownload = async (e) => {
     try {
       setError(null);
@@ -143,7 +164,7 @@ const ApplicationsList = ({
   };
 
   const handleSearchTermChange = (event) => {
-    setSearchTerm(event.target.value);
+    setSearchTermInput(event.target.value);
   };
 
   const handleSearch = (e) => {
@@ -151,62 +172,89 @@ const ApplicationsList = ({
 
     setFilters({
       ...filters,
-      searchTerm,
+      searchTerm: searchTermInput,
     });
   };
+
+  const resetFilters = useCallback((e) => {
+    e.preventDefault();
+
+    setSearchTermInput('');
+    setFilters({
+      pageIndex: 0,
+      pageSize: 10,
+      sortBy: '+applicationDate',
+      status: '',
+      grantOfficer: '',
+      applicationId: '',
+      businessCategory: '',
+      businessSize: '',
+      businessPremises: '',
+      searchTerm: '',
+    });
+  }, []);
 
   return !error ? (
     <>
       <form onSubmit={handleSearch}>
-        <BasicSelect
-          options={Object.values(APPLICATION_STATE)}
-          label="Filter by Status:"
-          value={filters.status}
-          onChange={(status) => setValues({ status })}
-        />
-
-        {officers && (
-          <BasicSelect
-            options={officers}
-            label="Filter by Grant Officer:"
-            value={filters.grantOfficer}
-            onChange={(grantOfficer) => setValues({ grantOfficer })}
-          />
-        )}
-
-        <BasicSelect
-          options={BUSINESS_CATEGORIES}
-          label="Filter by Business Category:"
-          value={filters.businessCategory}
-          onChange={(businessCategory) => setValues({ businessCategory })}
-        />
-
-        <BasicSelect
-          options={BUSINESS_SIZE}
-          label="Filter by Business Size:"
-          value={filters.businessSize}
-          onChange={(businessSize) => setValues({ businessSize })}
-        />
-
-        <BasicSelect
-          options={TYPE_OF_BUSINESS}
-          label="Filter by Business Premises:"
-          value={filters.businessPremises}
-          onChange={(businessPremises) => setValues({ businessPremises })}
-        />
-
-        <BasicSelect
-          options={Object.keys(DATES)}
-          label="Filter by ARG round:"
-          onChange={(date) => setValues({ date: DATES[date] })}
-        />
-
         <TextInput
           name="searchTerm"
           label="Search"
-          value={searchTerm}
+          value={searchTermInput}
           onChange={handleSearchTermChange}
         />
+
+        <details className="govuk-details" data-module="govuk-details">
+          <summary className="govuk-details__summary">
+            <span className="govuk-details__summary-text">
+              Advanced filters
+            </span>
+          </summary>
+          <div className="govuk-details__text">
+            <BasicSelect
+              options={Object.values(APPLICATION_STATE)}
+              label="Filter by Status:"
+              value={filters.status}
+              onChange={(status) => setValues({ status })}
+            />
+
+            {officers && (
+              <BasicSelect
+                options={officers}
+                label="Filter by Grant Officer:"
+                value={filters.grantOfficer}
+                onChange={(grantOfficer) => setValues({ grantOfficer })}
+              />
+            )}
+
+            <BasicSelect
+              options={BUSINESS_CATEGORIES}
+              label="Filter by Business Category:"
+              value={filters.businessCategory}
+              onChange={(businessCategory) => setValues({ businessCategory })}
+            />
+
+            <BasicSelect
+              options={BUSINESS_SIZE}
+              label="Filter by Business Size:"
+              value={filters.businessSize}
+              onChange={(businessSize) => setValues({ businessSize })}
+            />
+
+            <BasicSelect
+              options={TYPE_OF_BUSINESS}
+              label="Filter by Business Premises:"
+              value={filters.businessPremises}
+              onChange={(businessPremises) => setValues({ businessPremises })}
+            />
+
+            <BasicSelect
+              options={Object.keys(DATES)}
+              label="Filter by ARG round:"
+              onChange={(date) => setValues({ date: DATES[date] })}
+            />
+          </div>
+        </details>
 
         <div className="govuk-button-group">
           <button
@@ -216,9 +264,9 @@ const ApplicationsList = ({
           >
             Search
           </button>
-          <NextLink href="/admin">
-            <a className="govuk-link">Clear filters</a>
-          </NextLink>
+          <a className="govuk-link" role="button" onClick={resetFilters}>
+            Clear filters
+          </a>
         </div>
       </form>
 

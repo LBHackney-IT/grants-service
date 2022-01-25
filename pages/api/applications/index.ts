@@ -20,6 +20,13 @@ export default async (req, res) => {
         const container = AppContainer.getInstance();
         const listApplications = container.getListApplications();
         res.setHeader('Content-Type', 'application/json');
+
+        if (!req.query.grantType) {
+          throw new Error("Missing 'grantType' query parameter");
+        }
+
+        const grantType = req.query.grantType as string;
+
         const currentPage =
           req.query && req.query.page
             ? parseInt(req.query.page, 10)
@@ -62,6 +69,7 @@ export default async (req, res) => {
             : undefined;
 
         let listApplicationsResponse = await listApplications({
+          grantType,
           currentPage,
           pageSize,
           sort,

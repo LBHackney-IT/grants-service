@@ -67,11 +67,7 @@ const Table = ({
                 >
                   <span {...column.getSortByToggleProps()}>
                     {column.render('Header')}
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? ' 🔽'
-                        : ' 🔼'
-                      : ''}
+                    {column.isSorted ? (column.isSortedDesc ? ' ↓' : ' ↑') : ''}
                   </span>
                 </th>
               ))}
