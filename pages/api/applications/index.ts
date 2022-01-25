@@ -68,7 +68,11 @@ export default async (req, res) => {
             ? req.query.applicationId
             : undefined;
 
+<<<<<<< HEAD
         const listApplicationsResponse = await listApplications({
+=======
+        let listApplicationsResponse = await listApplications({
+>>>>>>> feat: split the admin panel to support multiple grants
           grantType,
           currentPage,
           pageSize,
