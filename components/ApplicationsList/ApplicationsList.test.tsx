@@ -57,7 +57,7 @@ describe('<ApplicationsList />', () => {
   });
 
   it('should show the applications in the table once they have loaded', async () => {
-    (fetchApplications as any).mockResolvedValue({
+    (fetchApplications as jest.Mock).mockResolvedValue({
       applications: [
         {
           businessName: 'Test business name',

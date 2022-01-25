@@ -158,8 +158,7 @@ export const inputLabels = {
     },
     tradingOn011220: {
       label: 'Was your business trading on 1 December 2020?',
-      hint:
-        'Your business is still considered to have been trading on 1 December 2020 if it was an active business at this time, even if your business was closed to the public due to Government restrictions.',
+      hint: 'Your business is still considered to have been trading on 1 December 2020 if it was an active business at this time, even if your business was closed to the public due to Government restrictions.',
       validation: { required: true },
       adminValidation: true,
     },
@@ -223,8 +222,7 @@ export const inputLabels = {
     previousApplicationId: {
       label:
         'Please provide your Round 1 grant application ID number (if known):',
-      hint:
-        'This can be found in the subject header of your previous grant application confirmation email (e.g qf4InsCv6uL30sELgI43O)',
+      hint: 'This can be found in the subject header of your previous grant application confirmation email (e.g qf4InsCv6uL30sELgI43O)',
     },
     liableForRates: {
       label: 'Is your business liable for business rates?',
@@ -232,8 +230,7 @@ export const inputLabels = {
     },
     businessSizeId: {
       label: 'What is the size of your business?',
-      hint:
-        'You must be a micro or a small business to be eligible for this grant.',
+      hint: 'You must be a micro or a small business to be eligible for this grant.',
       children: <BusinessClassificationSummary />,
       options: options.VALID_BUSINESS_SIZE,
       validation: { required: true },
@@ -386,8 +383,7 @@ export const inputLabels = {
     },
     businessRatesAccountNumber: {
       label: 'Business Rates Account Number (if applicable):',
-      hint:
-        'A nine digit number starting with a 6 - this is shown on your business rates bill. ',
+      hint: 'A nine digit number starting with a 6 - this is shown on your business rates bill. ',
       validation: {
         pattern: {
           value: /^6(\d{8}|\d{7}x)$/i,
@@ -558,8 +554,7 @@ export const inputLabels = {
     },
     ratesBill: {
       label: 'Business Rates Bill:',
-      hint:
-        'If applicable, please provide a copy of your latest London Borough of Hackney business rates bill.',
+      hint: 'If applicable, please provide a copy of your latest London Borough of Hackney business rates bill.',
     },
     leaseOrRentalAgreement: {
       label: 'Business premises lease or rental agreement:',
@@ -574,16 +569,14 @@ export const inputLabels = {
     },
     photoId: {
       label: 'Photographic ID:',
-      hint:
-        'Please provide a form of photo identification such as a passport or driving licence.',
+      hint: 'Please provide a form of photo identification such as a passport or driving licence.',
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
     },
     taxReturn: {
       label: 'HMRC self assessment tax return:',
-      hint:
-        'If you are a sole trader or are self employed please provide a copy of your latest HMRC self assessment tax return.',
+      hint: 'If you are a sole trader or are self employed please provide a copy of your latest HMRC self assessment tax return.',
     },
   },
   declaration: {
@@ -780,8 +773,7 @@ export const getInputProps = (
 ) => {
   // filtering out adminValidation
   // eslint-disable-next-line no-unused-vars
-  const { validation, adminValidation, ...props } =
-    inputLabels[form][name] || {};
+  const { validation, ...props } = inputLabels[form][name] || {};
   return {
     name: `${form}.${name}`,
     ...props,

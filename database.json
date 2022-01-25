@@ -5,9 +5,9 @@
   "production": {
     "driver": "pg",
     "host": { "ENV": "HOST" },
-    "user": {"ENV": "USERNAME"},
-    "password": {"ENV": "PASSWORD"},
-    "database": {"ENV": "DATABASE"},
+    "user": { "ENV": "USERNAME" },
+    "password": { "ENV": "PASSWORD" },
+    "database": { "ENV": "DATABASE" },
     "ssl": {
       "rejectUnauthorized": false
     }

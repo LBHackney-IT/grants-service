@@ -5,7 +5,9 @@ import { stepKeys } from '../Steps';
 import Link from 'next/link';
 
 const StepsWizard = ({ grant, grantSlug, stepId }) => {
-  const [formData, setFormData] = useState<any>({ grantType: grantSlug });
+  const [formData, setFormData] = useState<{
+    [key: string]: string;
+  }>({ grantType: grantSlug });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   Router.events.on('routeChangeComplete', () => {
