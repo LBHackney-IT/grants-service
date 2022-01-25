@@ -8,9 +8,6 @@ import BusinessDetails from './BusinessDetails';
 import BankDetails from './BankDetails';
 import Declaration from './Declaration';
 import Summary from './Summary';
-
-import BusinessClassificationSummary from './Summaries/BusinessClassification';
-
 import * as options from '../../lib/dbMapping';
 
 export const steps = {
@@ -82,110 +79,10 @@ export const inputLabels = {
     },
   },
   business: {
-    previouslyApplied: {
-      label:
-        'Have you applied for an Additional Restrictions Grant (Round 1) from Hackney Council?',
-      validation: { required: true },
-    },
-    previousApplicationId: {
-      label:
-        'Please provide your Round 1 grant application ID number (if known):',
-      hint:
-        'This can be found in the subject header of your previous grant application confirmation email (e.g qf4InsCv6uL30sELgI43O)',
-    },
-    liableForRates: {
-      label: 'Is your business liable for business rates?',
-      validation: { required: true },
-    },
-    businessSizeId: {
-      label: 'What is the size of your business?',
-      hint:
-        'You must be a micro or a small business to be eligible for this grant.',
-      children: <BusinessClassificationSummary />,
-      options: options.VALID_BUSINESS_SIZE,
-      validation: { required: true },
-      adminValidation: true,
-    },
-    howManyEmployees: {
-      label:
-        'How many employees does your business have? (Full time equivalent PAYE employees)',
-      hint: (
-        <>
-          <p>
-            Please note you must be able to evidence the number of full time
-            employees your business has by submitting evidence of your business
-            PAYE payroll records with this application form. If you are unable
-            to provide this evidence then you must not include these employees
-            in your response to this question.
-          </p>
-          <p>
-            If you are a company director but are also an employee of the
-            business who is paid via PAYE rather than via dividends then you are
-            able to count yourself as an employee.
-          </p>
-        </>
-      ),
-      inputClassName: 'govuk-input--width-10',
-      type: 'number',
-      inputMode: 'numeric',
-      validation: {
-        required: true,
-        pattern: {
-          value: /^[0-9]+$/,
-        },
-      },
-    },
-    businessCategory: {
-      label:
-        'Please select the category which best describes your business activity',
-      options: options.BUSINESS_CATEGORIES,
-      hint: (
-        <>
-          Guidance on which category your business falls into can be found here:{' '}
-          <a
-            href="http://resources.companieshouse.gov.uk/sic/"
-            target="_blank"
-            rel="noopener"
-          >
-            http://resources.companieshouse.gov.uk/sic/
-          </a>
-          . Please check this website to make sure you are selecting the correct
-          drop down category for your business.
-        </>
-      ),
-      validation: {
-        required: true,
-        validate: (value) => value !== '',
-      },
-    },
-    businessReferenceNumber: {
-      label: (
-        <>
-          Please provide the reference number that best describes your business
-          from the business classification website (
-          <a
-            href="http://resources.companieshouse.gov.uk/sic/"
-            target="_blank"
-            rel="noopener"
-          >
-            http://resources.companieshouse.gov.uk/sic/
-          </a>
-          ).
-        </>
-      ),
-    },
-    businessDescription: {
-      label:
-        'Please set out what your business does and the services it provides ',
-      validation: {
-        required: true,
-      },
-      adminValidation: true,
-    },
     businessName: {
       label: 'Business Trading Name:',
       validation: {
-        required: 'Business Name is required',
+        required: 'Business Trading Name is required',
       },
     },
     registeredName: {
@@ -201,7 +98,6 @@ export const inputLabels = {
       },
       adminValidation: true,
     },
-    businessStructureText: {},
     businessIdentifyType: {
       label: 'Please supply one of the following Business Identifying Numbers:',
       hint: `Where available, please provide your Company Number as listed on Companies House. If you don’t have a Company
@@ -251,8 +147,21 @@ export const inputLabels = {
         },
       },
     },
+    highLevelSicCode: {
+      label: (
+        <>
+          Please provide the High Level SIC (Standard Industrial Classification)
+          Code and description from the{' '}
+          <a href="http://resources.companieshouse.gov.uk/sic/" target="_blank">
+            business classification website
+          </a>
+          :
+        </>
+      ),
+      validation: { required: true },
+    },
     businessRatesAccountNumber: {
-      label: 'Business Rates Account Number (if applicable):',
+      label: 'Business Rates Account Number:',
       hint:
         'A nine digit number starting with a 6 - this is shown on your business rates bill. ',
       validation: {
@@ -261,49 +170,59 @@ export const inputLabels = {
         },
       },
     },
+    businessRatesPropertyReferenceNumber: {
+      label: 'Business Rates Property Reference Number:',
+      hint: 'A 7 digit number - this is shown on your business rates bill.',
+      validation: {
+        pattern: {
+          value: /^[0-9]{7}$/i,
+        },
+      },
+    },
     businessRatesPayer: {
-      label: 'Name of Business Rates Payer (if applicable):',
+      label: 'Name of Business Rates Payer:',
       hint: 'As shown on your business rates bill.',
     },
     businessTradingAddress: {
-      label: 'Business Registered Trading Address:',
+      label: 'Business Registered Office if a limited company:',
     },
     businessAddress: {
       label: 'Business Premises Address in the London Borough of Hackney:',
-      hint: (
-        <>
-          <p>
-            Please provide your usual business address in Hackney. If you are
-            now working from home as a result of the pandemic, but are normally
-            based in a commercial premises in Hackney, and plan to return to the
-            same commercial premises in the future, please provide this address.
-          </p>
-          <p>
-            For businesses who were working from residential premises in Hackney
-            prior to the pandemic, and who will remain working from this
-            premises in the future, please provide this address.
-          </p>
-          <p>
-            For market traders, please provide the most accurate nearby address
-            for your market stall if you are unable to provide your exact market
-            pitch address.
-          </p>
-        </>
-      ),
+      hint:
+        'Please provide the business address as shown on your rates bill for which you are claiming the grant.',
     },
-    businessPremisesDescription: {
-      label: 'Business Premises Description',
-      options: options.TYPE_OF_BUSINESS,
-      validation: {
-        required: true,
-      },
+    businessSector: {
+      label: 'What Sector does your Business belong to?',
+      validation: { required: true },
+      options: options.HOSPITALITY_LEISURE_BUSINESS_TYPES,
+      adminValidation: true,
     },
-    businessPremisesText: {},
-    tradingDaysPerWeek: {
+    businessNature: {
       label:
-        'If you are a market trader please state how many days per week you usually trade in Hackney (prior to the COVID-19 pandemic):',
-      type: 'number',
-      inputMode: 'numeric',
+        'Please state the exact nature of the business trading at the premises:',
+      validation: { required: true },
+      adminValidation: true,
+    },
+    isBusinessStillTrading: {
+      label:
+        'Is your business currently trading at the address for which you are claiming the grant?',
+      validation: { required: true },
+      adminValidation: true,
+    },
+    isBusinessStillTradingDateStopped: {
+      label: 'If no, when did your business cease trading?',
+      validation: { required: true },
+    },
+    dateEstablished: {
+      label: 'What date was the business established?',
+      validation: { required: true },
+    },
+    businessSize: {
+      label: 'How many PAYE employees does your business have?',
+      hint: '(full time equivalents)',
+      options: options.ALL_BUSINESS_SIZES,
+      validation: { required: true },
+      adminValidation: true,
     },
     businessRateableValue: {
       label: 'Business Premises Rateable Value (if applicable):',
@@ -312,24 +231,6 @@ export const inputLabels = {
     },
     businessWebsite: {
       label: 'Business Website Address (if applicable):',
-    },
-    businessImpactStatement: {
-      label: 'How has your business been impacted?',
-      hint: (
-        <p>
-          Please provide a short written statement setting out how your business
-          has been severely impacted by the tier restrictions from 2 December
-          2020 and the national lockdown from 5 January 2021. This should
-          include details on why and how your business was severely impacted.
-          You should also set out if you are able to trade online, the scale of
-          your Coronavirus related losses, and any ongoing fixed business costs
-          you may have.
-        </p>
-      ),
-      validation: {
-        required: true,
-      },
-      adminValidation: true,
     },
   },
   contact: {
