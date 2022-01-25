@@ -2,6 +2,8 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 
+import StepsWizard from '../../../../components/StepsWizard';
+
 import { getGrantBySlug } from '../../../../grants/grants';
 import { GetServerSideProps } from 'next';
 import { convertErrorToStatusCode } from '../../../../utils/errors';
@@ -20,18 +22,7 @@ const GrantStep: React.FC<{ slug: string; statusCode: number }> = ({
 
   const grant = getGrantBySlug(slug);
 
-  return (
-    <>
-      <h1 data-testid="page-heading">{grant.name}</h1>
-
-      {grant.description}
-
-      <dl>
-        <dt>Step ID:</dt>
-        <dd>{id}</dd>
-      </dl>
-    </>
-  );
+  return <StepsWizard grantSlug={slug} grant={grant} stepId={id} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async ({

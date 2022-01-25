@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, TextInput, DateInput } from '../Form';
-import { stepPath, getInputProps } from './index';
+import { getInputProps } from './index';
 import AddressLookup from '../Form/AddressLookup/AddressLookup';
 
 const Step1 = (props) => {
@@ -11,7 +11,7 @@ const Step1 = (props) => {
   });
   const onSubmit = (data) => {
     props.saveData(data);
-    Router.push(stepPath, props.nextStep);
+    Router.push(props.nextStep);
   };
 
   return (

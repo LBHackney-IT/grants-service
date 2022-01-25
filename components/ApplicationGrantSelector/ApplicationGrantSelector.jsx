@@ -1,4 +1,4 @@
-import Router from 'next/router';
+import Link from 'next/link';
 import { isExpired } from '../../utils/date';
 import { stepKeys } from '../Steps';
 
@@ -20,27 +20,29 @@ const OhlgGrantSelector = ({ date, expirationDate }) => {
       <p className="govuk-body">Some text here</p>
       {(!expirationDate ||
         !isExpired(new Date(expirationDate), new Date(date))) && (
-        <button
-          href="#"
-          role="button-ohlg"
-          draggable="false"
+        <Link
+          href={`/grant/ohlg/step/${stepKeys[0]}`}
           className="govuk-button govuk-button--start govuk-!-margin-top-3"
           data-module="govuk-button"
-          onClick={() => Router.push(`/grant/ohlg/step/${stepKeys[0]}`)}
         >
-          Start now
-          <svg
-            className="govuk-button__start-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            width="17.5"
-            height="19"
-            viewBox="0 0 33 40"
-            aria-hidden="true"
-            focusable="false"
+          <a
+            href="#"
+            className="govuk-button govuk-button--start govuk-!-margin-top-3"
           >
-            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-          </svg>
-        </button>
+            Start now
+            <svg
+              className="govuk-button__start-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="17.5"
+              height="19"
+              viewBox="0 0 33 40"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+            </svg>
+          </a>
+        </Link>
       )}
     </>
   );
@@ -81,27 +83,29 @@ const ArgGrantSelector = ({ date, expirationDate }) => {
       </p>
       {(!expirationDate ||
         !isExpired(new Date(expirationDate), new Date(date))) && (
-        <button
-          href="#"
-          role="button"
-          draggable="false"
+        <Link
+          href={`/grant/arg-3/step/${stepKeys[0]}`}
           className="govuk-button govuk-button--start govuk-!-margin-top-3"
           data-module="govuk-button"
-          onClick={() => Router.push(`/grant/arg-3/step/${stepKeys[0]}`)}
         >
-          Start now
-          <svg
-            className="govuk-button__start-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            width="17.5"
-            height="19"
-            viewBox="0 0 33 40"
-            aria-hidden="true"
-            focusable="false"
+          <a
+            href="#"
+            className="govuk-button govuk-button--start govuk-!-margin-top-3"
           >
-            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-          </svg>
-        </button>
+            Start now
+            <svg
+              className="govuk-button__start-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="17.5"
+              height="19"
+              viewBox="0 0 33 40"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+            </svg>
+          </a>
+        </Link>
       )}
     </>
   );

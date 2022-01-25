@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button } from '../Form';
-import { stepPath, getInputProps } from './index';
+import { getInputProps } from './index';
 import ControlledFileUpload from '../FileUpload/FileUpload';
 
 const SupplementaryInformation = (props) => {
@@ -11,7 +11,7 @@ const SupplementaryInformation = (props) => {
   });
   const onSubmit = (formData) => {
     props.saveData(formData);
-    Router.push(stepPath, props.nextStep);
+    Router.push(props.nextStep);
   };
   const sharedProps = (name) => ({
     ...getInputProps('supplementaryInformation', name, { control }, errors),
