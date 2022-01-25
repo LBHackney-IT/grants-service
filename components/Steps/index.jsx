@@ -218,7 +218,7 @@ export const inputLabels = {
     },
     businessSize: {
       label: 'How many PAYE employees does your business have?',
-      hint: '(full time equivalents)',
+      hint: <p>(full time equivalents)</p>,
       options: options.ALL_BUSINESS_SIZES,
       validation: { required: true },
       adminValidation: true,
@@ -344,8 +344,7 @@ export const inputLabels = {
       validation: { required: true },
     },
     businessMeetsCriteria: {
-      label: `I declare that the business meets the criteria for the Additional Restrictions Grant that I am applying for and
-        that the information I have provided is complete and accurate`,
+      label: `I declare that the business meets the eligibility criteria for the Omicron Hospitality and Leisure Grant that I am applying for and that the information I have provided is complete and accurate.`,
       validation: { required: true },
     },
     businessIWillInform: {
@@ -355,59 +354,30 @@ export const inputLabels = {
           <ul>
             <li>
               My business no longer occupies the premises stated in this
-              application form
+              application form.
             </li>
             <li>
               My business ceases trading permanently, or goes into
               administration, becomes insolvent, or is in receipt of a striking
               off notice
             </li>
-            <li>
-              My business no longer meets any other grant eligibility criteria
-            </li>
           </ul>
         </>
       ),
       validation: { required: true },
     },
-    businessNotExceed: {
+    businessNotExceedPermittedAllowance: {
       label: (
         <>
-          <p>
-            The Additional Restrictions Grant counts towards the total de
-            minimis state aid you are permitted to receive over a 3 year period
-            which is €200,000. If you have reached the de minimis threshold, you
-            may still be eligible for funding under the{' '}
-            <a
-              href="https://ec.europa.eu/competition/state_aid/what_is_new/covid_19.html"
-              target="_blank"
-              rel="noopener"
-            >
-              COVID-19 Temporary Framework
-            </a>
-            . The limit for this framework is €800,000.
-          </p>
-          <p>
-            I confirm that, including receipt of this grant, the business will
-            not exceed the relevant State Aid threshold.
-          </p>
-        </>
-      ),
-      validation: { required: true },
-    },
-    businessNotUndertaking: {
-      label: (
-        <>
-          I confirm that my business is not an{' '}
+          I confirm that I have read the{' '}
           <a
-            href="https://www.gov.uk/guidance/innovation-apply-for-a-funding-award#undertakings-in-difficulty--eu-definition"
+            href="https://drive.google.com/file/d/1--cmWYpNzr0SX6dkkbiXDocXIoEuKuQc/view"
             target="_blank"
             rel="noopener"
           >
-            undertaking in difficulty
+            subsidy allowance guidance document
           </a>{' '}
-          (within the meaning of Article 2 (18) of the General Block Exemption
-          Regulation) on 31 December 2019
+          and my business has not exceeded the permitted subsidy allowance.
         </>
       ),
       validation: { required: true },
@@ -418,73 +388,8 @@ export const inputLabels = {
       validation: { required: true },
     },
     businessPermitData: {
-      label: (
-        <>
-          I permit the data provided in this form to be used to determine my
-          eligibility and process my application for the Additional Restrictions
-          Grant. I understand that my data will be kept on record and may be
-          used to determine my eligibility for any future rounds of the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-additional-restrictions-grant"
-            target="_blank"
-            rel="noopener"
-          >
-            Additional Restrictions Grant
-          </a>
-          , and the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-your-business-is-eligible-for-a-coronavirus-grant-due-to-national-restrictions-for-closed-businesses"
-            target="_blank"
-            rel="noopener"
-          >
-            Local Restrictions Support Grant (Closed) Addendum
-          </a>
-          , the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-local-restrictions-support-grant-for-open-businesses"
-            target="_blank"
-            rel="noopener"
-          >
-            Local Restrictions Support Grant (Open)
-          </a>{' '}
-          and the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-your-nightclub-dance-hall-or-adult-entertainment-business-is-eligible-for-a-coronavirus-grant-due-to-national-restrictions"
-            target="_blank"
-            rel="noopener"
-          >
-            Local Restrictions Support Grant (Sector)
-          </a>{' '}
-          where applicable.
-        </>
-      ),
-      validation: { required: true },
-    },
-    businessPermitDataRound2: {
-      label: (
-        <>
-          I permit the data provided in this form to be used to determine my
-          eligibility and process my application for the Additional Restrictions
-          Grant. I understand that my data will be kept on record and may be
-          used to determine my eligibility for any future rounds of the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-additional-restrictions-grant"
-            target="_blank"
-            rel="noopener"
-          >
-            Additional Restrictions Grant
-          </a>
-          , the Local Restrictions Support Grants, or the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-your-business-is-eligible-for-the-coronavirus-closed-businesses-lockdown-payment"
-            target="_blank"
-            rel="noopener"
-          >
-            Closed Business Lockdown Payment
-          </a>{' '}
-          where applicable.
-        </>
-      ),
+      label:
+        'I permit the data provided in this form to be used to determine my eligibility and process my application for the Omicron Hospitality and Leisure Grant. I understand that my data will be kept on record and may be used to determine my eligibility for any future rounds of Covid-19 business grants where applicable.',
       validation: { required: true },
     },
     businessShareWithBEIS: {
@@ -498,14 +403,21 @@ export const inputLabels = {
           >
             BEIS
           </a>{' '}
-          for research and evaluation purposes
+          in accordance with the{' '}
+          <a
+            href="https://www.gov.uk/government/publications/covid-19-grant-schemes-privacy-notice/covid-19-grant-schemes-privacy-notice"
+            target="_blank"
+            rel="noopener"
+          >
+            BEIS Privacy Notice
+          </a>
+          .
         </>
       ),
       validation: { required: true },
     },
     businessHappyContacted: {
-      label: `I confirm that I am happy to be contacted by Hackney Council in the future for details of new business funding
-        opportunities and in relation to other business initiatives`,
+      label: `I confirm that I am happy to be contacted by Hackney Council in the future for details of new business funding opportunities and in relation to other business initiatives.`,
     },
   },
 };

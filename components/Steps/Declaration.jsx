@@ -82,17 +82,7 @@ const Declaration = (props) => {
       <Checkbox
         {...getInputProps(
           'declaration',
-          'businessNotExceed',
-          {
-            register,
-          },
-          errors
-        )}
-      />
-      <Checkbox
-        {...getInputProps(
-          'declaration',
-          'businessNotUndertaking',
+          'businessNotExceedPermittedAllowance',
           {
             register,
           },
@@ -112,7 +102,7 @@ const Declaration = (props) => {
       <Checkbox
         {...getInputProps(
           'declaration',
-          'businessPermitDataRound2',
+          'businessPermitData',
           {
             register,
           },
@@ -141,15 +131,15 @@ const Declaration = (props) => {
       />
       <h2>How we will use your information</h2>
       <p className="govuk-body">
-        The Council will not accept deliberate manipulation and fraud. Any
-        business caught falsifying their records to gain additional grant money
-        will face prosecution and any funding issued will be subject to
-        clawback.{' '}
+        The Government or the Council will not accept deliberate manipulation
+        and fraud. Any business caught falsifying their records to gain
+        additional grant money will face prosecution and any funding issued will
+        be subject to clawback. As will any grants paid in error.
       </p>
 
       <p className="govuk-body">
         We will use your information to assess your application for financial
-        support. In doing so we will confirm information about you and your
+        support. In doing so we may confirm information about you and your
         account from Council departments and credit reference agencies to
         confirm account validity and your identity. If you provide false or
         inaccurate information, we will record this. If you would like full
