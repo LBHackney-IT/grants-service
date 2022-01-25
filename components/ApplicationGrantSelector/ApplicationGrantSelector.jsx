@@ -112,12 +112,3 @@ const ArgGrantSelector = ({ date, expirationDate }) => {
 };
 
 export default ApplicationGrantSelector;
-
-export const getServerSideProps = () => {
-  return {
-    props: {
-      date: new Date().getTime(),
-      expirationDate: process.env.EXPIRATION_DATE || null,
-    },
-  };
-};
