@@ -2,11 +2,7 @@ import PropTypes from 'prop-types';
 
 const BasicSelect = ({ value, onChange = console.log, label, options }) => (
   <div className="govuk-form-group">
-<<<<<<< HEAD
     <label className="govuk-label" htmlFor={label}>
-=======
-    <label className="govuk-label" for={label}>
->>>>>>> feat: split the admin panel to support multiple grants
       {label}
     </label>
     <select
