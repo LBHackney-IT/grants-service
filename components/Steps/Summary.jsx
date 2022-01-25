@@ -9,6 +9,7 @@ import { postApplication } from '../../utils/api/applications';
 const Result = ({ formData, clearFormData }) => {
   const [error, setError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
   useEffect(() => {
     Router.prefetch('/confirmation');
   }, []);

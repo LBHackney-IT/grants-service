@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, TextInput } from '../Form';
-import { stepPath, getInputProps } from './index';
+import { getInputProps } from './index';
 
 const BankDetails = (props) => {
   const { register, errors, handleSubmit } = useForm({
@@ -10,7 +10,7 @@ const BankDetails = (props) => {
   });
   const onSubmit = (data) => {
     props.saveData(data);
-    Router.push(stepPath, props.nextStep);
+    Router.push(props.nextStep);
   };
 
   return (

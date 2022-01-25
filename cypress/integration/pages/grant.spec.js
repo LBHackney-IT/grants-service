@@ -6,12 +6,12 @@ context('Grant page', () => {
   });
 
   describe('page content', () => {
-    it('displays correct name in the heading', () => {
-      cy.visit('/grant/arg-3/step/1');
+    it('displays first step header', () => {
+      cy.visit('/grant/ohlg/step/eligibility-criteria');
 
-      cy.get('[data-testid=page-heading]').should(
+      cy.get('[data-testid=step-heading]').should(
         'contain',
-        'Additional Restrictions Grant – Round 3'
+        'Eligibility Criteria'
       );
     });
   });

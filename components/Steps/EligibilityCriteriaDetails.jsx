@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import { Button, Radios, Select, TextInput } from '../Form';
-import { stepPath, getInputProps } from './index';
+import { getInputProps } from './index';
 import ErrorSummary from '../ErrorSummary/ErrorSummary';
 
 const Step1 = (props) => {
@@ -13,7 +13,7 @@ const Step1 = (props) => {
   const [showError, setShowError] = useState(false);
   const onSubmit = (data) => {
     props.saveData(data);
-    Router.push(stepPath, props.nextStep);
+    Router.push(props.nextStep);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
