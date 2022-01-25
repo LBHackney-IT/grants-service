@@ -26,192 +26,59 @@ export const steps = {
 export const inputLabels = {
   eligibilityCriteria: {
     tradingInHackney: {
-      label: 'Is your business based in and trading in Hackney?',
-      hint: (
-        <>
-          <p>
-            Your business must be physically based in either a commercial or
-            domestic premises in Hackney and you must conduct your business
-            operations from this premises.
-          </p>
-          <p>
-            If you are currently working from home as a result of Covid-19 but
-            your business would normally operate from a commercial premises{' '}
-            <span className="govuk-!-font-weight-bold">in Hackney</span>, then
-            please provide your commercial premises address in Hackney on your
-            application form.
-          </p>
-          <p>
-            If your business is a home based business operating from a
-            residential premises{' '}
-            <span className="govuk-!-font-weight-bold">in Hackney</span> and
-            this was your usual mode of operating prior to the Covid-19 pandemic
-            then please provide this address.
-          </p>
-          <p>
-            Businesses who use a virtual office/business address in the London
-            Borough of Hackney but who do not physically conduct their business
-            operations on a full time basis from these premises are not eligible
-            for a grant.
-          </p>
-        </>
-      ),
+      label: 'Is your business in the London Borough of Hackney?',
       validation: { required: true },
       adminValidation: true,
+      validAnswer: 'Yes',
     },
-    meetsArgCriteria: {
+    liableForBusinessRates: {
+      label:
+        'Is your business liable for Business Rates AND occupying and trading from the premises at which you are claiming on the 30th December 2021?',
+      validation: { required: true },
+      validAnswer: 'Yes',
+    },
+    businessSectorEligible: {
       label: (
         <>
-          Does your business meet one of the following criteria for the
-          Additional Restrictions Grant:
-          <ul>
-            <li>
-              Your business was legally required to close between 5th November
-              2020 - 2nd December 2020, but you are not a business rates
-              payer/account holder;{' '}
-              <strong>
-                <u>or</u>
-              </strong>
-            </li>
-            <li>
-              Your business was not legally required to close between 5th
-              November 2020 - 2nd December 2020, but has been severely impacted
-              by the restrictions put in place to prevent the spread of COVID-19
-            </li>
+          Is your business part of one of one of the following sectors?
+          <ul className="govuk-!-font-size-19">
+            <li>Hospitality</li>
+            <li>Leisure</li>
+            <li>Accommodation</li>
           </ul>
         </>
       ),
       validation: { required: true },
+      validAnswer: 'Yes',
     },
-    meetsArgCriteriaRound2: {
-      label: (
+    eligibleForOhlg: {
+      label:
+        'Does your business meet the following criteria for the Omicron Hospitality and Leisure Grant ?',
+      hint: (
         <>
-          Does your business meet one of the following criteria for the
-          Additional Restrictions Grant - Round 2:
           <ul className="govuk-!-font-size-19">
             <li>
-              Your business was legally required to close by the Government in
-              December due to the tier restrictions (either during Tier 2, Tier
-              3, and/or Tier 4){' '}
-              <span className="govuk-!-font-weight-bold">and</span> the national
-              lockdown from 5 January 2021 onwards{' '}
-              <span className="govuk-!-font-weight-bold">and</span> you are not
-              a Hackney business rates account holder;{' '}
-              <strong>
-                <u>or</u>
-              </strong>
+              The business offers in-person services where the main service and
+              activity takes place is a fixed rate-paying premises, in the
+              hospitality, leisure and accommodation sectors.
             </li>
-            <li>
-              Your business was not legally required to close by the Government
-              during the December 2020 tier restriction or the national lockdown
-              from 5 January 2021 onwards but has been severely impacted by the
-              tier and national lockdown restrictions put in place to prevent
-              the spread of COVID-19 from the 2 December 2020 onwards.
-            </li>
-          </ul>
-          <p className="govuk-body govuk-!-font-size-19">
-            If you are unsure if your business was legally required to close by
-            the Government in December or January please review the documents
-            below:
-          </p>
-          <ul className="govuk-!-font-size-19">
-            <li>
-              <a
-                href={
-                  process.env
-                    .NEXT_PUBLIC_DECEMBER_BUSINESS_CLOSURES_GUIDANCE_GOOGLE_URL
-                }
-                target="_blank"
-                rel="noopener"
-              >
-                December 2020: Tiers 1-4 restrictions and required business
-                closures
-              </a>
-            </li>
-            <li>
-              <a
-                href={
-                  process.env
-                    .NEXT_PUBLIC_JANUARY_BUSINESS_CLOSURES_GUIDANCE_GOOGLE_URL
-                }
-                target="_blank"
-                rel="noopener"
-              >
-                January 2021: National lockdown and required business closures
-              </a>
-            </li>
+            <li>The business is not a food kiosk</li>
+            <li>The business is not a takeaway</li>
+            <li>The business is not a Gym or sports business</li>
+            <li>The business is not a retail business</li>
           </ul>
         </>
       ),
+      adminValidation: true,
       validation: { required: true },
+      validAnswer: 'Yes',
     },
     servedLegalNotices: {
       label:
-        'Is your business in administration, insolvent or in receipt of a striking off notice?',
+        'Is your business in administration, dissolved, in liquidation, insolvent, struck off on Companies House, or in receipt of a striking off notice?',
       validation: { required: true },
       adminValidation: true,
-    },
-    tradingOn041120: {
-      label: 'Was your business trading on the 4th November 2020?',
-      validation: { required: true },
-      adminValidation: true,
-    },
-    tradingOn011220: {
-      label: 'Was your business trading on 1 December 2020?',
-      hint:
-        'Your business is still considered to have been trading on 1 December 2020 if it was an active business at this time, even if your business was closed to the public due to Government restrictions.',
-      validation: { required: true },
-      adminValidation: true,
-    },
-    eligibleForLrsgClosedGrant: {
-      label: (
-        <>
-          Is your business eligible for the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-your-business-is-eligible-for-a-coronavirus-grant-due-to-national-restrictions-for-closed-businesses"
-            target="_blank"
-            rel="noopener"
-          >
-            Local Restrictions Support Grant (Closed) Addendum
-          </a>
-          ?
-        </>
-      ),
-      adminValidation: true,
-      validation: { required: true },
-    },
-    eligibleForLrsgGrants: {
-      label:
-        'Is your business eligible for the Local Restrictions Support Grants?',
-      hint: (
-        <>
-          <p>
-            If you are eligible for the Local Restrictions Support Grants then
-            you are not eligible for the Additional Restrictions Grant and you
-            should apply for the Local Restrictions Support Grants instead.
-            Visit{' '}
-            <a
-              href="https://hackney.gov.uk/business-grants"
-              target="_blank"
-              rel="noopener"
-            >
-              Hackney Business Grants
-            </a>{' '}
-            to read the criteria for the Local Restrictions Support Grants to
-            make sure you are applying for the correct grant for your business.
-          </p>
-          <p>
-            If you are a Hackney business rates account holder (including if you
-            receive rates relief and do not pay for your business rates as a
-            result), and your business is in the retail, hospitality or leisure
-            sectors then it is likely you will be eligible for a Local
-            Restrictions Support Grant and not the Additional Restrictions
-            Grant.
-          </p>
-        </>
-      ),
-      adminValidation: true,
-      validation: { required: true },
+      validAnswer: 'No',
     },
   },
   business: {
