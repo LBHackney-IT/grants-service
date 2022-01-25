@@ -44,7 +44,9 @@ const Step1 = (props) => {
         aria-describedby="step-hint"
       >
         <legend className="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 className="govuk-fieldset__heading">Eligibility Criteria</h1>
+          <h1 className="govuk-fieldset__heading" data-testid="step-heading">
+            Eligibility Criteria
+          </h1>
         </legend>
         <span id="step-hint" className="govuk-hint">
           Applicants must meet all the eligibility questions to proceed to the
