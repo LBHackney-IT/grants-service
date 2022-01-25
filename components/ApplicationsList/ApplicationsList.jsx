@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Router, { useRouter } from 'next/router';
+import NextLink from 'next/link';
 
 import Table from '../Table/Table';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -64,6 +65,7 @@ const ApplicationsList = ({
     businessPremises,
   });
   const [error, setError] = useState();
+  const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageCount, setPageCount] = useState(0);
@@ -139,59 +141,87 @@ const ApplicationsList = ({
       setError(e.response.data);
     }
   };
+
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    setFilters({
+      ...filters,
+      searchTerm,
+    });
+  };
+
   return !error ? (
     <>
-      <BasicSelect
-        options={Object.values(APPLICATION_STATE)}
-        label="Filter by Status:"
-        value={filters.status}
-        onChange={(status) => setValues({ status })}
-      />
-
-      {officers && (
+      <form onSubmit={handleSearch}>
         <BasicSelect
-          options={officers}
-          label="Filter by Grant Officer:"
-          value={filters.grantOfficer}
-          onChange={(grantOfficer) => setValues({ grantOfficer })}
+          options={Object.values(APPLICATION_STATE)}
+          label="Filter by Status:"
+          value={filters.status}
+          onChange={(status) => setValues({ status })}
         />
-      )}
 
-      <BasicSelect
-        options={BUSINESS_CATEGORIES}
-        label="Filter by Business Category:"
-        value={filters.businessCategory}
-        onChange={(businessCategory) => setValues({ businessCategory })}
-      />
+        {officers && (
+          <BasicSelect
+            options={officers}
+            label="Filter by Grant Officer:"
+            value={filters.grantOfficer}
+            onChange={(grantOfficer) => setValues({ grantOfficer })}
+          />
+        )}
 
-      <BasicSelect
-        options={BUSINESS_SIZE}
-        label="Filter by Business Size:"
-        value={filters.businessSize}
-        onChange={(businessSize) => setValues({ businessSize })}
-      />
+        <BasicSelect
+          options={BUSINESS_CATEGORIES}
+          label="Filter by Business Category:"
+          value={filters.businessCategory}
+          onChange={(businessCategory) => setValues({ businessCategory })}
+        />
 
-      <BasicSelect
-        options={TYPE_OF_BUSINESS}
-        label="Filter by Business Premises:"
-        value={filters.businessPremises}
-        onChange={(businessPremises) => setValues({ businessPremises })}
-      />
+        <BasicSelect
+          options={BUSINESS_SIZE}
+          label="Filter by Business Size:"
+          value={filters.businessSize}
+          onChange={(businessSize) => setValues({ businessSize })}
+        />
 
-      <BasicSelect
-        options={Object.keys(DATES)}
-        label="Filter by ARG round:"
-        onChange={(date) => setValues({ date: DATES[date] })}
-      />
+        <BasicSelect
+          options={TYPE_OF_BUSINESS}
+          label="Filter by Business Premises:"
+          value={filters.businessPremises}
+          onChange={(businessPremises) => setValues({ businessPremises })}
+        />
 
-      <TextInput
-        name="searchByApplicationId"
-        label="Search by Application ID"
-        value={filters.applicationId}
-        onChange={(applicationIdEvent) => {
-          setValues({ applicationId: applicationIdEvent.target.value });
-        }}
-      />
+        <BasicSelect
+          options={Object.keys(DATES)}
+          label="Filter by ARG round:"
+          onChange={(date) => setValues({ date: DATES[date] })}
+        />
+
+        <TextInput
+          name="searchTerm"
+          label="Search"
+          value={searchTerm}
+          onChange={handleSearchTermChange}
+        />
+
+        <div className="govuk-button-group">
+          <button
+            className="govuk-button"
+            data-module="govuk-button"
+            type="submit"
+          >
+            Search
+          </button>
+          <NextLink href="/admin">
+            <a className="govuk-link">Clear filters</a>
+          </NextLink>
+        </div>
+      </form>
+
       <Table
         columns={columns}
         data={data}

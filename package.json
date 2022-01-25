@@ -30,7 +30,7 @@
     "db-migrate": "^0.11.13",
     "db-migrate-pg": "^1.2.2",
     "google-spreadsheet": "^3.0.13",
-    "govuk-frontend": "^3.6.0",
+    "govuk-frontend": "^4.0.0",
     "http-status-codes": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
     "mockdate": "^3.0.2",
