@@ -559,7 +559,7 @@ exports[`<ApplicationsList /> should render the search, filters, and results tab
   />
   <p>
     <a
-      href="/api/csv/applications"
+      href="/api/csv/applications?grantType=arg"
       target="_blank"
     >
       Download Applications CSV
