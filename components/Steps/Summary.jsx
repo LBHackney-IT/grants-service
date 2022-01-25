@@ -5,12 +5,10 @@ import Summary from '../Summary/Summary';
 import ErrorSummary from '../ErrorSummary/ErrorSummary';
 import { set } from '../../utils/persistency';
 import { postApplication } from '../../utils/api/applications';
-import { getGrantBySlug } from '../../grants/grants';
 
 const Result = ({ formData, clearFormData }) => {
   const [error, setError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const grant = getGrantBySlug(formData.grantType);
 
   useEffect(() => {
     Router.prefetch('/confirmation');
@@ -40,7 +38,7 @@ const Result = ({ formData, clearFormData }) => {
   }
   return (
     <>
-      <h1>Summary - {grant.name}</h1>
+      <h1>Summary</h1>
       <Summary formData={formData} hasChangeLink />
       <button
         className="govuk-button"
