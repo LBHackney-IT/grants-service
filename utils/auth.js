@@ -31,5 +31,7 @@ export const redirectIfNotAuth = async ({ req, res, query }) => {
     }`,
   });
   res.end();
-  return {};
+  return {
+    props: {},
+  };
 };
