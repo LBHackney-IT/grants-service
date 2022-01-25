@@ -211,7 +211,6 @@ export const inputLabels = {
     },
     isBusinessStillTradingDateStopped: {
       label: 'If no, when did your business cease trading?',
-      validation: { required: true },
     },
     dateEstablished: {
       label: 'What date was the business established?',
