@@ -402,6 +402,7 @@ exports[`<ApplicationsList /> should render the search, filters, and results tab
       </button>
       <a
         class="govuk-link"
+        href="#"
         role="button"
       >
         Clear filters
@@ -553,45 +554,6 @@ exports[`<ApplicationsList /> should render the search, filters, and results tab
         Show 50
       </option>
     </select>
-  </div>
-  <hr
-    class="govuk-section-break govuk-section-break--l govuk-section-break--visible"
-  />
-  <p>
-    <a
-      href="/api/csv/applications?grantType=arg"
-      target="_blank"
-    >
-      Download Applications CSV
-    </a>
-  </p>
-  <h2>
-    Export payment details
-  </h2>
-  <div>
-    <p>
-      These downloads are disabled as you are not part of the 'undefined' user group
-    </p>
-    <div>
-      <button
-        class="govuk-button govuk-button--secondary govuk-!-margin-right-1"
-        data-module="govuk-button"
-        disabled=""
-        round="1"
-      >
-        Export Panel Approved Payments (Round 1)
-      </button>
-    </div>
-    <div>
-      <button
-        class="govuk-button govuk-button--secondary govuk-!-margin-right-1"
-        data-module="govuk-button"
-        disabled=""
-        round="2"
-      >
-        Export Panel Approved Payments (Round 2)
-      </button>
-    </div>
   </div>
 </DocumentFragment>
 `;

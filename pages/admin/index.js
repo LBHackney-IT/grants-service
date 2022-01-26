@@ -24,6 +24,8 @@ const AdminPage = ({ name }) => {
 const GrantPanel = ({ name, summary, slug }) => {
   return (
     <>
+      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
+
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-three-quarters">
           <h2 className="govuk-heading-m">{name}</h2>
@@ -52,8 +54,6 @@ const GrantPanel = ({ name, summary, slug }) => {
           </a>
         </div>
       </div>
-
-      <hr />
     </>
   );
 };
