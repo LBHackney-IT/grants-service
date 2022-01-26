@@ -68,7 +68,6 @@ const ArgGrantSelector = ({ date, expirationDate }) => {
       <h1 data-testid="home-page-heading">
         Apply for the Omicron Additional Restrictions Grant
       </h1>
-
       <p className="govuk-body">
         The Omicron Additional Restrictions Grant is a one-off grant for the
         following types of businesses:
@@ -88,7 +87,6 @@ const ArgGrantSelector = ({ date, expirationDate }) => {
           sectors (either with or without a Hackney business rates account).
         </li>
       </ul>
-
       <p className="govuk-body">
         If you are a hospitality, leisure or accommodation sector business who
         has a Hackney business rates account, please apply for the Omicron
