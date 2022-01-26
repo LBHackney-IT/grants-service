@@ -1,18 +1,20 @@
 import { useRouter } from 'next/router';
+import React from 'react';
 
 import { redirectIfNotAuth } from '../../../../../utils/auth';
 import ApplicationView from '../../../../../components/ApplicationView/ApplicationView';
 import { getGrantBySlug } from '../../../../../grants/grants';
 
-const ApplicationViewPage = () => {
+const ApplicationViewPage: React.FC = () => {
   const { query } = useRouter();
-  const { clientGeneratedId, ...queryParameters } = query;
 
-  const slug = Array.isArray(queryParameters.slug)
-    ? queryParameters.slug[0]
-    : queryParameters.slug;
+  const slug = Array.isArray(query.slug) ? query.slug[0] : query.slug;
 
   const grant = getGrantBySlug(slug);
+
+  const clientGeneratedId = Array.isArray(query.clientGeneratedId)
+    ? query.clientGeneratedId[0]
+    : query.clientGeneratedId;
 
   return (
     <>
