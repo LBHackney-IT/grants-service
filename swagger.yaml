@@ -83,7 +83,8 @@ paths:
           name: 'sort'
           type: 'string'
           required: false
-          enum: [+applicationDate, -applicationDate, +businessName, -businessName]
+          enum:
+            [+applicationDate, -applicationDate, +businessName, -businessName]
           default: '+applicationDate'
         - in: 'query'
           name: 'status'

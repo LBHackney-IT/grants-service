@@ -4,26 +4,23 @@ import { Button, Select, TextInput } from '../Form';
 import { patchApplication } from '../../utils/api/applications';
 import { FREE_TEXT } from '../../lib/dbMapping';
 
-export const handleOnChange = (
-  setError,
-  setValue,
-  setCustomValueVisible,
-  setSuccessMessage
-) => async (grantAmountAwarded) => {
-  setError(false);
-  try {
-    setSuccessMessage(false);
-    setValue(grantAmountAwarded);
+export const handleOnChange =
+  (setError, setValue, setCustomValueVisible, setSuccessMessage) =>
+  async (grantAmountAwarded) => {
+    setError(false);
+    try {
+      setSuccessMessage(false);
+      setValue(grantAmountAwarded);
 
-    if (FREE_TEXT.includes(grantAmountAwarded)) {
-      setCustomValueVisible(true);
-    } else {
-      setCustomValueVisible(false);
+      if (FREE_TEXT.includes(grantAmountAwarded)) {
+        setCustomValueVisible(true);
+      } else {
+        setCustomValueVisible(false);
+      }
+    } catch (e) {
+      setError(e.response.data);
     }
-  } catch (e) {
-    setError(e.response.data);
-  }
-};
+  };
 
 export const handleSubmit = async (
   value,

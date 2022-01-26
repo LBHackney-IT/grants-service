@@ -68,7 +68,7 @@ export default async (req, res) => {
             ? req.query.applicationId
             : undefined;
 
-        let listApplicationsResponse = await listApplications({
+        const listApplicationsResponse = await listApplications({
           grantType,
           currentPage,
           pageSize,
