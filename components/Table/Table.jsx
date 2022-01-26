@@ -85,7 +85,8 @@ const Table = ({
                 {...row.getRowProps()}
                 onClick={() =>
                   Router.push({
-                    pathname: '/admin/applications/[clientGeneratedId]',
+                    pathname:
+                      '/admin/grant/[grantType]/applications/[clientGeneratedId]',
                     query: {
                       clientGeneratedId: row.original.clientGeneratedId,
                       ...queryParameters,

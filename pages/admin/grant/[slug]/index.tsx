@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import ApplicationsList from '../../../components/ApplicationsList/ApplicationsList';
-import ErrorMessage from '../../../components/ErrorMessage/ErrorMessage';
-import { getGrantBySlug } from '../../../grants/grants';
-import { patchApplications } from '../../../utils/api/applications';
-import { redirectIfNotAuth } from '../../../utils/auth';
+import ApplicationsList from '../../../../components/ApplicationsList/ApplicationsList';
+import ErrorMessage from '../../../../components/ErrorMessage/ErrorMessage';
+import { getGrantBySlug } from '../../../../grants/grants';
+import { patchApplications } from '../../../../utils/api/applications';
+import { redirectIfNotAuth } from '../../../../utils/auth';
 
 const AdminManageGrantPage = (props) => {
   const { query } = useRouter();
