@@ -4,6 +4,7 @@ import Router from 'next/router';
 
 import { Button, Radios } from '../Form';
 import { getInputProps } from './index';
+import { inputLabels } from './index';
 import ErrorSummary from '../ErrorSummary/ErrorSummary';
 
 const Step1 = (props) => {
@@ -13,16 +14,12 @@ const Step1 = (props) => {
   const [showError, setShowError] = useState(false);
   const onSubmit = (data) => {
     let eligible = true;
+    const sectionQuestions = inputLabels.eligibilityCriteria;
 
     Object.entries(data.eligibilityCriteria).forEach(([key, value]) => {
-      if (key === 'servedLegalNotices' && value === 'Yes') {
-        eligible = false;
-      } else if (key === 'eligibleForLrsgGrants' && value === 'Yes') {
-        eligible = false;
-      } else if (
-        key !== 'servedLegalNotices' &&
-        key !== 'eligibleForLrsgGrants' &&
-        value === 'No'
+      if (
+        value != sectionQuestions[key].validAnswer ||
+        !sectionQuestions[key].validAnswer
       ) {
         eligible = false;
       }
@@ -49,8 +46,34 @@ const Step1 = (props) => {
           </h1>
         </legend>
         <span id="step-hint" className="govuk-hint">
-          Applicants must meet all the eligibility questions to proceed to the
-          next section
+          <p>
+            Before making your application please follow this link to check your
+            eligibility for this grant. <h3>(link to website information)</h3>A
+            separate application form is required if you are applying for the
+            grant across multiple premises.
+          </p>
+
+          <p>
+            The Government or the Council will not accept deliberate
+            manipulation and fraud. Any business caught falsifying their records
+            to gain additional grant money will face prosecution and any funding
+            issued will be subject to clawback. As will any grants paid in
+            error.
+          </p>
+
+          <p>
+            We will use your information to assess your application for
+            financial support. In doing so we may confirm information about you
+            and your account from Council departments and credit reference
+            agencies to confirm account validity and your identity. If you
+            provide false or inaccurate information, we will record this. If you
+            would like full details on how we use your information, please refer
+            to our{' '}
+            <a href="https://hackney.gov.uk/privacy" target="_blank">
+              privacy statement
+            </a>
+            .
+          </p>
         </span>
         <Radios
           {...getInputProps(
@@ -66,7 +89,29 @@ const Step1 = (props) => {
         <Radios
           {...getInputProps(
             'eligibilityCriteria',
-            'meetsArgCriteriaRound2',
+            'liableForBusinessRates',
+            {
+              register,
+            },
+            errors
+          )}
+          onChange={() => setShowError(false)}
+        />
+        <Radios
+          {...getInputProps(
+            'eligibilityCriteria',
+            'businessSectorEligible',
+            {
+              register,
+            },
+            errors
+          )}
+          onChange={() => setShowError(false)}
+        />
+        <Radios
+          {...getInputProps(
+            'eligibilityCriteria',
+            'eligibleForOhlg',
             {
               register,
             },
@@ -78,28 +123,6 @@ const Step1 = (props) => {
           {...getInputProps(
             'eligibilityCriteria',
             'servedLegalNotices',
-            {
-              register,
-            },
-            errors
-          )}
-          onChange={() => setShowError(false)}
-        />
-        <Radios
-          {...getInputProps(
-            'eligibilityCriteria',
-            'tradingOn011220',
-            {
-              register,
-            },
-            errors
-          )}
-          onChange={() => setShowError(false)}
-        />
-        <Radios
-          {...getInputProps(
-            'eligibilityCriteria',
-            'eligibleForLrsgGrants',
             {
               register,
             },

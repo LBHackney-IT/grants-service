@@ -17,7 +17,21 @@ const OhlgGrantSelector = ({ date, expirationDate }) => {
       <h1 data-testid="home-page-heading">
         Apply for the Omicron Hospitality and Leisure Grant
       </h1>
-      <p className="govuk-body">Some text here</p>
+      <p className="govuk-body">
+        The Omicron Hospitality and Leisure Grant is a one-off grant for
+        businesses in the hospitality, leisure or accommodation sectors who pay
+        business rates.
+      </p>
+      <p className="govuk-body">
+        If you are a hospitality, leisure or accommodation sector business
+        without a Hackney business rates account, please apply for the Omicron
+        Additional Restrictions Grant instead.
+      </p>
+      <p className="govuk-body">
+        If you are a gym or sports business where physical exercise or training
+        takes place, either with or without a Hackney business rates account,
+        please apply for the Omicron Additional Restrictions Grant instead.
+      </p>
       {(!expirationDate ||
         !isExpired(new Date(expirationDate), new Date(date))) && (
         <Link
@@ -52,34 +66,31 @@ const ArgGrantSelector = ({ date, expirationDate }) => {
   return (
     <>
       <h1 data-testid="home-page-heading">
-        Apply for the COVID-19 Additional Restrictions Grant - Round 2
+        Apply for the Omicron Additional Restrictions Grant
       </h1>
       <p className="govuk-body">
-        The Government has announced a series of grants for certain businesses
-        affected by the COVID-19 pandemic.
+        The Omicron Additional Restrictions Grant is a one-off grant for the
+        following types of businesses:
       </p>
+      <ul className="govuk-body">
+        <li>
+          Hospitality, leisure and accommodation businesses that are not Hackney
+          business rate account holders and therefore not eligible for the
+          Omicron Hospitality and Leisure Grant.
+        </li>
+        <li>
+          Gyms and sports businesses where physical exercise or training takes
+          place (either with or without a Hackney business rates account)
+        </li>
+        <li>
+          Businesses which supply the hospitality, leisure or accommodation
+          sectors (either with or without a Hackney business rates account).
+        </li>
+      </ul>
       <p className="govuk-body">
-        By completing this application form, you will be considered for the
-        COVID-19{' '}
-        <a
-          className="govuk-link"
-          href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-additional-restrictions-grant"
-          data-testid="arg-govuk-link"
-        >
-          Additional Restrictions Grant
-        </a>
-        .
-      </p>
-      <p className="govuk-body">
-        Check{' '}
-        <a
-          className="govuk-link"
-          href="https://hackney.gov.uk/business-grants"
-          data-testid="arg-hackney-link"
-        >
-          additional restrictions grant
-        </a>{' '}
-        for more information by Hackney Council.
+        If you are a hospitality, leisure or accommodation sector business who
+        has a Hackney business rates account, please apply for the Omicron
+        Hospitality and Leisure Grant instead.
       </p>
       {(!expirationDate ||
         !isExpired(new Date(expirationDate), new Date(date))) && (
