@@ -379,10 +379,36 @@ export const inputLabels = {
   supplementaryInformation: {
     bankStatement: {
       label: 'Business Bank Statement:',
-      hint: `Please provide your December 2021 business bank statement - this must correspond with the bank account details provided in this application form. If you do not have your December 2021 bank statement, please submit your most recent bank statement.`,
+      hint: `Please provide 3 months business bank statements from November 2020 to January 2021 (inclusive). The bank account details in the bank statements provided must correspond with the bank account details provided in this application form.`,
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
+    },
+    ratesBill: {
+      label: 'Business Rates Bill:',
+      hint: 'If applicable, please provide a copy of your latest London Borough of Hackney business rates bill.',
+    },
+    leaseOrRentalAgreement: {
+      label: 'Business premises lease or rental agreement:',
+      hint: `Please provide a copy of your business premises lease, rental agreement, mortgage statement, or market trading licence. If you do not have an up to date business premises lease, rental agreement or licence please provide another up to date form of evidence to demonstrate your business is physically based in Hackney e.g a signed and dated letter from your landlord, recent utility bill for your business premises.`,
+      validation: {
+        validate: (value) => value.length > 0 || 'Document required',
+      },
+    },
+    employeesConfirmation: {
+      label: 'Confirmation of the amount of employees in your business:',
+      hint: `If applicable and you employ PAYE staff, please provide a copy of your most up to date business payroll record showing the number of people employed by your business on a PAYE full time basis. If a payroll record is not available please provide another form of evidence which verifies the number of people employed by your business.`,
+    },
+    photoId: {
+      label: 'Photographic ID:',
+      hint: 'Please provide a form of photo identification such as a passport or driving licence.',
+      validation: {
+        validate: (value) => value.length > 0 || 'Document required',
+      },
+    },
+    taxReturn: {
+      label: 'HMRC self assessment tax return:',
+      hint: 'If you are a sole trader or are self employed please provide a copy of your latest HMRC self assessment tax return.',
     },
   },
   declaration: {
