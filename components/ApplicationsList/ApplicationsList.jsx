@@ -282,7 +282,10 @@ const ApplicationsList = ({
       />
       <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
       <p>
-        <a href="/api/csv/applications" target="_blank">
+        <a
+          href={`/api/csv/applications?grantType=${grantType}`}
+          target="_blank"
+        >
           Download Applications CSV
         </a>
       </p>
