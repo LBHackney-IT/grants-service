@@ -1,13 +1,14 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ApplicationsList from '../../../components/ApplicationsList/ApplicationsList';
+import ErrorMessage from '../../../components/ErrorMessage/ErrorMessage';
 import { getGrantBySlug } from '../../../grants/grants';
 import { patchApplications } from '../../../utils/api/applications';
 import { redirectIfNotAuth } from '../../../utils/auth';
 
 const AdminManageGrantPage = (props) => {
   const { query } = useRouter();
-  const [error, setError] = useState();
+  const [paymentsExportError, setPaymentsExportError] = useState();
 
   const slug = Array.isArray(query.slug) ? query.slug[0] : query.slug;
 
@@ -15,15 +16,18 @@ const AdminManageGrantPage = (props) => {
 
   const canDownloadCsvs = props.groups.includes(props.csvDownloadGroup);
 
-  const handleCsvDownload = async (e) => {
+  const handlePaymentsExport = async (e) => {
     try {
-      setError(null);
-      const round = e.target.getAttribute('round');
-      const csv = await patchApplications({ round });
-      window.open(encodeURI(`data:text/csv;charset=utf-8,${csv}`));
+      setPaymentsExportError(null);
+
+      const csvData = await patchApplications({
+        grantType: slug,
+      });
+
+      window.open(encodeURI(`data:text/csv;charset=utf-8,${csvData}`));
     } catch (e) {
       e.response.status = 400;
-      setError(e.response.data);
+      setPaymentsExportError(e.response.data);
     }
   };
 
@@ -75,17 +79,16 @@ const AdminManageGrantPage = (props) => {
       {canDownloadCsvs && (
         <>
           <h1 className="govuk-heading-s">Payment details</h1>
-          <div>
-            <div>
-              <button
-                className="govuk-button govuk-button--secondary govuk-!-margin-right-1"
-                data-module="govuk-button"
-                onClick={handleCsvDownload}
-              >
-                Export Panel Approved Payments
-              </button>
-            </div>
-          </div>
+
+          {paymentsExportError && <ErrorMessage text={paymentsExportError} />}
+
+          <button
+            className="govuk-button govuk-button--secondary govuk-!-margin-right-1"
+            data-module="govuk-button"
+            onClick={handlePaymentsExport}
+          >
+            Export Panel Approved Payments
+          </button>
         </>
       )}
     </>
