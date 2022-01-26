@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 
 const BasicSelect = ({ value, onChange = console.log, label, options }) => (
-  <div className="govuk-!-margin-bottom-3">
-    <div className="govuk-!-margin-bottom-1">
-      <label htmlFor={label}>{label}</label>
-    </div>
+  <div className="govuk-form-group">
+    <label className="govuk-label" htmlFor={label}>
+      {label}
+    </label>
     <select
-      id={{ label }}
+      className="govuk-select"
+      id={label}
       value={value}
       onChange={(e) => {
         onChange(e.target.value || undefined);

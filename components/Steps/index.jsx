@@ -163,8 +163,7 @@ export const inputLabels = {
     },
     businessRatesAccountNumber: {
       label: 'Business Rates Account Number:',
-      hint:
-        'A nine digit number starting with a 6 - this is shown on your business rates bill. ',
+      hint: 'A nine digit number starting with a 6 - this is shown on your business rates bill. ',
       validation: {
         pattern: {
           value: /^6(\d{8}|\d{7}x)$/i,
@@ -189,8 +188,7 @@ export const inputLabels = {
     },
     businessAddress: {
       label: 'Business Premises Address in the London Borough of Hackney:',
-      hint:
-        'Please provide the business address as shown on your rates bill for which you are claiming the grant.',
+      hint: 'Please provide the business address as shown on your rates bill for which you are claiming the grant.',
     },
     businessSector: {
       label: 'What Sector does your Business belong to?',
@@ -431,8 +429,7 @@ export const getInputProps = (
 ) => {
   // filtering out adminValidation
   // eslint-disable-next-line no-unused-vars
-  const { validation, adminValidation, ...props } =
-    inputLabels[form][name] || {};
+  const { validation, ...props } = inputLabels[form][name] || {};
   return {
     name: `${form}.${name}`,
     ...props,

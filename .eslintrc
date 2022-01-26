@@ -6,21 +6,19 @@
     "node": true,
     "jest": true
   },
-  "plugins": ["react", "jest"],
-  "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "plugins": ["react", "jest", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 2018
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
+    "ecmaFeatures": {
+      "jsx": true
     }
   },
   "rules": {
-    "linebreak-style": ["error", "unix"],
-    "require-atomic-updates": "off",
-    "react/jsx-uses-vars": 2
+    "@typescript-eslint/no-var-requires": "off"
   }
 }

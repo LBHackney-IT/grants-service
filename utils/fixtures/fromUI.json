@@ -62,18 +62,11 @@
     "accountSortcode": "123456"
   },
   "supplementaryInformation": {
-    "bankStatement": [
-      "faked_it_out_for_local_testing.ext",
-      "test.png"
-    ],
+    "bankStatement": ["faked_it_out_for_local_testing.ext", "test.png"],
     "ratesBill": [],
-    "leaseOrRentalAgreement": [
-      "faked_it_out_for_local_testing.ext"
-    ],
+    "leaseOrRentalAgreement": ["faked_it_out_for_local_testing.ext"],
     "employeesConfirmation": [],
-    "photoId": [
-      "faked_it_out_for_local_testing.ext"
-    ],
+    "photoId": ["faked_it_out_for_local_testing.ext"],
     "taxReturn": []
   },
   "declaration": {

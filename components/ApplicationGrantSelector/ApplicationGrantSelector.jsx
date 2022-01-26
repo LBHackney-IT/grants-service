@@ -95,7 +95,7 @@ const ArgGrantSelector = ({ date, expirationDate }) => {
       {(!expirationDate ||
         !isExpired(new Date(expirationDate), new Date(date))) && (
         <Link
-          href={`/grant/arg-3/step/${stepKeys[0]}`}
+          href={`/grant/arg/step/${stepKeys[0]}`}
           className="govuk-button govuk-button--start govuk-!-margin-top-3"
           data-module="govuk-button"
         >

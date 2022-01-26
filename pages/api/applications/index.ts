@@ -20,6 +20,13 @@ export default async (req, res) => {
         const container = AppContainer.getInstance();
         const listApplications = container.getListApplications();
         res.setHeader('Content-Type', 'application/json');
+
+        if (!req.query.grantType) {
+          throw new Error("Missing 'grantType' query parameter");
+        }
+
+        const grantType = req.query.grantType as string;
+
         const currentPage =
           req.query && req.query.page
             ? parseInt(req.query.page, 10)
@@ -31,6 +38,8 @@ export default async (req, res) => {
         const sort = req.query && req.query.sort ? req.query.sort : undefined;
         const status =
           req.query && req.query.status ? req.query.status : undefined;
+        const searchTerm =
+          req.query && req.query.searchTerm ? req.query.searchTerm : undefined;
 
         const businessCategory =
           req.query && req.query.businessCategory
@@ -59,7 +68,8 @@ export default async (req, res) => {
             ? req.query.applicationId
             : undefined;
 
-        let listApplicationsResponse = await listApplications({
+        const listApplicationsResponse = await listApplications({
+          grantType,
           currentPage,
           pageSize,
           sort,
@@ -70,6 +80,7 @@ export default async (req, res) => {
           businessSize,
           businessPremises,
           date,
+          searchTerm,
         });
         if (
           [PAGE_MUST_BE_AT_LEAST_ONE, PAGINATED_PAST_END].includes(
@@ -82,7 +93,7 @@ export default async (req, res) => {
         }
         res.end(JSON.stringify(listApplicationsResponse));
       } catch (error) {
-        console.log('Application list error:', error, 'request:', req);
+        console.log('Application list error:', error);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
         res.end(JSON.stringify('Unable to list applications'));
       }

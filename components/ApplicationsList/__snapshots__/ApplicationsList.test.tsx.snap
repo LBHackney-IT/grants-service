@@ -1,0 +1,597 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ApplicationsList /> should render the search, filters, and results table 1`] = `
+<DocumentFragment>
+  <form>
+    <div
+      class="govuk-form-group"
+    >
+      <label
+        class="govuk-label govuk-label--m"
+        for="searchTerm"
+      >
+        Search
+      </label>
+      <input
+        class="govuk-input"
+        data-testid="searchTerm"
+        id="searchTerm"
+        name="searchTerm"
+        type="text"
+        value=""
+      />
+    </div>
+    <details
+      class="govuk-details"
+      data-module="govuk-details"
+    >
+      <summary
+        class="govuk-details__summary"
+      >
+        <span
+          class="govuk-details__summary-text"
+        >
+          Advanced filters
+        </span>
+      </summary>
+      <div
+        class="govuk-details__text"
+      >
+        <div
+          class="govuk-form-group"
+        >
+          <label
+            class="govuk-label"
+            for="Filter by Status:"
+          >
+            Filter by Status:
+          </label>
+          <select
+            class="govuk-select"
+            data-testid="basic-select"
+            id="Filter by Status:"
+          >
+            <option
+              value=""
+            >
+              All
+            </option>
+            <option
+              value="Unprocessed"
+            >
+              Unprocessed
+            </option>
+            <option
+              value="Processed - Approved"
+            >
+              Processed - Approved
+            </option>
+            <option
+              value="Processed - Rejected"
+            >
+              Processed - Rejected
+            </option>
+            <option
+              value="Processed - Priority 2"
+            >
+              Processed - Priority 2
+            </option>
+            <option
+              value="Processed - Check Bank Details"
+            >
+              Processed - Check Bank Details
+            </option>
+            <option
+              value="Refer to Manager"
+            >
+              Refer to Manager
+            </option>
+            <option
+              value="NFI"
+            >
+              NFI
+            </option>
+            <option
+              value="Closed - Duplicate"
+            >
+              Closed - Duplicate
+            </option>
+            <option
+              value="Declined - Test"
+            >
+              Declined - Test
+            </option>
+            <option
+              value="Processed - Requested Information"
+            >
+              Processed - Requested Information
+            </option>
+            <option
+              value="LRSG Eligible"
+            >
+              LRSG Eligible
+            </option>
+          </select>
+        </div>
+        <div
+          class="govuk-form-group"
+        >
+          <label
+            class="govuk-label"
+            for="Filter by Grant Officer:"
+          >
+            Filter by Grant Officer:
+          </label>
+          <select
+            class="govuk-select"
+            data-testid="basic-select"
+            id="Filter by Grant Officer:"
+          >
+            <option
+              value=""
+            >
+              All
+            </option>
+          </select>
+        </div>
+        <div
+          class="govuk-form-group"
+        >
+          <label
+            class="govuk-label"
+            for="Filter by Business Category:"
+          >
+            Filter by Business Category:
+          </label>
+          <select
+            class="govuk-select"
+            data-testid="basic-select"
+            id="Filter by Business Category:"
+          >
+            <option
+              value=""
+            >
+              All
+            </option>
+            <option
+              value="Section A: Agricultural, forestry and fishing"
+            >
+              Section A: Agricultural, forestry and fishing
+            </option>
+            <option
+              value="Section B: Mining and quarrying"
+            >
+              Section B: Mining and quarrying
+            </option>
+            <option
+              value="Section C: Manufacturing"
+            >
+              Section C: Manufacturing
+            </option>
+            <option
+              value="Section D: Electricity, gas, steam and air conditioning supply"
+            >
+              Section D: Electricity, gas, steam and air conditioning supply
+            </option>
+            <option
+              value="Section E: Water supply, sewerage, waste management and remediation activities"
+            >
+              Section E: Water supply, sewerage, waste management and remediation activities
+            </option>
+            <option
+              value="Section F: Construction"
+            >
+              Section F: Construction
+            </option>
+            <option
+              value="Section G: Wholesale and retail trade/Repair of motor vehicles and motor cycles"
+            >
+              Section G: Wholesale and retail trade/Repair of motor vehicles and motor cycles
+            </option>
+            <option
+              value="Section H: Transportation and storage"
+            >
+              Section H: Transportation and storage
+            </option>
+            <option
+              value="Section I: Accommodation and food services"
+            >
+              Section I: Accommodation and food services
+            </option>
+            <option
+              value="Section J: Information and communication"
+            >
+              Section J: Information and communication
+            </option>
+            <option
+              value="Section K: Financial and insurance activities"
+            >
+              Section K: Financial and insurance activities
+            </option>
+            <option
+              value="Section L: Real estate activities"
+            >
+              Section L: Real estate activities
+            </option>
+            <option
+              value="Section M: Professional,scientific and technical activities"
+            >
+              Section M: Professional,scientific and technical activities
+            </option>
+            <option
+              value="Section N: Administrative and support services activities"
+            >
+              Section N: Administrative and support services activities
+            </option>
+            <option
+              value="Section O: Public administration and defence/ Compulsory social security"
+            >
+              Section O: Public administration and defence/ Compulsory social security
+            </option>
+            <option
+              value="Section P: Education"
+            >
+              Section P: Education
+            </option>
+            <option
+              value="Section Q: Human health and social work activities"
+            >
+              Section Q: Human health and social work activities
+            </option>
+            <option
+              value="Section R: Arts, entertainment and recreation"
+            >
+              Section R: Arts, entertainment and recreation
+            </option>
+            <option
+              value="Section S: Other service activities"
+            >
+              Section S: Other service activities
+            </option>
+            <option
+              value="Section T: Activities of households as employers/ Undifferentiated goods and services producing activities of households for own use"
+            >
+              Section T: Activities of households as employers/ Undifferentiated goods and services producing activities of households for own use
+            </option>
+            <option
+              value="Section U: Activities of extraterritorial organisations and bodies"
+            >
+              Section U: Activities of extraterritorial organisations and bodies
+            </option>
+          </select>
+        </div>
+        <div
+          class="govuk-form-group"
+        >
+          <label
+            class="govuk-label"
+            for="Filter by Business Size:"
+          >
+            Filter by Business Size:
+          </label>
+          <select
+            class="govuk-select"
+            data-testid="basic-select"
+            id="Filter by Business Size:"
+          >
+            <option
+              value=""
+            >
+              All
+            </option>
+            <option
+              value="Micro"
+            >
+              Micro
+            </option>
+            <option
+              value="Small"
+            >
+              Small
+            </option>
+          </select>
+        </div>
+        <div
+          class="govuk-form-group"
+        >
+          <label
+            class="govuk-label"
+            for="Filter by Business Premises:"
+          >
+            Filter by Business Premises:
+          </label>
+          <select
+            class="govuk-select"
+            data-testid="basic-select"
+            id="Filter by Business Premises:"
+          >
+            <option
+              value=""
+            >
+              All
+            </option>
+            <option
+              value="Individual office"
+            >
+              Individual office
+            </option>
+            <option
+              value="Individual shop unit"
+            >
+              Individual shop unit
+            </option>
+            <option
+              value="Market Stall"
+            >
+              Market Stall
+            </option>
+            <option
+              value="Office/business unit in a shared workspace"
+            >
+              Office/business unit in a shared workspace
+            </option>
+            <option
+              value="Bed and Breakfast"
+            >
+              Bed and Breakfast
+            </option>
+            <option
+              value="Hotel"
+            >
+              Hotel
+            </option>
+            <option
+              value="Nursery"
+            >
+              Nursery
+            </option>
+            <option
+              value="Residential premises (i.e your home)"
+            >
+              Residential premises (i.e your home)
+            </option>
+            <option
+              value="Other (please state):"
+            >
+              Other (please state):
+            </option>
+          </select>
+        </div>
+        <div
+          class="govuk-form-group"
+        >
+          <label
+            class="govuk-label"
+            for="Filter by ARG round:"
+          >
+            Filter by ARG round:
+          </label>
+          <select
+            class="govuk-select"
+            data-testid="basic-select"
+            id="Filter by ARG round:"
+          >
+            <option
+              value=""
+            >
+              All
+            </option>
+            <option
+              value="Round 1"
+            >
+              Round 1
+            </option>
+            <option
+              value="Round 2"
+            >
+              Round 2
+            </option>
+          </select>
+        </div>
+      </div>
+    </details>
+    <div
+      class="govuk-button-group"
+    >
+      <button
+        class="govuk-button"
+        data-module="govuk-button"
+        type="submit"
+      >
+        Search
+      </button>
+      <a
+        class="govuk-link"
+        role="button"
+      >
+        Clear filters
+      </a>
+    </div>
+  </form>
+  <table
+    class="govuk-table"
+    role="table"
+  >
+    <thead
+      class="govuk-table__head"
+    >
+      <tr
+        class="govuk-table__row"
+        role="row"
+      >
+        <th
+          class="govuk-table__header"
+          colspan="1"
+          role="columnheader"
+          scope="col"
+        >
+          <span
+            style="cursor: pointer;"
+            title="Toggle SortBy"
+          >
+            Business Name
+          </span>
+        </th>
+        <th
+          class="govuk-table__header"
+          colspan="1"
+          role="columnheader"
+          scope="col"
+        >
+          <span>
+            Application ID
+          </span>
+        </th>
+        <th
+          class="govuk-table__header"
+          colspan="1"
+          role="columnheader"
+          scope="col"
+        >
+          <span
+            style="cursor: pointer;"
+            title="Toggle SortBy"
+          >
+            Submission ↑
+          </span>
+        </th>
+        <th
+          class="govuk-table__header"
+          colspan="1"
+          role="columnheader"
+          scope="col"
+        >
+          <span>
+            Status
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="govuk-table__body"
+      role="rowgroup"
+    >
+      <tr
+        class="govuk-table__row"
+      >
+        <td
+          class="govuk-table__cell"
+          colspan="10000"
+        >
+          Loading...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div
+    class="pagination"
+  >
+    <button
+      disabled=""
+    >
+      &lt;&lt;
+    </button>
+     
+    <button
+      disabled=""
+    >
+      &lt;
+    </button>
+     
+    <button
+      disabled=""
+    >
+      &gt;
+    </button>
+     
+    <button
+      disabled=""
+    >
+      &gt;&gt;
+    </button>
+     
+    <span>
+      Page 
+      <strong>
+        1 of 0
+      </strong>
+       
+    </span>
+    <span>
+      | Go to page: 
+      <input
+        style="width: 100px;"
+        type="number"
+        value="1"
+      />
+    </span>
+     
+    <select>
+      <option
+        value="10"
+      >
+        Show 10
+      </option>
+      <option
+        value="20"
+      >
+        Show 20
+      </option>
+      <option
+        value="30"
+      >
+        Show 30
+      </option>
+      <option
+        value="40"
+      >
+        Show 40
+      </option>
+      <option
+        value="50"
+      >
+        Show 50
+      </option>
+    </select>
+  </div>
+  <hr
+    class="govuk-section-break govuk-section-break--l govuk-section-break--visible"
+  />
+  <p>
+    <a
+      href="/api/csv/applications?grantType=arg"
+      target="_blank"
+    >
+      Download Applications CSV
+    </a>
+  </p>
+  <h2>
+    Export payment details
+  </h2>
+  <div>
+    <p>
+      These downloads are disabled as you are not part of the 'undefined' user group
+    </p>
+    <div>
+      <button
+        class="govuk-button govuk-button--secondary govuk-!-margin-right-1"
+        data-module="govuk-button"
+        disabled=""
+        round="1"
+      >
+        Export Panel Approved Payments (Round 1)
+      </button>
+    </div>
+    <div>
+      <button
+        class="govuk-button govuk-button--secondary govuk-!-margin-right-1"
+        data-module="govuk-button"
+        disabled=""
+        round="2"
+      >
+        Export Panel Approved Payments (Round 2)
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
