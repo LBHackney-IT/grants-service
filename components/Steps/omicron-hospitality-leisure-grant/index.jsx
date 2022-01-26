@@ -50,7 +50,7 @@ export const inputLabels = {
     },
     eligibleForOhlg: {
       label:
-        'Does your business meet the following criteria for the Omicron Hospitality and Leisure Grant ?',
+        'Does your business meet the following criteria for the Omicron Hospitality and Leisure Grant?',
       hint: (
         <>
           <ul className="govuk-!-font-size-19">

@@ -23,50 +23,51 @@ export const steps = {
 export const inputLabels = {
   eligibilityCriteria: {
     tradingInHackney: {
-      label: 'Is your business in the London Borough of Hackney?',
+      label:
+        'Is your business a small or micro business (defined as having 49 or less employees) based in and trading in Hackney?',
       validation: { required: true },
       adminValidation: true,
       validAnswer: 'Yes',
     },
-    liableForBusinessRates: {
-      label:
-        'Is your business liable for Business Rates AND occupying and trading from the premises at which you are claiming on the 30th December 2021?',
-      validation: { required: true },
-      validAnswer: 'Yes',
-    },
-    businessSectorEligible: {
+    isEligibleForArg: {
       label: (
         <>
-          Is your business part of one of the following sectors?
-          <ul className="govuk-!-font-size-19">
-            <li>Hospitality</li>
-            <li>Leisure</li>
-            <li>Accommodation</li>
-          </ul>
+          <p>
+            Does your business meet the following criteria for the Omicron
+            Additional Restrictions Grant, please read{' '}
+            <a
+              href="https://drive.google.com/file/d/1so9CkQdO8U47Tps47T59mi-rmMYEhfKu/view?usp=sharing"
+              target="_blank"
+            >
+              this document
+            </a>{' '}
+            to establish if your business is eligible to receive this grant.
+          </p>
         </>
       ),
-      validation: { required: true },
-      validAnswer: 'Yes',
-    },
-    eligibleForOhlg: {
-      label:
-        'Does your business meet the following criteria for the Omicron Hospitality and Leisure Grant ?',
       hint: (
         <>
-          <ul className="govuk-!-font-size-19">
+          Your business is:
+          <ul>
             <li>
-              The business offers in-person services where the main service and
-              activity takes place is a fixed rate-paying premises, in the
-              hospitality, leisure and accommodation sectors.
+              a) A gym or sports businesses where physical exercise or training
+              is conducted on an individual basis or a group basis (either with
+              or without a Hackney business rates account); or
             </li>
-            <li>The business is not a food kiosk</li>
-            <li>The business is not a takeaway</li>
-            <li>The business is not a Gym or sports business</li>
-            <li>The business is not a retail business</li>
+
+            <li>
+              b) A hospitality, leisure or accommodation business that is not a
+              Hackney business rate account holder and therefore not eligible
+              for the Omicron Hospitality and Leisure Grant; or
+            </li>
+            <li>
+              c) A business which supplies the hospitality, leisure or
+              accommodation sectors (either with or without a Hackney business
+              rates account).
+            </li>
           </ul>
         </>
       ),
-      adminValidation: true,
       validation: { required: true },
       validAnswer: 'Yes',
     },
@@ -75,6 +76,18 @@ export const inputLabels = {
         'Is your business in administration, dissolved, in liquidation, insolvent, struck off on Companies House, or in receipt of a striking off notice?',
       validation: { required: true },
       adminValidation: true,
+      validAnswer: 'No',
+    },
+    businessIsTrading: {
+      label: 'Is your business currently trading?',
+      validation: { required: true },
+      validAnswer: 'Yes',
+    },
+    eligibleForOhlg: {
+      label:
+        'Is your business eligible for the Omicron Hospitality and Leisure Grant?',
+      adminValidation: true,
+      validation: { required: true },
       validAnswer: 'No',
     },
   },
