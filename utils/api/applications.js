@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const fetchApplications = async (params) => {
-  const { data } = await axios.get('/api/applications', {
+  const { data } = await axios.get(`/api/applications`, {
     params,
   });
   return data;

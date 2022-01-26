@@ -9,11 +9,11 @@ context('Admin', () => {
     cy.intercept('GET', `/api/grant-officers`, {
       fixture: 'grant-officers',
     });
-    cy.visit('/admin');
+    cy.visit('/admin/grant/arg');
   });
   describe('page content', () => {
-    it('displays correct name in the heading', () => {
-      cy.get('[data-testid=admin-page-heading]').should(
+    it('displays correct name in the subheading', () => {
+      cy.get('[data-testid=admin-page-subheading]').should(
         'contain',
         'Hello Name from the token'
       );

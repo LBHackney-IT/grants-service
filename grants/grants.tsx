@@ -1,16 +1,18 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { NotFoundError } from '../utils/errors';
 import { steps } from '../components/Steps';
 
 export type Grant = {
   name: string;
   description: ReactElement;
-  steps: any;
+  steps: {
+    [key: string]: () => ReactElement;
+  };
 };
 
 const grants: Map<string, Grant> = new Map([
   [
-    'arg-3',
+    'arg',
     {
       name: 'Additional Restrictions Grant – Round 3',
       description: (

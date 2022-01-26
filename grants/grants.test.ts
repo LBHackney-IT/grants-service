@@ -8,7 +8,7 @@ describe('grants', () => {
     });
 
     it('should return a grant with a valid slug', () => {
-      const { name } = getGrantBySlug('arg-3');
+      const { name } = getGrantBySlug('arg');
 
       expect(name).toEqual(expect.any(String));
     });

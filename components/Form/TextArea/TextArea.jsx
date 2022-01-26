@@ -8,7 +8,7 @@ const TextArea = ({ label, hint, name, error, register, ...otherProps }) => (
     })}
   >
     {label && (
-      <label className="govuk-label govuk-label--m" for={name}>
+      <label className="govuk-label govuk-label--m" htmlFor={name}>
         {label}
       </label>
     )}
