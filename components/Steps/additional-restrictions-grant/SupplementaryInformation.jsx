@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
-import { Button } from '../Form';
+import { Button } from '../../Form';
 import { getInputProps } from './index';
-import ControlledFileUpload from '../FileUpload/FileUpload';
+import ControlledFileUpload from '../../FileUpload/FileUpload';
 
 const SupplementaryInformation = (props) => {
   const { handleSubmit, errors, control } = useForm({

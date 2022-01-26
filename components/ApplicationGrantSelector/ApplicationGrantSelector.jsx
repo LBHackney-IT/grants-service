@@ -35,7 +35,7 @@ const OhlgGrantSelector = ({ date, expirationDate }) => {
       {(!expirationDate ||
         !isExpired(new Date(expirationDate), new Date(date))) && (
         <Link
-          href={`/grant/ohlg/step/${stepKeys[0]}`}
+          href={`/grant/ohlg/step/${stepKeys('ohlg')[0]}`}
           className="govuk-button govuk-button--start govuk-!-margin-top-3"
           data-module="govuk-button"
         >
@@ -95,7 +95,7 @@ const ArgGrantSelector = ({ date, expirationDate }) => {
       {(!expirationDate ||
         !isExpired(new Date(expirationDate), new Date(date))) && (
         <Link
-          href={`/grant/arg/step/${stepKeys[0]}`}
+          href={`/grant/arg/step/${stepKeys('arg')[0]}`}
           className="govuk-button govuk-button--start govuk-!-margin-top-3"
           data-module="govuk-button"
         >

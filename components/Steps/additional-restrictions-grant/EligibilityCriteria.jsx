@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
-import { Button, Radios } from '../Form';
+import { Button, Radios } from '../../Form';
 import { getInputProps } from './index';
 import { inputLabels } from './index';
-import ErrorSummary from '../ErrorSummary/ErrorSummary';
+import ErrorSummary from '../../ErrorSummary/ErrorSummary';
 
 const Step1 = (props) => {
   const { register, errors, handleSubmit } = useForm({
