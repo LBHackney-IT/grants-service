@@ -92,18 +92,82 @@ export const inputLabels = {
     },
   },
   business: {
-    businessName: {
-      label: 'Business Trading Name:',
-      validation: {
-        required: 'Business Trading Name is required',
-      },
+    doesPayBusinessRates: {
+      label: 'Does your business pay business rates?',
+      validation: { required: true },
+      adminValidation: true,
     },
-    registeredName: {
+    businessSize: {
+      label: 'What is the size of your business?',
+      options: options.SMALL_BUSINESS_SIZES,
+      validation: { required: true },
+      adminValidation: true,
+    },
+    numberOfEmployees: {
+      label: 'How many PAYE employees does your business have?',
+      validation: {
+        required: true,
+        pattern: {
+          value: /^[0-9]*$/,
+          message: 'Must be a number',
+        },
+      },
+      adminValidation: true,
+    },
+    sicCategory: {
+      label: (
+        <>
+          Please select the dropdown category which best describes your business
+          activity. Guidance on which category your business falls into can be
+          found here:{' '}
+          <a href="http://resources.companieshouse.gov.uk/sic/" target="_blank">
+            Standard Industrial Classification (SIC) codes
+          </a>
+          <p>
+            Please check this website to make sure you are selecting the correct
+            drop down category for your business.
+          </p>
+        </>
+      ),
+      options: options.BUSINESS_CATEGORIES,
+      validation: { required: true },
+    },
+    highLevelSicCode: {
+      label: (
+        <>
+          Please provide the reference number that best describes your business
+          from the{' '}
+          <a href="http://resources.companieshouse.gov.uk/sic/" target="_blank">
+            business classification website
+          </a>
+          .
+        </>
+      ),
+      validation: { required: true },
+    },
+    businessNature: {
       label:
-        'Business Registered Name (if different from Business Trading Name):',
+        'Please set out what your business does and the services it provides:',
+      validation: { required: true },
+    },
+    businessNatureHospitality: {
+      label:
+        'If your business supplies the hospitality, leisure or accommodation sectors, or you are a business whose main business income is closely related to these sectors in relation to the service/services it provides, then please provide details of this here:',
+    },
+    businessTradingName: {
+      label: 'Business Trading Name',
+      validation: { required: true },
+    },
+    businessRegisteredName: {
+      label:
+        'Business Registered Name (if different from Business Trading Name)',
+    },
+    dateEstablished: {
+      label: 'Date that your business started/was established',
+      validation: { required: true },
     },
     businessStructure: {
-      label: 'Business Structure:',
+      label: 'Business Structure',
       options: options.COMPANY_STRUCTURE,
       validation: {
         required: 'Business Structure is required',
@@ -161,21 +225,8 @@ export const inputLabels = {
         },
       },
     },
-    highLevelSicCode: {
-      label: (
-        <>
-          Please provide the High Level SIC (Standard Industrial Classification)
-          Code and description from the{' '}
-          <a href="http://resources.companieshouse.gov.uk/sic/" target="_blank">
-            business classification website
-          </a>
-          :
-        </>
-      ),
-      validation: { required: true },
-    },
     businessRatesAccountNumber: {
-      label: 'Business Rates Account Number:',
+      label: 'Business Rates Account Number',
       hint: 'A nine digit number starting with a 6 - this is shown on your business rates bill. ',
       validation: {
         pattern: {
@@ -183,58 +234,39 @@ export const inputLabels = {
         },
       },
     },
-    businessRatesPropertyReferenceNumber: {
-      label: 'Business Rates Property Reference Number:',
-      hint: 'A 7 digit number - this is shown on your business rates bill.',
-      validation: {
-        pattern: {
-          value: /^[0-9]{7}$/i,
-        },
-      },
-    },
     businessRatesPayer: {
-      label: 'Name of Business Rates Payer:',
+      label: 'Name of Business Rates Payer',
       hint: 'As shown on your business rates bill.',
     },
     businessTradingAddress: {
-      label: 'Business Registered Office if a limited company:',
+      label: 'Business Registered Trading Address',
     },
     businessAddress: {
-      label: 'Business Premises Address in the London Borough of Hackney:',
-      hint: 'Please provide the business address as shown on your rates bill for which you are claiming the grant.',
+      label: 'Business Premises Address in the London Borough of Hackney',
+      hint: (
+        <>
+          <p>
+            Please provide your usual business address in Hackney. If you are
+            now working from home as a result of the pandemic but are normally
+            based in a commercial premises in Hackney and plan to return to the
+            same commercial premises in the future please provide this address.
+          </p>
+
+          <p>
+            For businesses who were working from a residential premises in
+            Hackney prior to the pandemic and who will remain working from this
+            premises in the future please provide this address.
+          </p>
+        </>
+      ),
     },
-    businessSector: {
-      label: 'What Sector does your Business belong to?',
+    businessPremisesDescription: {
+      label: 'Business Premises Description',
       validation: { required: true },
-      options: options.HOSPITALITY_LEISURE_BUSINESS_TYPES,
+      options: options.TYPE_OF_BUSINESS,
       adminValidation: true,
     },
-    businessNature: {
-      label:
-        'Please state the exact nature of the business trading at the premises:',
-      validation: { required: true },
-      adminValidation: true,
-    },
-    isBusinessStillTrading: {
-      label:
-        'Is your business currently trading at the address for which you are claiming the grant?',
-      validation: { required: true },
-      adminValidation: true,
-    },
-    isBusinessStillTradingDateStopped: {
-      label: 'If no, when did your business cease trading?',
-    },
-    dateEstablished: {
-      label: 'What date was the business established?',
-      validation: { required: true },
-    },
-    businessSize: {
-      label: 'How many PAYE employees does your business have?',
-      hint: <p>(full time equivalents)</p>,
-      options: options.ALL_BUSINESS_SIZES,
-      validation: { required: true },
-      adminValidation: true,
-    },
+    businessPremisesDescriptionText: {},
     businessRateableValue: {
       label: 'Business Premises Rateable Value (if applicable):',
       type: 'number',
@@ -242,6 +274,23 @@ export const inputLabels = {
     },
     businessWebsite: {
       label: 'Business Website Address (if applicable):',
+    },
+    businessImpactStatement: {
+      label: 'How has your business been impacted?',
+      hint: (
+        <p>
+          Please provide a short written statement setting out how your business
+          has been severely impacted by the Covid-19 Omicron variant. This
+          should include details on why and how your business has been severely
+          impacted, the scale of your coronavirus related losses (e.g % drop in
+          sales, loss of income in £s), and any ongoing monthly fixed business
+          costs your business pays e.g rent, bills.
+        </p>
+      ),
+      validation: {
+        required: true,
+      },
+      adminValidation: true,
     },
   },
   contact: {

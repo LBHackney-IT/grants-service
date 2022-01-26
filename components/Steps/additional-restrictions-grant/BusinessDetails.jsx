@@ -1,7 +1,14 @@
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
-import { Button, TextInput, Select, Radios, DateInput } from '../../Form';
+import {
+  Button,
+  TextInput,
+  Select,
+  Radios,
+  DateInput,
+  TextArea,
+} from '../../Form';
 import { getInputProps } from './index';
 import AddressLookup from '../../Form/AddressLookup/AddressLookup';
 import { FREE_TEXT } from '../../../lib/dbMapping';
@@ -31,7 +38,9 @@ const Step1 = (props) => {
   };
   const businessIdentifyType = watch('business.businessIdentifyType');
   const selectedBusinessStructure = watch('business.businessStructure');
-  const isBusinessStillTrading = watch('business.isBusinessStillTrading');
+  const selectedBusinessPremises = watch(
+    'business.businessPremisesDescription'
+  );
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -42,14 +51,90 @@ const Step1 = (props) => {
           aria-describedby="step-hint"
         >
           <h1 data-testid="step-heading">Business Details</h1>
-          <TextInput
-            {...getInputProps('business', 'businessName', { register }, errors)}
+          <Radios
+            {...getInputProps(
+              'business',
+              'doesPayBusinessRates',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          <Select
+            {...getInputProps(
+              'business',
+              'businessSize',
+              {
+                register,
+              },
+              errors
+            )}
           />
           <TextInput
             {...getInputProps(
               'business',
-              'registeredName',
+              'numberOfEmployees',
               { register },
+              errors
+            )}
+          />
+          <Select
+            {...getInputProps('business', 'sicCategory', { register }, errors)}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'highLevelSicCode',
+              { register },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessNature',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessNatureHospitality',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessTradingName',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessRegisteredName',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          <DateInput
+            {...getInputProps(
+              'business',
+              'dateEstablished',
+              { control },
               errors
             )}
           />
@@ -96,23 +181,7 @@ const Step1 = (props) => {
           <TextInput
             {...getInputProps(
               'business',
-              'highLevelSicCode',
-              { register },
-              errors
-            )}
-          />
-          <TextInput
-            {...getInputProps(
-              'business',
               'businessRatesAccountNumber',
-              { register },
-              errors
-            )}
-          />
-          <TextInput
-            {...getInputProps(
-              'business',
-              'businessRatesPropertyReferenceNumber',
               { register },
               errors
             )}
@@ -144,64 +213,30 @@ const Step1 = (props) => {
           <Select
             {...getInputProps(
               'business',
-              'businessSector',
+              'businessPremisesDescription',
               { register },
               errors
             )}
           />
-          <TextInput
-            {...getInputProps(
-              'business',
-              'businessNature',
-              {
-                register,
-              },
-              errors
-            )}
-          />
-          <Radios
-            {...getInputProps(
-              'business',
-              'isBusinessStillTrading',
-              {
-                register,
-              },
-              errors
-            )}
-          />
-          {isBusinessStillTrading == 'No' && (
-            <DateInput
+          {FREE_TEXT.includes(selectedBusinessPremises) && (
+            <TextInput
               {...getInputProps(
                 'business',
-                'isBusinessStillTradingDateStopped',
-                { control },
+                'businessPremisesDescriptionText',
+                {
+                  register,
+                },
                 errors
               )}
             />
           )}
-          <DateInput
-            {...getInputProps(
-              'business',
-              'dateEstablished',
-              { control },
-              errors
-            )}
-          />
-          <Select
-            {...getInputProps(
-              'business',
-              'businessSize',
-              {
-                register,
-              },
-              errors
-            )}
-          />
           <TextInput
             {...getInputProps(
               'business',
               'businessRateableValue',
-              { register },
+              {
+                register,
+              },
               errors
             )}
           />
@@ -209,6 +244,16 @@ const Step1 = (props) => {
             {...getInputProps(
               'business',
               'businessWebsite',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          <TextArea
+            {...getInputProps(
+              'business',
+              'businessImpactStatement',
               { register },
               errors
             )}
