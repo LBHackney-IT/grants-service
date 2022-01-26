@@ -1,4 +1,5 @@
 {
+  "grantType": "ohlg",
   "eligibilityCriteria": {
     "tradingInHackney": true,
     "liableForBusinessRates": true,
