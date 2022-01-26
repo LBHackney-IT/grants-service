@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
-import { Button, TextInput, Select, Radios, TextArea } from '../Form';
+import { Button, TextInput, Select, Radios, DateInput } from '../Form';
 import { getInputProps } from './index';
 import AddressLookup from '../Form/AddressLookup/AddressLookup';
 import { FREE_TEXT } from '../../lib/dbMapping';
@@ -22,7 +22,7 @@ const businessIdentifyNumber = (businessType) => {
 };
 
 const Step1 = (props) => {
-  const { register, handleSubmit, errors, watch } = useForm({
+  const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: props.formData,
   });
   const onSubmit = (data) => {
@@ -31,10 +31,8 @@ const Step1 = (props) => {
   };
   const businessIdentifyType = watch('business.businessIdentifyType');
   const selectedBusinessStructure = watch('business.businessStructure');
-  const selectedBusinessPremisesDescription = watch(
-    'business.businessPremisesDescription'
-  );
-  const hasPreviouslyApplied = watch('business.previouslyApplied');
+  const isBusinessStillTrading = watch('business.isBusinessStillTrading');
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="govuk-form-group">
@@ -43,84 +41,7 @@ const Step1 = (props) => {
           role="group"
           aria-describedby="step-hint"
         >
-          <h1>Business Details</h1>
-          <Radios
-            {...getInputProps(
-              'business',
-              'previouslyApplied',
-              {
-                register,
-              },
-              errors
-            )}
-          />
-          {hasPreviouslyApplied === 'Yes' && (
-            <TextInput
-              {...getInputProps(
-                'business',
-                'previousApplicationId',
-                { register },
-                errors
-              )}
-              errors
-            />
-          )}
-          <Radios
-            {...getInputProps(
-              'business',
-              'liableForRates',
-              {
-                register,
-              },
-              errors
-            )}
-          />
-          <Radios
-            {...getInputProps(
-              'business',
-              'businessSizeId',
-              {
-                register,
-              },
-              errors
-            )}
-          />
-          <TextInput
-            {...getInputProps(
-              'business',
-              'howManyEmployees',
-              {
-                register,
-              },
-              errors
-            )}
-          />
-          <Select
-            {...getInputProps(
-              'business',
-              'businessCategory',
-              {
-                register,
-              },
-              errors
-            )}
-          />
-          <TextInput
-            {...getInputProps(
-              'business',
-              'businessReferenceNumber',
-              { register },
-              errors
-            )}
-          />
-          <TextInput
-            {...getInputProps(
-              'business',
-              'businessDescription',
-              { register },
-              errors
-            )}
-          />
+          <h1 data-testid="step-heading">Business Details</h1>
           <TextInput
             {...getInputProps('business', 'businessName', { register }, errors)}
           />
@@ -175,7 +96,23 @@ const Step1 = (props) => {
           <TextInput
             {...getInputProps(
               'business',
+              'highLevelSicCode',
+              { register },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
               'businessRatesAccountNumber',
+              { register },
+              errors
+            )}
+          />
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessRatesPropertyReferenceNumber',
               { register },
               errors
             )}
@@ -207,28 +144,56 @@ const Step1 = (props) => {
           <Select
             {...getInputProps(
               'business',
-              'businessPremisesDescription',
+              'businessSector',
               { register },
               errors
             )}
           />
-          {FREE_TEXT.includes(selectedBusinessPremisesDescription) && (
-            <TextInput
+          <TextInput
+            {...getInputProps(
+              'business',
+              'businessNature',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          <Radios
+            {...getInputProps(
+              'business',
+              'isBusinessStillTrading',
+              {
+                register,
+              },
+              errors
+            )}
+          />
+          {isBusinessStillTrading == 'No' && (
+            <DateInput
               {...getInputProps(
                 'business',
-                'businessPremisesText',
-                {
-                  register,
-                },
+                'isBusinessStillTradingDateStopped',
+                { control },
                 errors
               )}
             />
           )}
-          <TextInput
+          <DateInput
             {...getInputProps(
               'business',
-              'tradingDaysPerWeek',
-              { register },
+              'dateEstablished',
+              { control },
+              errors
+            )}
+          />
+          <Select
+            {...getInputProps(
+              'business',
+              'businessSize',
+              {
+                register,
+              },
               errors
             )}
           />
@@ -244,14 +209,6 @@ const Step1 = (props) => {
             {...getInputProps(
               'business',
               'businessWebsite',
-              { register },
-              errors
-            )}
-          />
-          <TextArea
-            {...getInputProps(
-              'business',
-              'businessImpactStatement',
               { register },
               errors
             )}

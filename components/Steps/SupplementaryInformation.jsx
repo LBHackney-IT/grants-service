@@ -22,7 +22,7 @@ const SupplementaryInformation = (props) => {
   });
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>Supplementary Information</h1>
+      <h1 data-testid="step-heading">Supplementary Information</h1>
       <div className="govuk-inset-text">
         File upload information{' '}
         <p>
@@ -33,11 +33,6 @@ const SupplementaryInformation = (props) => {
         </p>
       </div>
       <ControlledFileUpload {...sharedProps('bankStatement')} />
-      <ControlledFileUpload {...sharedProps('ratesBill')} />
-      <ControlledFileUpload {...sharedProps('leaseOrRentalAgreement')} />
-      <ControlledFileUpload {...sharedProps('employeesConfirmation')} />
-      <ControlledFileUpload {...sharedProps('photoId')} />
-      <ControlledFileUpload {...sharedProps('taxReturn')} />
       <Button className="govuk-button" text="Next" type="submit" />
     </form>
   );

@@ -8,9 +8,6 @@ import BusinessDetails from './BusinessDetails';
 import BankDetails from './BankDetails';
 import Declaration from './Declaration';
 import Summary from './Summary';
-
-import BusinessClassificationSummary from './Summaries/BusinessClassification';
-
 import * as options from '../../lib/dbMapping';
 
 export const steps = {
@@ -26,296 +23,66 @@ export const steps = {
 export const inputLabels = {
   eligibilityCriteria: {
     tradingInHackney: {
-      label: 'Is your business based in and trading in Hackney?',
-      hint: (
-        <>
-          <p>
-            Your business must be physically based in either a commercial or
-            domestic premises in Hackney and you must conduct your business
-            operations from this premises.
-          </p>
-          <p>
-            If you are currently working from home as a result of Covid-19 but
-            your business would normally operate from a commercial premises{' '}
-            <span className="govuk-!-font-weight-bold">in Hackney</span>, then
-            please provide your commercial premises address in Hackney on your
-            application form.
-          </p>
-          <p>
-            If your business is a home based business operating from a
-            residential premises{' '}
-            <span className="govuk-!-font-weight-bold">in Hackney</span> and
-            this was your usual mode of operating prior to the Covid-19 pandemic
-            then please provide this address.
-          </p>
-          <p>
-            Businesses who use a virtual office/business address in the London
-            Borough of Hackney but who do not physically conduct their business
-            operations on a full time basis from these premises are not eligible
-            for a grant.
-          </p>
-        </>
-      ),
+      label: 'Is your business in the London Borough of Hackney?',
       validation: { required: true },
       adminValidation: true,
+      validAnswer: 'Yes',
     },
-    meetsArgCriteria: {
+    liableForBusinessRates: {
+      label:
+        'Is your business liable for Business Rates AND occupying and trading from the premises at which you are claiming on the 30th December 2021?',
+      validation: { required: true },
+      validAnswer: 'Yes',
+    },
+    businessSectorEligible: {
       label: (
         <>
-          Does your business meet one of the following criteria for the
-          Additional Restrictions Grant:
-          <ul>
-            <li>
-              Your business was legally required to close between 5th November
-              2020 - 2nd December 2020, but you are not a business rates
-              payer/account holder;{' '}
-              <strong>
-                <u>or</u>
-              </strong>
-            </li>
-            <li>
-              Your business was not legally required to close between 5th
-              November 2020 - 2nd December 2020, but has been severely impacted
-              by the restrictions put in place to prevent the spread of COVID-19
-            </li>
+          Is your business part of one of the following sectors?
+          <ul className="govuk-!-font-size-19">
+            <li>Hospitality</li>
+            <li>Leisure</li>
+            <li>Accommodation</li>
           </ul>
         </>
       ),
       validation: { required: true },
+      validAnswer: 'Yes',
     },
-    meetsArgCriteriaRound2: {
-      label: (
+    eligibleForOhlg: {
+      label:
+        'Does your business meet the following criteria for the Omicron Hospitality and Leisure Grant ?',
+      hint: (
         <>
-          Does your business meet one of the following criteria for the
-          Additional Restrictions Grant - Round 2:
           <ul className="govuk-!-font-size-19">
             <li>
-              Your business was legally required to close by the Government in
-              December due to the tier restrictions (either during Tier 2, Tier
-              3, and/or Tier 4){' '}
-              <span className="govuk-!-font-weight-bold">and</span> the national
-              lockdown from 5 January 2021 onwards{' '}
-              <span className="govuk-!-font-weight-bold">and</span> you are not
-              a Hackney business rates account holder;{' '}
-              <strong>
-                <u>or</u>
-              </strong>
+              The business offers in-person services where the main service and
+              activity takes place is a fixed rate-paying premises, in the
+              hospitality, leisure and accommodation sectors.
             </li>
-            <li>
-              Your business was not legally required to close by the Government
-              during the December 2020 tier restriction or the national lockdown
-              from 5 January 2021 onwards but has been severely impacted by the
-              tier and national lockdown restrictions put in place to prevent
-              the spread of COVID-19 from the 2 December 2020 onwards.
-            </li>
-          </ul>
-          <p className="govuk-body govuk-!-font-size-19">
-            If you are unsure if your business was legally required to close by
-            the Government in December or January please review the documents
-            below:
-          </p>
-          <ul className="govuk-!-font-size-19">
-            <li>
-              <a
-                href={
-                  process.env
-                    .NEXT_PUBLIC_DECEMBER_BUSINESS_CLOSURES_GUIDANCE_GOOGLE_URL
-                }
-                target="_blank"
-                rel="noopener"
-              >
-                December 2020: Tiers 1-4 restrictions and required business
-                closures
-              </a>
-            </li>
-            <li>
-              <a
-                href={
-                  process.env
-                    .NEXT_PUBLIC_JANUARY_BUSINESS_CLOSURES_GUIDANCE_GOOGLE_URL
-                }
-                target="_blank"
-                rel="noopener"
-              >
-                January 2021: National lockdown and required business closures
-              </a>
-            </li>
+            <li>The business is not a food kiosk</li>
+            <li>The business is not a takeaway</li>
+            <li>The business is not a Gym or sports business</li>
+            <li>The business is not a retail business</li>
           </ul>
         </>
       ),
+      adminValidation: true,
       validation: { required: true },
+      validAnswer: 'Yes',
     },
     servedLegalNotices: {
       label:
-        'Is your business in administration, insolvent or in receipt of a striking off notice?',
+        'Is your business in administration, dissolved, in liquidation, insolvent, struck off on Companies House, or in receipt of a striking off notice?',
       validation: { required: true },
       adminValidation: true,
-    },
-    tradingOn041120: {
-      label: 'Was your business trading on the 4th November 2020?',
-      validation: { required: true },
-      adminValidation: true,
-    },
-    tradingOn011220: {
-      label: 'Was your business trading on 1 December 2020?',
-      hint: 'Your business is still considered to have been trading on 1 December 2020 if it was an active business at this time, even if your business was closed to the public due to Government restrictions.',
-      validation: { required: true },
-      adminValidation: true,
-    },
-    eligibleForLrsgClosedGrant: {
-      label: (
-        <>
-          Is your business eligible for the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-your-business-is-eligible-for-a-coronavirus-grant-due-to-national-restrictions-for-closed-businesses"
-            target="_blank"
-            rel="noopener"
-          >
-            Local Restrictions Support Grant (Closed) Addendum
-          </a>
-          ?
-        </>
-      ),
-      adminValidation: true,
-      validation: { required: true },
-    },
-    eligibleForLrsgGrants: {
-      label:
-        'Is your business eligible for the Local Restrictions Support Grants?',
-      hint: (
-        <>
-          <p>
-            If you are eligible for the Local Restrictions Support Grants then
-            you are not eligible for the Additional Restrictions Grant and you
-            should apply for the Local Restrictions Support Grants instead.
-            Visit{' '}
-            <a
-              href="https://hackney.gov.uk/business-grants"
-              target="_blank"
-              rel="noopener"
-            >
-              Hackney Business Grants
-            </a>{' '}
-            to read the criteria for the Local Restrictions Support Grants to
-            make sure you are applying for the correct grant for your business.
-          </p>
-          <p>
-            If you are a Hackney business rates account holder (including if you
-            receive rates relief and do not pay for your business rates as a
-            result), and your business is in the retail, hospitality or leisure
-            sectors then it is likely you will be eligible for a Local
-            Restrictions Support Grant and not the Additional Restrictions
-            Grant.
-          </p>
-        </>
-      ),
-      adminValidation: true,
-      validation: { required: true },
+      validAnswer: 'No',
     },
   },
   business: {
-    previouslyApplied: {
-      label:
-        'Have you applied for an Additional Restrictions Grant (Round 1) from Hackney Council?',
-      validation: { required: true },
-    },
-    previousApplicationId: {
-      label:
-        'Please provide your Round 1 grant application ID number (if known):',
-      hint: 'This can be found in the subject header of your previous grant application confirmation email (e.g qf4InsCv6uL30sELgI43O)',
-    },
-    liableForRates: {
-      label: 'Is your business liable for business rates?',
-      validation: { required: true },
-    },
-    businessSizeId: {
-      label: 'What is the size of your business?',
-      hint: 'You must be a micro or a small business to be eligible for this grant.',
-      children: <BusinessClassificationSummary />,
-      options: options.VALID_BUSINESS_SIZE,
-      validation: { required: true },
-      adminValidation: true,
-    },
-    howManyEmployees: {
-      label:
-        'How many employees does your business have? (Full time equivalent PAYE employees)',
-      hint: (
-        <>
-          <p>
-            Please note you must be able to evidence the number of full time
-            employees your business has by submitting evidence of your business
-            PAYE payroll records with this application form. If you are unable
-            to provide this evidence then you must not include these employees
-            in your response to this question.
-          </p>
-          <p>
-            If you are a company director but are also an employee of the
-            business who is paid via PAYE rather than via dividends then you are
-            able to count yourself as an employee.
-          </p>
-        </>
-      ),
-      inputClassName: 'govuk-input--width-10',
-      type: 'number',
-      inputMode: 'numeric',
-      validation: {
-        required: true,
-        pattern: {
-          value: /^[0-9]+$/,
-        },
-      },
-    },
-    businessCategory: {
-      label:
-        'Please select the category which best describes your business activity',
-      options: options.BUSINESS_CATEGORIES,
-      hint: (
-        <>
-          Guidance on which category your business falls into can be found here:{' '}
-          <a
-            href="http://resources.companieshouse.gov.uk/sic/"
-            target="_blank"
-            rel="noopener"
-          >
-            http://resources.companieshouse.gov.uk/sic/
-          </a>
-          . Please check this website to make sure you are selecting the correct
-          drop down category for your business.
-        </>
-      ),
-      validation: {
-        required: true,
-        validate: (value) => value !== '',
-      },
-    },
-    businessReferenceNumber: {
-      label: (
-        <>
-          Please provide the reference number that best describes your business
-          from the business classification website (
-          <a
-            href="http://resources.companieshouse.gov.uk/sic/"
-            target="_blank"
-            rel="noopener"
-          >
-            http://resources.companieshouse.gov.uk/sic/
-          </a>
-          ).
-        </>
-      ),
-    },
-    businessDescription: {
-      label:
-        'Please set out what your business does and the services it provides ',
-      validation: {
-        required: true,
-      },
-      adminValidation: true,
-    },
     businessName: {
       label: 'Business Trading Name:',
       validation: {
-        required: 'Business Name is required',
+        required: 'Business Trading Name is required',
       },
     },
     registeredName: {
@@ -381,8 +148,21 @@ export const inputLabels = {
         },
       },
     },
+    highLevelSicCode: {
+      label: (
+        <>
+          Please provide the High Level SIC (Standard Industrial Classification)
+          Code and description from the{' '}
+          <a href="http://resources.companieshouse.gov.uk/sic/" target="_blank">
+            business classification website
+          </a>
+          :
+        </>
+      ),
+      validation: { required: true },
+    },
     businessRatesAccountNumber: {
-      label: 'Business Rates Account Number (if applicable):',
+      label: 'Business Rates Account Number:',
       hint: 'A nine digit number starting with a 6 - this is shown on your business rates bill. ',
       validation: {
         pattern: {
@@ -390,49 +170,57 @@ export const inputLabels = {
         },
       },
     },
+    businessRatesPropertyReferenceNumber: {
+      label: 'Business Rates Property Reference Number:',
+      hint: 'A 7 digit number - this is shown on your business rates bill.',
+      validation: {
+        pattern: {
+          value: /^[0-9]{7}$/i,
+        },
+      },
+    },
     businessRatesPayer: {
-      label: 'Name of Business Rates Payer (if applicable):',
+      label: 'Name of Business Rates Payer:',
       hint: 'As shown on your business rates bill.',
     },
     businessTradingAddress: {
-      label: 'Business Registered Trading Address:',
+      label: 'Business Registered Office if a limited company:',
     },
     businessAddress: {
       label: 'Business Premises Address in the London Borough of Hackney:',
-      hint: (
-        <>
-          <p>
-            Please provide your usual business address in Hackney. If you are
-            now working from home as a result of the pandemic, but are normally
-            based in a commercial premises in Hackney, and plan to return to the
-            same commercial premises in the future, please provide this address.
-          </p>
-          <p>
-            For businesses who were working from residential premises in Hackney
-            prior to the pandemic, and who will remain working from this
-            premises in the future, please provide this address.
-          </p>
-          <p>
-            For market traders, please provide the most accurate nearby address
-            for your market stall if you are unable to provide your exact market
-            pitch address.
-          </p>
-        </>
-      ),
+      hint: 'Please provide the business address as shown on your rates bill for which you are claiming the grant.',
     },
-    businessPremisesDescription: {
-      label: 'Business Premises Description',
-      options: options.TYPE_OF_BUSINESS,
-      validation: {
-        required: true,
-      },
+    businessSector: {
+      label: 'What Sector does your Business belong to?',
+      validation: { required: true },
+      options: options.HOSPITALITY_LEISURE_BUSINESS_TYPES,
+      adminValidation: true,
     },
-    businessPremisesText: {},
-    tradingDaysPerWeek: {
+    businessNature: {
       label:
-        'If you are a market trader please state how many days per week you usually trade in Hackney (prior to the COVID-19 pandemic):',
-      type: 'number',
-      inputMode: 'numeric',
+        'Please state the exact nature of the business trading at the premises:',
+      validation: { required: true },
+      adminValidation: true,
+    },
+    isBusinessStillTrading: {
+      label:
+        'Is your business currently trading at the address for which you are claiming the grant?',
+      validation: { required: true },
+      adminValidation: true,
+    },
+    isBusinessStillTradingDateStopped: {
+      label: 'If no, when did your business cease trading?',
+    },
+    dateEstablished: {
+      label: 'What date was the business established?',
+      validation: { required: true },
+    },
+    businessSize: {
+      label: 'How many PAYE employees does your business have?',
+      hint: <p>(full time equivalents)</p>,
+      options: options.ALL_BUSINESS_SIZES,
+      validation: { required: true },
+      adminValidation: true,
     },
     businessRateableValue: {
       label: 'Business Premises Rateable Value (if applicable):',
@@ -441,24 +229,6 @@ export const inputLabels = {
     },
     businessWebsite: {
       label: 'Business Website Address (if applicable):',
-    },
-    businessImpactStatement: {
-      label: 'How has your business been impacted?',
-      hint: (
-        <p>
-          Please provide a short written statement setting out how your business
-          has been severely impacted by the tier restrictions from 2 December
-          2020 and the national lockdown from 5 January 2021. This should
-          include details on why and how your business was severely impacted.
-          You should also set out if you are able to trade online, the scale of
-          your Coronavirus related losses, and any ongoing fixed business costs
-          you may have.
-        </p>
-      ),
-      validation: {
-        required: true,
-      },
-      adminValidation: true,
     },
   },
   contact: {
@@ -547,36 +317,10 @@ export const inputLabels = {
   supplementaryInformation: {
     bankStatement: {
       label: 'Business Bank Statement:',
-      hint: `Please provide 3 months business bank statements from November 2020 to January 2021 (inclusive). The bank account details in the bank statements provided must correspond with the bank account details provided in this application form.`,
+      hint: `Please provide your December 2021 business bank statement - this must correspond with the bank account details provided in this application form. If you do not have your December 2021 bank statement, please submit your most recent bank statement.`,
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
-    },
-    ratesBill: {
-      label: 'Business Rates Bill:',
-      hint: 'If applicable, please provide a copy of your latest London Borough of Hackney business rates bill.',
-    },
-    leaseOrRentalAgreement: {
-      label: 'Business premises lease or rental agreement:',
-      hint: `Please provide a copy of your business premises lease, rental agreement, mortgage statement, or market trading licence. If you do not have an up to date business premises lease, rental agreement or licence please provide another up to date form of evidence to demonstrate your business is physically based in Hackney e.g a signed and dated letter from your landlord, recent utility bill for your business premises.`,
-      validation: {
-        validate: (value) => value.length > 0 || 'Document required',
-      },
-    },
-    employeesConfirmation: {
-      label: 'Confirmation of the amount of employees in your business:',
-      hint: `If applicable and you employ PAYE staff, please provide a copy of your most up to date business payroll record showing the number of people employed by your business on a PAYE full time basis. If a payroll record is not available please provide another form of evidence which verifies the number of people employed by your business.`,
-    },
-    photoId: {
-      label: 'Photographic ID:',
-      hint: 'Please provide a form of photo identification such as a passport or driving licence.',
-      validation: {
-        validate: (value) => value.length > 0 || 'Document required',
-      },
-    },
-    taxReturn: {
-      label: 'HMRC self assessment tax return:',
-      hint: 'If you are a sole trader or are self employed please provide a copy of your latest HMRC self assessment tax return.',
     },
   },
   declaration: {
@@ -599,8 +343,7 @@ export const inputLabels = {
       validation: { required: true },
     },
     businessMeetsCriteria: {
-      label: `I declare that the business meets the criteria for the Additional Restrictions Grant that I am applying for and
-        that the information I have provided is complete and accurate`,
+      label: `I declare that the business meets the eligibility criteria for the Omicron Hospitality and Leisure Grant that I am applying for and that the information I have provided is complete and accurate.`,
       validation: { required: true },
     },
     businessIWillInform: {
@@ -610,59 +353,30 @@ export const inputLabels = {
           <ul>
             <li>
               My business no longer occupies the premises stated in this
-              application form
+              application form.
             </li>
             <li>
               My business ceases trading permanently, or goes into
               administration, becomes insolvent, or is in receipt of a striking
-              off notice
-            </li>
-            <li>
-              My business no longer meets any other grant eligibility criteria
+              off notice.
             </li>
           </ul>
         </>
       ),
       validation: { required: true },
     },
-    businessNotExceed: {
+    businessNotExceedPermittedAllowance: {
       label: (
         <>
-          <p>
-            The Additional Restrictions Grant counts towards the total de
-            minimis state aid you are permitted to receive over a 3 year period
-            which is €200,000. If you have reached the de minimis threshold, you
-            may still be eligible for funding under the{' '}
-            <a
-              href="https://ec.europa.eu/competition/state_aid/what_is_new/covid_19.html"
-              target="_blank"
-              rel="noopener"
-            >
-              COVID-19 Temporary Framework
-            </a>
-            . The limit for this framework is €800,000.
-          </p>
-          <p>
-            I confirm that, including receipt of this grant, the business will
-            not exceed the relevant State Aid threshold.
-          </p>
-        </>
-      ),
-      validation: { required: true },
-    },
-    businessNotUndertaking: {
-      label: (
-        <>
-          I confirm that my business is not an{' '}
+          I confirm that I have read the{' '}
           <a
-            href="https://www.gov.uk/guidance/innovation-apply-for-a-funding-award#undertakings-in-difficulty--eu-definition"
+            href="https://drive.google.com/file/d/1--cmWYpNzr0SX6dkkbiXDocXIoEuKuQc/view"
             target="_blank"
             rel="noopener"
           >
-            undertaking in difficulty
+            subsidy allowance guidance document
           </a>{' '}
-          (within the meaning of Article 2 (18) of the General Block Exemption
-          Regulation) on 31 December 2019
+          and my business has not exceeded the permitted subsidy allowance.
         </>
       ),
       validation: { required: true },
@@ -673,73 +387,8 @@ export const inputLabels = {
       validation: { required: true },
     },
     businessPermitData: {
-      label: (
-        <>
-          I permit the data provided in this form to be used to determine my
-          eligibility and process my application for the Additional Restrictions
-          Grant. I understand that my data will be kept on record and may be
-          used to determine my eligibility for any future rounds of the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-additional-restrictions-grant"
-            target="_blank"
-            rel="noopener"
-          >
-            Additional Restrictions Grant
-          </a>
-          , and the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-your-business-is-eligible-for-a-coronavirus-grant-due-to-national-restrictions-for-closed-businesses"
-            target="_blank"
-            rel="noopener"
-          >
-            Local Restrictions Support Grant (Closed) Addendum
-          </a>
-          , the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-local-restrictions-support-grant-for-open-businesses"
-            target="_blank"
-            rel="noopener"
-          >
-            Local Restrictions Support Grant (Open)
-          </a>{' '}
-          and the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-your-nightclub-dance-hall-or-adult-entertainment-business-is-eligible-for-a-coronavirus-grant-due-to-national-restrictions"
-            target="_blank"
-            rel="noopener"
-          >
-            Local Restrictions Support Grant (Sector)
-          </a>{' '}
-          where applicable.
-        </>
-      ),
-      validation: { required: true },
-    },
-    businessPermitDataRound2: {
-      label: (
-        <>
-          I permit the data provided in this form to be used to determine my
-          eligibility and process my application for the Additional Restrictions
-          Grant. I understand that my data will be kept on record and may be
-          used to determine my eligibility for any future rounds of the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-additional-restrictions-grant"
-            target="_blank"
-            rel="noopener"
-          >
-            Additional Restrictions Grant
-          </a>
-          , the Local Restrictions Support Grants, or the{' '}
-          <a
-            href="https://www.gov.uk/guidance/check-if-your-business-is-eligible-for-the-coronavirus-closed-businesses-lockdown-payment"
-            target="_blank"
-            rel="noopener"
-          >
-            Closed Business Lockdown Payment
-          </a>{' '}
-          where applicable.
-        </>
-      ),
+      label:
+        'I permit the data provided in this form to be used to determine my eligibility and process my application for the Omicron Hospitality and Leisure Grant. I understand that my data will be kept on record and may be used to determine my eligibility for any future rounds of Covid-19 business grants where applicable.',
       validation: { required: true },
     },
     businessShareWithBEIS: {
@@ -753,14 +402,21 @@ export const inputLabels = {
           >
             BEIS
           </a>{' '}
-          for research and evaluation purposes
+          in accordance with the{' '}
+          <a
+            href="https://www.gov.uk/government/publications/covid-19-grant-schemes-privacy-notice/covid-19-grant-schemes-privacy-notice"
+            target="_blank"
+            rel="noopener"
+          >
+            BEIS Privacy Notice
+          </a>
+          .
         </>
       ),
       validation: { required: true },
     },
     businessHappyContacted: {
-      label: `I confirm that I am happy to be contacted by Hackney Council in the future for details of new business funding
-        opportunities and in relation to other business initiatives`,
+      label: `I confirm that I am happy to be contacted by Hackney Council in the future for details of new business funding opportunities and in relation to other business initiatives.`,
     },
   },
 };
