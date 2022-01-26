@@ -168,14 +168,60 @@ context('Omicron Hospitality and Leisure Grant', () => {
       cy.get('[id=content]')
         .find('[class=govuk-file-upload]')
         .should('have.length', 1);
+
       cy.get('button[type=submit]').click();
+
       cy.get('[class=govuk-error-message]')
         .first()
         .should('contain', 'Document required');
-      cy.get('[data-testid=step-heading]').should(
-        'contain',
-        'Supplementary Information'
+
+      cy.intercept('POST', `/api/**`, {
+        fixture: 'file',
+      });
+
+      cy.fixture('document.jpg').then((fileContent) => {
+        cy.get('[id="supplementaryInformation.bankStatement"]').attachFile({
+          fileContent: fileContent.toString(),
+          fileName: 'document.jpg',
+          mimeType: 'image/jpeg',
+        });
+      });
+
+      cy.intercept('POST', `/api/**`, {
+        fixture: 'file',
+      });
+
+      cy.get('button[type=submit]').click();
+
+      cy.get('[data-testid=step-heading]').should('contain', 'Declaration');
+    });
+  });
+
+  describe('Step 7 - Declaration', () => {
+    it('displays correct header', () => {
+      cy.get('[data-testid=step-heading]').should('contain', 'Declaration');
+    });
+
+    it('can only be completed with valid values', () => {
+      cy.get('button[type=submit]').click();
+
+      cy.get('[data-testid=step-heading]').should('contain', 'Declaration');
+
+      cy.get('[id="declaration.name"]').type('Name Name');
+      cy.get('[id="declaration.contactTypeId"]').select(
+        'Agent (Authorised to act)'
       );
+      cy.get('input[type="checkbox"]').click({ multiple: true });
+
+      cy.get('button[type=submit]').click();
+
+      cy.get('[data-testid=step-heading]').should('contain', 'Summary');
+    });
+  });
+
+  describe('Step 8 - Summary', () => {
+    it('displays correct header', () => {
+      cy.get('[data-testid=step-heading]').should('contain', 'Summary');
     });
   });
 });
