@@ -37,7 +37,7 @@ export const inputLabels = {
     businessSectorEligible: {
       label: (
         <>
-          Is your business part of one of one of the following sectors?
+          Is your business part of one of the following sectors?
           <ul className="govuk-!-font-size-19">
             <li>Hospitality</li>
             <li>Leisure</li>
