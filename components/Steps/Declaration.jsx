@@ -16,7 +16,7 @@ const Declaration = (props) => {
   const selectedContactTypeId = watch('declaration.contactTypeId');
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>Declaration</h1>
+      <h1 data-testid="step-heading">Declaration</h1>
       <TextInput
         {...getInputProps(
           'declaration',
