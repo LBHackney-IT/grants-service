@@ -1,0 +1,74 @@
+{
+  "eligibilityCriteria": {
+    "tradingInHackney": "Yes",
+    "liableForBusinessRates": "Yes",
+    "businessSectorEligible": "Yes",
+    "servedLegalNotices": "No"
+  },
+  "business": {
+    "businessName": "Trading Name",
+    "registeredName": "Registered Name",
+    "businessStructure": "Charity",
+    "businessIdentifyType": "National Insurance Number",
+    "businessIdentifyNumber": "EM132290C",
+    "highLevelSicCode": "0111",
+    "businessRatesAccountNumber": "612345678",
+    "businessRatesPropertyReferenceNumber": "7777777",
+    "businessRatesPayer": "Individual office",
+    "businessTradingAddress": {
+      "buildName": "",
+      "streetNumber": "1",
+      "street": "street",
+      "town": "town",
+      "postcode": "SW1A 2AA"
+    },
+    "businessAddress": {
+      "buildName": "",
+      "streetNumber": "2",
+      "street": "street2",
+      "town": "town2",
+      "postcode": "SW1A 2BB"
+    },
+    "businessSector": "Hospitality",
+    "businessNature": "Hello!",
+    "isBusinessStillTrading": "Yes",
+    "dateEstablished": "15/10/1989",
+    "businessSize": "0-9 (Micro)",
+    "businessRateableValue": "",
+    "businessWebsite": "https://example.com"
+  },
+  "contact": {
+    "firstName": "Yusuf",
+    "lastName": "Bee",
+    "emailAddress": "email@address.com",
+    "telephoneNumber": "0123456789",
+    "address": {
+      "buildName": "",
+      "streetNumber": "3",
+      "street": "street3",
+      "town": "town3",
+      "postcode": "wrong"
+    }
+  },
+  "businessBankAccount": {
+    "bankName": "Bank",
+    "accountHolder": "Account",
+    "accountNumber": "12345678",
+    "accountSortcode": "123456"
+  },
+  "supplementaryInformation": {
+    "bankStatement": ["faked_it_out_for_local_testing.ext", "test.png"]
+  },
+  "declaration": {
+    "name": "Yusuf Bee",
+    "contactTypeId": "Agent (Authorised to act)",
+    "authoriseOnBehalf": true,
+    "businessMeetsCriteria": true,
+    "businessIWillInform": true,
+    "businessNotExceedPermittedAllowance": true,
+    "businessRecoverableAgreement": true,
+    "businessPermitData": false,
+    "businessShareWithBEIS": true,
+    "businessHappyContacted": true
+  }
+}
