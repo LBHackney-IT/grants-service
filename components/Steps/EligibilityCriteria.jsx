@@ -18,8 +18,8 @@ const Step1 = (props) => {
 
     Object.entries(data.eligibilityCriteria).forEach(([key, value]) => {
       if (
-        value != sectionQuestions[key].validAnswer ||
-        !sectionQuestions[key].validAnswer
+        !sectionQuestions[key].validAnswer ||
+        value !== sectionQuestions[key].validAnswer
       ) {
         eligible = false;
       }
