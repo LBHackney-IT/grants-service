@@ -68,7 +68,11 @@ const Step1 = (props) => {
             agencies to confirm account validity and your identity. If you
             provide false or inaccurate information, we will record this. If you
             would like full details on how we use your information, please refer
-            to our privacy statement.
+            to our{' '}
+            <a href="https://hackney.gov.uk/privacy" target="_blank">
+              privacy statement
+            </a>
+            .
           </p>
         </span>
         <Radios

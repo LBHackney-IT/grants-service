@@ -98,6 +98,7 @@ export const inputLabels = {
       },
       adminValidation: true,
     },
+    businessStructureText: {},
     businessIdentifyType: {
       label: 'Please supply one of the following Business Identifying Numbers:',
       hint: `Where available, please provide your Company Number as listed on Companies House. If you don’t have a Company
@@ -359,7 +360,7 @@ export const inputLabels = {
             <li>
               My business ceases trading permanently, or goes into
               administration, becomes insolvent, or is in receipt of a striking
-              off notice
+              off notice.
             </li>
           </ul>
         </>

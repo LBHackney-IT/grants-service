@@ -4,6 +4,7 @@ import Router from 'next/router';
 import { Button, TextInput, Select, Radios, DateInput } from '../Form';
 import { getInputProps } from './index';
 import AddressLookup from '../Form/AddressLookup/AddressLookup';
+import { FREE_TEXT } from '../../lib/dbMapping';
 
 const businessIdentifyNumber = (businessType) => {
   switch (businessType) {
@@ -29,6 +30,7 @@ const Step1 = (props) => {
     Router.push(props.nextStep);
   };
   const businessIdentifyType = watch('business.businessIdentifyType');
+  const selectedBusinessStructure = watch('business.businessStructure');
   const isBusinessStillTrading = watch('business.isBusinessStillTrading');
 
   return (
@@ -59,6 +61,18 @@ const Step1 = (props) => {
               errors
             )}
           />
+          {FREE_TEXT.includes(selectedBusinessStructure) && (
+            <TextInput
+              {...getInputProps(
+                'business',
+                'businessStructureText',
+                {
+                  register,
+                },
+                errors
+              )}
+            />
+          )}
           <Select
             {...getInputProps(
               'business',
