@@ -64,7 +64,6 @@ functions:
       GOV_NOTIFY_API_KEY: ${env:GOV_NOTIFY_API_KEY}
       EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID: ${env:EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID}
       CSV_DOWNLOAD_GROUP: ${env:CSV_DOWNLOAD_GROUP}
-      JWT_SECRET: ${ssm:/grants-service/${self:provider.stage}/hackney-jwt-secret}
       NEXT_PUBLIC_EQUALITIES_GOOGLE_FORM_URL: ${env:NEXT_PUBLIC_EQUALITIES_GOOGLE_FORM_URL}
 
   authorizer:

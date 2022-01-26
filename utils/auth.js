@@ -4,7 +4,13 @@ import jwt from 'jsonwebtoken';
 export const getUserFromCookie = (cookie) => {
   const { hackneyToken } = parse(cookie);
 
-  return jwt.verify(hackneyToken, process.env.HACKNEY_JWT_SECRET);
+  const decodedToken = jwt.decode(hackneyToken);
+
+  if (!decodedToken) {
+    throw new Error('Unable to decode JWT');
+  }
+
+  return decodedToken;
 };
 
 export const getUserStringFromCookie = (cookie) => {
