@@ -38,7 +38,7 @@ const Result = ({ formData, clearFormData }) => {
   }
   return (
     <>
-      <h1>Summary</h1>
+      <h1 data-testid="step-heading">Summary</h1>
       <Summary formData={formData} hasChangeLink />
       <button
         className="govuk-button"

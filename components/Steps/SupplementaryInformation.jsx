@@ -22,7 +22,7 @@ const SupplementaryInformation = (props) => {
   });
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>Supplementary Information</h1>
+      <h1 data-testid="step-heading">Supplementary Information</h1>
       <div className="govuk-inset-text">
         File upload information{' '}
         <p>

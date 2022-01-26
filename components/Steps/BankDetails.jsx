@@ -15,7 +15,7 @@ const BankDetails = (props) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>Bank Details</h1>
+      <h1 data-testid="step-heading">Bank Details</h1>
       <div className="govuk-inset-text">
         Please note this is the bank account that any grant will be paid into so
         please ensure you provide the correct details. Where possible the bank

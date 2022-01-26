@@ -16,7 +16,7 @@ const Step1 = (props) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>Your Details</h1>
+      <h1 data-testid="step-heading">Your Details</h1>
       <TextInput
         {...getInputProps('contact', 'firstName', { register }, errors)}
       />

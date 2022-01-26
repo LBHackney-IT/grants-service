@@ -41,7 +41,7 @@ const Step1 = (props) => {
           role="group"
           aria-describedby="step-hint"
         >
-          <h1>Business Details</h1>
+          <h1 data-testid="step-heading">Business Details</h1>
           <TextInput
             {...getInputProps('business', 'businessName', { register }, errors)}
           />
