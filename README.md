@@ -2,31 +2,6 @@
 
 > Web app and API for creating grant application forms and managing responses
 
-## Table of Contents
-
-- [Grants Service](#grants-service)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Architecture](#architecture)
-  - [Technology](#technology)
-    - [TypeScript](#typescript)
-    - [PostgreSQL](#postgresql)
-  - [Known issues / limitations](#known-issues--limitations)
-    - [MIME types on S3 files](#mime-types-on-s3-files)
-  - [Getting Started](#getting-started)
-    - [Requirements](#requirements)
-    - [Install](#install)
-    - [Local database](#local-database)
-      - [Setup](#setup)
-      - [Seed](#seed)
-      - [Migrations](#migrations)
-  - [Testing](#testing)
-    - [Security testing](#security-testing)
-    - [Unit testing](#unit-testing)
-    - [End to end testing](#end-to-end-testing)
-  - [Staging / production environment](#staging--production-environment)
-    - [Migrations and seeding](#migrations-and-seeding)
-
 ## Overview
 
 This application was developed for [Hackney Council](https://hackney.gov.uk/) to allow for the creation of different grant forms, and to support staff in managing the review and approval of applications. It is based on the original code from the [Additional Restrictions Grant](https://github.com/LBHackney-IT/arg-business-grants) codebase, with a number of enhancements to support multiple grant types within a single deployed application.
@@ -35,36 +10,6 @@ It consists of two primary views:
 
 - a publicly available front end for applicants
 - a restricted back end for Grant Administrators to process claims
-
-## Architecture
-
-![architecture](dbg-aws.jpg)
-[Editable Diagram Source](dbg-aws.drawio)
-
-## Technology
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with
-[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-### TypeScript
-
-The most recent contributions to this codebase have been in [TypeScript](https://www.typescriptlang.org/), however this migration is ongoing, so you will still likely find a decent amount of JavaScript in the codebase.
-
-### PostgreSQL
-
-The database engine is [PostgreSQL](https://www.postgresql.org/), version 11 in
-[AWS RDS](https://aws.amazon.com/rds/).
-
-![db-schema](dbg-schema.png)
-
-## Known issues / limitations
-
-### MIME types on S3 files
-
-If the application is re-enabled - when users upload supporting documents they will be stored in S3 with the
-wrong MIME type set.
-See [here](https://github.com/LBHackney-IT/arg-business-grants/blob/master/docs/S3-METADATA.md) for a
-complete description and fix.
 
 ## Getting Started
 
@@ -79,23 +24,21 @@ You must have the following installed
 
 ### Install
 
-Install the dependencies:
+1.  Install the dependencies:
 
-    $ yarn
+        $ yarn
 
-Create your `.env` file from `.env.sample`. You will need to grab some secrets from (TBC, it's not clear at
-the time of writing, but you can view the environment variables on the AWS Lambda if it is already running).
+2.  Create an `.env.local` file from `.env.sample` following the guidance notes in the sample file. If you are unsure about a value you can view the environment variables on the AWS Lambda in staging or production (if it is already running).
 
-So that the auth token from using Staging/Production can work with your local environment, and you will be
-able to access the admin section etc., add the following to your `/etc/hosts` file:
+3.  Add the following to your `/etc/hosts` file, so that the auth token from using staging / production can work with your local environment, giving you access to the restricted sections of the application (i.e. admin panel):
 
-    127.0.0.1    dev.hackney.gov.uk
+        127.0.0.1 dev.hackney.gov.uk
 
-Run the development server:
+4.  Run the development server:
 
-    $ yarn dev
+        $ yarn dev
 
-Open [http://dev.hackney.gov.uk:3000](http://dev.hackney.gov.uk:3000) with your browser to see the result.
+5.  Open [http://dev.hackney.gov.uk:3000](http://dev.hackney.gov.uk:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
@@ -166,6 +109,40 @@ down migrations)
 ```sh
 $ yarn dbmigratedry up
 ```
+
+### Deployed database
+
+When deployed, the application uses the `HOST`, `USERNAME`, `PASSWORD` and `DATABASE` environment variables for connection, instead of the `DATABASE_URL` environment variable (used locally).
+
+## Architecture
+
+![architecture](dbg-aws.jpg)
+[Editable Diagram Source](dbg-aws.drawio)
+
+## Technology
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with
+[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+### TypeScript
+
+The most recent contributions to this codebase have been in [TypeScript](https://www.typescriptlang.org/), however this migration is ongoing, so you will still likely find a decent amount of JavaScript in the codebase.
+
+### PostgreSQL
+
+The database engine is [PostgreSQL](https://www.postgresql.org/), version 11 in
+[AWS RDS](https://aws.amazon.com/rds/).
+
+![db-schema](dbg-schema.png)
+
+## Known issues / limitations
+
+### MIME types on S3 files
+
+If the application is re-enabled - when users upload supporting documents they will be stored in S3 with the
+wrong MIME type set.
+See [here](https://github.com/LBHackney-IT/arg-business-grants/blob/master/docs/S3-METADATA.md) for a
+complete description and fix.
 
 ## Testing
 

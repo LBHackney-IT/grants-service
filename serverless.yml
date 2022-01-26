@@ -58,8 +58,8 @@ functions:
       PASSWORD: ${env:MASTER_USER_PASSWORD}
       DATABASE: ${self:custom.dbname}
       SUPPORTING_DOCUMENTS_BUCKET: ${self:custom.bucket}
-      URL_PREFIX: ${self:custom.aliases.${self:provider.stage}}
-      EXPIRATION_DATE: ${env:EXPIRATION_DATE}
+      APP_DOMAIN: ${self:custom.aliases.${self:provider.stage}}
+      HTTPS_ENABLED: 'true'
       HACKNEY_AUTH_URL: ${env:HACKNEY_AUTH_URL}
       GOV_NOTIFY_API_KEY: ${env:GOV_NOTIFY_API_KEY}
       EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID: ${env:EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID}

@@ -9,10 +9,13 @@ import {
 import uploadApplication from '../../../lib/usecases/uploadApplication';
 import isValidApplication from '../../../lib/usecases/validators';
 import sendConfirmationEmail from '../../../lib/usecases/sendConfirmationEmail';
+import { addDays } from 'date-fns';
 
 export default async (req, res) => {
   const rightNow = new Date();
-  const lastSubmission = new Date(process.env.EXPIRATION_DATE);
+
+  // TODO: fix this to use the expiration date from the grant type configuration
+  const lastSubmission = addDays(rightNow, 1);
 
   switch (req.method) {
     case 'GET':

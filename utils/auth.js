@@ -1,19 +1,23 @@
-import * as HttpStatus from 'http-status-codes';
 import { parse } from 'cookie';
-import jsonwebtoken from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
-export const getUserFromCookie = (cookie) =>
-  jsonwebtoken.decode(parse(cookie).hackneyToken);
+export const getUserFromCookie = (cookie) => {
+  const { hackneyToken } = parse(cookie);
+
+  return jwt.verify(hackneyToken, process.env.HACKNEY_JWT_SECRET);
+};
 
 export const getUserStringFromCookie = (cookie) => {
   if (!cookie) {
     return 'User unknown';
   }
+
   const user = getUserFromCookie(cookie);
+
   return `${user.name} <${user.email}>`;
 };
 
-export const redirectIfNotAuth = async ({ req, res, query }) => {
+export const redirectIfNotAuth = async ({ req, query }) => {
   try {
     return {
       props: {
@@ -24,14 +28,15 @@ export const redirectIfNotAuth = async ({ req, res, query }) => {
     };
   } catch (e) {
     console.error(e.message);
+
+    return {
+      props: {},
+      redirect: {
+        permanent: false,
+        destination: `${process.env.HACKNEY_AUTH_URL}?redirect_uri=${
+          process.env.HTTPS_ENABLED === 'true' ? 'https://' : 'http://'
+        }${process.env.APP_DOMAIN + req.url}`,
+      },
+    };
   }
-  res.writeHead(HttpStatus.MOVED_TEMPORARILY, {
-    Location: `${process.env.HACKNEY_AUTH_URL}?redirect_uri=https://${
-      process.env.URL_PREFIX + req.url
-    }`,
-  });
-  res.end();
-  return {
-    props: {},
-  };
 };
