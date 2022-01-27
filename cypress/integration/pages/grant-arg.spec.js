@@ -27,16 +27,16 @@ context('Additional Restrictions Grant', () => {
         '[name="eligibilityCriteria.tradingInHackney"][value="Yes"]'
       ).click();
       cy.get(
-        '[name="eligibilityCriteria.liableForBusinessRates"][value="Yes"]'
-      ).click();
-      cy.get(
-        '[name="eligibilityCriteria.businessSectorEligible"][value="Yes"]'
-      ).click();
-      cy.get(
-        '[name="eligibilityCriteria.eligibleForOhlg"][value="Yes"]'
+        '[name="eligibilityCriteria.isEligibleForArg"][value="Yes"]'
       ).click();
       cy.get(
         '[name="eligibilityCriteria.servedLegalNotices"][value="No"]'
+      ).click();
+      cy.get(
+        '[name="eligibilityCriteria.businessIsTrading"][value="Yes"]'
+      ).click();
+      cy.get(
+        '[name="eligibilityCriteria.eligibleForOhlg"][value="No"]'
       ).click();
 
       cy.get('button[type=submit]').click();
@@ -64,13 +64,24 @@ context('Additional Restrictions Grant', () => {
         'Business Details'
       );
 
-      cy.get('[id="business.businessName"]').type('Cookie Monster Cookies');
+      cy.get('[name="business.doesPayBusinessRates"][value="Yes"]').click();
+
+      cy.get('[id="business.businessSize"]').select('0-9 (Micro)');
+      cy.get('[id="business.numberOfEmployees"]').type('12');
+      cy.get('[id="business.sicCategory"]').select(
+        'Section A: Agricultural, forestry and fishing'
+      );
+      cy.get('[id="business.highLevelSicCode"]').type('1245');
+      cy.get('[id="business.businessNature"]').type('BizNature');
+      cy.get('[id="business.businessTradingName"]').type('BizNature');
+      cy.get('[id="business.dateEstablished-day"]').type('23');
+      cy.get('[id="business.dateEstablished-month"]').type('12');
+      cy.get('[id="business.dateEstablished-year"]').type('1989');
       cy.get('[id="business.businessStructure"]').select('Charity');
       cy.get('[id="business.businessIdentifyType"]').select(
         'National Insurance Number'
       );
       cy.get('[id="business.businessIdentifyNumber"]').type('EM132290C');
-      cy.get('[id="business.highLevelSicCode"]').type('0111');
 
       cy.get('[id="business.businessTradingAddress.streetNumber"]').type('23');
       cy.get('[id="business.businessTradingAddress.street"]').type(
@@ -83,16 +94,15 @@ context('Additional Restrictions Grant', () => {
       cy.get('[id="business.businessAddress.street"]').type('Sesame Street');
       cy.get('[id="business.businessAddress.town"]').type('Sesame Town');
       cy.get('[id="business.businessAddress.postcode"]').type('SES 4ME');
-
-      cy.get('[id="business.businessSector"]').select('Hospitality');
-      cy.get('[id="business.businessNature"]').type('Biscuits');
-      cy.get('[name="business.isBusinessStillTrading"][value="Yes"]').click();
-
-      cy.get('[id="business.dateEstablished-day"]').type('23');
-      cy.get('[id="business.dateEstablished-month"]').type('12');
-      cy.get('[id="business.dateEstablished-year"]').type('1989');
-
-      cy.get('[id="business.businessSize"]').select('0-9 (Micro)');
+      cy.get('[id="business.businessPremisesDescription"]').select(
+        'Other (please state):'
+      );
+      cy.get('[id="business.businessPremisesDescriptionText"]').type(
+        'This is the other field'
+      );
+      cy.get('[id="business.businessImpactStatement"]').type(
+        'Impact statement text from UI test.'
+      );
 
       cy.get('button[type=submit]').click();
 
@@ -167,13 +177,14 @@ context('Additional Restrictions Grant', () => {
     it('can only be completed with valid values', () => {
       cy.get('[id=content]')
         .find('[class=govuk-file-upload]')
-        .should('have.length', 1);
+        .should('have.length', 6);
 
       cy.get('button[type=submit]').click();
 
-      cy.get('[class=govuk-error-message]')
-        .first()
-        .should('contain', 'Document required');
+      cy.get('[class=govuk-error-message]').should(
+        'contain',
+        'Document required'
+      );
 
       cy.intercept('POST', `/api/**`, {
         fixture: 'file',
@@ -181,6 +192,20 @@ context('Additional Restrictions Grant', () => {
 
       cy.fixture('document.jpg').then((fileContent) => {
         cy.get('[id="supplementaryInformation.bankStatement"]').attachFile({
+          fileContent: fileContent.toString(),
+          fileName: 'document.jpg',
+          mimeType: 'image/jpeg',
+        });
+
+        cy.get(
+          '[id="supplementaryInformation.leaseOrRentalAgreement"]'
+        ).attachFile({
+          fileContent: fileContent.toString(),
+          fileName: 'document.jpg',
+          mimeType: 'image/jpeg',
+        });
+
+        cy.get('[id="supplementaryInformation.photoId"]').attachFile({
           fileContent: fileContent.toString(),
           fileName: 'document.jpg',
           mimeType: 'image/jpeg',
