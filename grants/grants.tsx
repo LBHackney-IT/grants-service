@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { NotFoundError } from '../utils/errors';
-import { steps } from '../components/Steps';
+import { steps as ohlgSteps } from '../components/Steps/omicron-hospitality-leisure-grant';
+import { steps as argSteps } from '../components/Steps/additional-restrictions-grant';
 
 export type Grant = {
   name: string;
@@ -17,12 +18,10 @@ const grants: Map<string, Grant> = new Map([
       name: 'Additional Restrictions Grant – Round 3',
       description: (
         <>
-          <p>
-            This is the JSX-based <strong>description</strong> for ARG Round 3
-          </p>
+          <p>Additional Restrictions Grant Round 3</p>
         </>
       ),
-      steps: {},
+      steps: argSteps,
     },
   ],
   [
@@ -31,12 +30,10 @@ const grants: Map<string, Grant> = new Map([
       name: 'Omicron Hospitality and Leisure Grant',
       description: (
         <>
-          <p>
-            This is the JSX-based <strong>description</strong> for OHLG
-          </p>
+          <p>Omicron Hospitality and Leisure Grant</p>
         </>
       ),
-      steps: steps,
+      steps: ohlgSteps,
     },
   ],
 ]);

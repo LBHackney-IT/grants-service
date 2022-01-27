@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
-import { Button, TextInput } from '../Form';
+import { Button, TextInput } from '../../Form';
 import { getInputProps } from './index';
 
 const BankDetails = (props) => {

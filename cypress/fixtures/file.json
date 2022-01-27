@@ -1,0 +1,9 @@
+{
+    "fileKey": "cookiemonster@sesamestreet.gov.uk/69njzyvQqCE5dJ7/document.jpg",
+    "url": "/api/local-file-upload/cookiemonster@sesamestreet.gov.uk/69njzyvQqCE5dJ7/document.jpg",
+    "fields": {
+        "key": "test@sesamestreet.gov.uk/69njzyvQqCE5dJ7/document.jpg",
+        "X-Amz-Server-Side-Encryption": "AES256",
+        "X-Amz-Meta-Description": "cookiemonster@sesamestreet.gov.uk"
+    }
+}
