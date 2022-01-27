@@ -37,6 +37,7 @@ export default function confirmation() {
           are encouraged to complete the{' '}
           <a
             className="govuk-link"
+            target="_blank"
             href={process.env.NEXT_PUBLIC_EQUALITIES_GOOGLE_FORM_URL}
           >
             Equalities Monitoring Google Form

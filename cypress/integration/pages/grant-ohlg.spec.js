@@ -189,6 +189,10 @@ context('Omicron Hospitality and Leisure Grant', () => {
 
       cy.wait('@postFile');
 
+      cy.intercept('POST', `/api/**`, {
+        fixture: 'file',
+      }).as('submitApplication');
+
       cy.get('button[type=submit]').click();
 
       cy.get('[data-testid=step-heading]').should('contain', 'Declaration');
