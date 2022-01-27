@@ -40,9 +40,9 @@ export default function confirmation() {
             target="_blank"
             href={process.env.NEXT_PUBLIC_EQUALITIES_GOOGLE_FORM_URL}
           >
-            Monitoring Google Form
+            Equalities Monitoring Google Form
           </a>{' '}
-          Equalities (takes 60 seconds).
+          (takes 60 seconds).
         </p>
       </div>
       {formData && (
