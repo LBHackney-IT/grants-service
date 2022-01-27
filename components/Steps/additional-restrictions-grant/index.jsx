@@ -379,36 +379,36 @@ export const inputLabels = {
   supplementaryInformation: {
     bankStatement: {
       label: 'Business Bank Statement:',
-      hint: `Please provide 3 months business bank statements from November 2020 to January 2021 (inclusive). The bank account details in the bank statements provided must correspond with the bank account details provided in this application form.`,
+      hint: `Please provide your December 2021 business bank statement - this must correspond with the bank account details provided in this application form. If you do not have your December 2021 bank statement, please submit your most recent bank statement.`,
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
     },
     ratesBill: {
       label: 'Business Rates Bill:',
-      hint: 'If applicable, please provide a copy of your latest London Borough of Hackney business rates bill.',
+      hint: 'If applicable please provide a copy of your latest Hackney business rates bill.         ',
     },
     leaseOrRentalAgreement: {
       label: 'Business premises lease or rental agreement:',
-      hint: `Please provide a copy of your business premises lease, rental agreement, mortgage statement, or market trading licence. If you do not have an up to date business premises lease, rental agreement or licence please provide another up to date form of evidence to demonstrate your business is physically based in Hackney e.g a signed and dated letter from your landlord, recent utility bill for your business premises.`,
+      hint: `For businesses operating from a commercial premises please provide a copy of your business premises lease, rental agreement, or mortgage statement.`,
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
     },
     employeesConfirmation: {
-      label: 'Confirmation of the amount of employees in your business:',
-      hint: `If applicable and you employ PAYE staff, please provide a copy of your most up to date business payroll record showing the number of people employed by your business on a PAYE full time basis. If a payroll record is not available please provide another form of evidence which verifies the number of people employed by your business.`,
+      label: 'Confirmation of the amount of PAYE employees in your business',
+      hint: `Please provide a copy of your most up to date business payroll record showing the number of people employed by your business. If a payroll record is not available please provide another form of evidence which verifies the number of people employed by your business.`,
     },
     photoId: {
-      label: 'Photographic ID:',
-      hint: 'Please provide a form of photo identification such as a passport or driving licence.',
+      label: 'Photographic ID',
+      hint: 'Please provide a form of photo identification such as a passport or driving license.',
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
     },
     taxReturn: {
       label: 'HMRC self assessment tax return:',
-      hint: 'If you are a sole trader or are self employed please provide a copy of your latest HMRC self assessment tax return.',
+      hint: 'If you are a sole trader or are self employed please provide a copy of your latest HMRC self assessment tax return.        ',
     },
   },
   declaration: {
@@ -430,8 +430,24 @@ export const inputLabels = {
         'I confirm that I am authorised to submit this form on behalf of the business',
       validation: { required: true },
     },
+    cannotUseAsWageSupport: {
+      label: `I understand that any business grants I receive cannot be used as a wage support mechanism to support staff wage costs.`,
+      validation: { required: true },
+    },
     businessMeetsCriteria: {
-      label: `I declare that the business meets the eligibility criteria for the Omicron Hospitality and Leisure Grant that I am applying for and that the information I have provided is complete and accurate.`,
+      label: (
+        <>
+          I declare that the business meets the eligibility criteria for the{' '}
+          <a
+            href="https://www.gov.uk/guidance/check-if-youre-eligible-for-the-coronavirus-additional-restrictions-grant"
+            target="_blank"
+          >
+            Additional Restrictions Grant
+          </a>{' '}
+          that I am applying for and that the information I have provided is
+          complete and accurate.
+        </>
+      ),
       validation: { required: true },
     },
     businessIWillInform: {
@@ -448,6 +464,10 @@ export const inputLabels = {
               administration, becomes insolvent, or is in receipt of a striking
               off notice.
             </li>
+            <li>
+              My business no longer meets any other Additional Restrictions
+              Grant eligibility criteria.
+            </li>
           </ul>
         </>
       ),
@@ -458,7 +478,7 @@ export const inputLabels = {
         <>
           I confirm that I have read the{' '}
           <a
-            href="https://drive.google.com/file/d/1--cmWYpNzr0SX6dkkbiXDocXIoEuKuQc/view"
+            href="https://drive.google.com/file/d/1--cmWYpNzr0SX6dkkbiXDocXIoEuKuQc/view?usp=sharing"
             target="_blank"
             rel="noopener"
           >
@@ -476,7 +496,7 @@ export const inputLabels = {
     },
     businessPermitData: {
       label:
-        'I permit the data provided in this form to be used to determine my eligibility and process my application for the Omicron Hospitality and Leisure Grant. I understand that my data will be kept on record and may be used to determine my eligibility for any future rounds of Covid-19 business grants where applicable.',
+        'I permit the data provided in this form to be used to determine my eligibility and process my application for the Additional Restrictions Grant. I understand that my data will be kept on record and may be used to determine my eligibility for any future rounds of Covid-19 business grants where applicable.',
       validation: { required: true },
     },
     businessShareWithBEIS: {

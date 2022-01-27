@@ -62,6 +62,16 @@ const Declaration = (props) => {
       <Checkbox
         {...getInputProps(
           'declaration',
+          'cannotUseAsWageSupport',
+          {
+            register,
+          },
+          errors
+        )}
+      />
+      <Checkbox
+        {...getInputProps(
+          'declaration',
           'businessMeetsCriteria',
           {
             register,
