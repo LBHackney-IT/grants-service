@@ -13,13 +13,12 @@ describe('auth util', () => {
   describe('#redirectIfNotAuth()', () => {
     it('should return a correctly structured props object', async () => {
       process.env.CSV_DOWNLOAD_GROUP = 'some-download-group';
-      process.env.HACKNEY_JWT_SECRET = 'secret';
 
       const hackneyToken = jwt.sign(
         {
           some: 'user-data',
         },
-        'secret'
+        'some-secret'
       );
 
       const response = await redirectIfNotAuth({
