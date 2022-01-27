@@ -13,7 +13,6 @@ context('Admin application', () => {
   });
   describe('page content', () => {
     it('displays correct application information', () => {
-      /*
       cy.get('[data-testid=application-view-business-name]').should(
         'contain',
         'Business One'
@@ -27,14 +26,10 @@ context('Admin application', () => {
         'contain',
         'Phone: 0123456789'
       );
-      cy.get('[data-testid=application-view-previuos-application]').should(
-        'contain',
-        'Previous Application: 2'
-      );
 
       cy.get('[data-testid=form-select-tag]')
         .should('have.length', 1)
-        .and('contain', 'EXPORTED');*/
+        .and('contain', 'EXPORTED');
     });
   });
 });

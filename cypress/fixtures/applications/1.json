@@ -1,54 +1,28 @@
 {
   "application": {
     "clientGeneratedId": "1",
-    "grantType": "arg",
     "applicationDate": "2020-04-12T10:37:54.284Z",
     "status": "Processed - Approved",
     "grantAmountAwarded": "2000.00",
     "paymentExported": true,
+    "grantType": "ohlg",
     "eligibilityCriteria": {
-      "tradingInHackney": false,
-      "meetsArgCriteria": null,
-      "meetsArgCriteriaRound2": false,
-      "servedLegalNotices": false,
-      "tradingOn041120": null,
-      "tradingOn011220": false,
-      "eligibleForLrsgClosedGrant": null,
-      "eligibleForLrsgGrants": false
-    },
-    "contact": {
-      "firstName": "Yusuf",
-      "lastName": "Bee",
-      "emailAddress": "email@address.com",
-      "telephoneNumber": "0123456789",
-      "address": {
-        "buildName": "",
-        "streetNumber": "3",
-        "street": "street3",
-        "town": "town3",
-        "postcode": "SW1A 2CC"
-      },
-      "dateOfBirth": null
+      "tradingInHackney": true,
+      "liableForBusinessRates": true,
+      "businessSectorEligible": true,
+      "eligibleForOhlg": true,
+      "servedLegalNotices": false
     },
     "business": {
       "businessName": "Business One",
       "registeredName": "Registered Name",
-      "previouslyApplied": false,
-      "previousApplicationId": "2",
-      "previousApplicationFound": "1",
-      "liableForRates": false,
-      "howManyEmployees": "2",
-      "businessCategory": "Section C: Manufacturing",
-      "businessReferenceNumber": "",
-      "businessDescription": "Jewellery making",
-      "businessSizeId": "Micro",
-      "businessIdentifyType": "Company Number - 12345678",
       "businessStructure": "Charity",
+      "businessIdentifyType": "National Insurance Number",
+      "businessIdentifyNumber": "EM132290C",
+      "highLevelSicCode": "0111",
       "businessRatesAccountNumber": "612345678",
-      "businessRatesPayer": "Business Rates Payer",
-      "businessPremisesDescription": "Individual office null",
-      "tradingDaysPerWeek": "4",
-      "businessRateableValue": "321",
+      "businessRatesPropertyReferenceNumber": "7777777",
+      "businessRatesPayer": "Individual office",
       "businessTradingAddress": {
         "buildName": "",
         "streetNumber": "1",
@@ -63,47 +37,52 @@
         "town": "town2",
         "postcode": "SW1A 2BB"
       },
-      "businessWebsite": "https://example.com",
-      "businessImpactStatement": "Well bad."
+      "businessSector": "Hospitality",
+      "businessNature": "Hello!",
+      "isBusinessStillTrading": true,
+      "dateEstablished": "15/10/1989",
+      "businessSize": "0-9 (Micro)",
+      "businessRateableValue": "",
+      "businessWebsite": "https://example.com"
     },
-    "documents": [
-      {
-        "s3Path": "faked_it_out_for_local_testing.ext",
-        "documentType": "bankStatement"
-      },
-      {
-        "s3Path": "test.png",
-        "documentType": "bankStatement"
-      },
-      {
-        "s3Path": "faked_it_out_for_local_testing.ext",
-        "documentType": "leaseOrRentalAgreement"
-      },
-      {
-        "s3Path": "faked_it_out_for_local_testing.ext",
-        "documentType": "photoId"
+    "contact": {
+      "firstName": "Yusuf",
+      "lastName": "Bee",
+      "emailAddress": "email@address.com",
+      "telephoneNumber": "0123456789",
+      "address": {
+        "buildName": "",
+        "streetNumber": "3",
+        "street": "street3",
+        "town": "town3",
+        "postcode": "SW1A 2CC"
       }
-    ],
+    },
     "businessBankAccount": {
       "bankName": "Bank",
       "accountHolder": "Account",
       "accountNumber": "12345678",
       "accountSortcode": "123456"
     },
+    "supplementaryInformation": {
+      "bankStatement": [
+        "faked_it_out_for_local_testing.ext",
+        "test.png"
+      ]
+    },
     "declaration": {
       "name": "Yusuf Bee",
-      "contactTypeId": "Agent (Authorised to act) null",
+      "contactTypeId": "Agent (Authorised to act)",
       "authoriseOnBehalf": true,
       "businessMeetsCriteria": true,
       "businessIWillInform": true,
-      "businessNotExceed": true,
-      "businessNotUndertaking": true,
+      "businessNotExceedPermittedAllowance": true,
       "businessRecoverableAgreement": true,
-      "businessPermitData": null,
-      "businessPermitDataRound2": true,
+      "businessPermitData": true,
       "businessShareWithBEIS": true,
       "businessHappyContacted": true
-    }
+    },
+    "documents": []
   },
   "validations": "{}"
 }
