@@ -188,7 +188,7 @@ context('Additional Restrictions Grant', () => {
 
       cy.intercept('POST', `/api/**`, {
         fixture: 'file',
-      });
+      }).as('postFile');
 
       cy.fixture('document.jpg').then((fileContent) => {
         cy.get('[id="supplementaryInformation.bankStatement"]').attachFile({
@@ -196,6 +196,8 @@ context('Additional Restrictions Grant', () => {
           fileName: 'document.jpg',
           mimeType: 'image/jpeg',
         });
+
+        cy.wait('@postFile');
 
         cy.get(
           '[id="supplementaryInformation.leaseOrRentalAgreement"]'
@@ -205,11 +207,15 @@ context('Additional Restrictions Grant', () => {
           mimeType: 'image/jpeg',
         });
 
+        cy.wait('@postFile');
+
         cy.get('[id="supplementaryInformation.photoId"]').attachFile({
           fileContent: fileContent.toString(),
           fileName: 'document.jpg',
           mimeType: 'image/jpeg',
         });
+
+        cy.wait('@postFile');
       });
 
       cy.intercept('POST', `/api/**`, {
