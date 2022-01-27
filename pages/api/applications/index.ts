@@ -117,7 +117,11 @@ export default async (req, res) => {
         );
         const clientGeneratedId = nanoid();
         const validApplication = await isValidApplication(req.body);
-        await uploadApplication({ ...validApplication, clientGeneratedId });
+        await uploadApplication(
+          clientGeneratedId,
+          req.body.grantType,
+          validApplication
+        );
         await sendConfirmationEmail(
           clientGeneratedId,
           req.body.contact.emailAddress
@@ -126,7 +130,7 @@ export default async (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(clientGeneratedId));
       } catch (error) {
-        console.log('Application submission error:', error, 'request:', req);
+        console.log('Application submission error:', error);
         // Todo: We should 400 on invalid application and 500 on Internal Server Error
         res.statusCode = HttpStatus.BAD_REQUEST;
         res.end(JSON.stringify(error.message));

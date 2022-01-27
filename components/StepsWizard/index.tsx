@@ -16,7 +16,7 @@ const StepsWizard = ({ grant, grantSlug, stepId }) => {
 
   useBeforeunload(() => "You'll lose your data!");
 
-  const firstStep = stepKeys[0];
+  const firstStep = stepKeys(grantSlug)[0];
 
   if (
     stepId &&
@@ -62,15 +62,16 @@ const StepsWizard = ({ grant, grantSlug, stepId }) => {
 export default StepsWizard;
 
 const getAdjacentSteps = (step, grantSlug) => {
-  const currentStep = stepKeys.findIndex((s) => s === step);
+  const keys = stepKeys(grantSlug);
+  const currentStep = keys.findIndex((s) => s === step);
   return {
     previousStep:
       currentStep > 0
-        ? `/grant/${grantSlug}/step/${stepKeys[currentStep - 1]}`
+        ? `/grant/${grantSlug}/step/${keys[currentStep - 1]}`
         : null,
     nextStep:
-      currentStep < stepKeys.length
-        ? `/grant/${grantSlug}/step/${stepKeys[currentStep + 1]}`
+      currentStep < keys.length
+        ? `/grant/${grantSlug}/step/${keys[currentStep + 1]}`
         : null,
   };
 };

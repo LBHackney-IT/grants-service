@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import jwt from 'jsonwebtoken';
+import 'cypress-file-upload';
 
 const setHackneyCookie = (isValidGroup) => {
   const group = isValidGroup ? 'admin-group' : 'some-other-group';

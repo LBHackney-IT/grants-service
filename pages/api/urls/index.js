@@ -24,6 +24,7 @@ export default async (req, res) => {
       })
     );
   } catch (error) {
+    console.log(error);
     res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
     res.end();
   }
