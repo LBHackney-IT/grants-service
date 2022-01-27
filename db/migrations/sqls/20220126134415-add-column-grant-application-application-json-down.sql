@@ -1,0 +1,1 @@
+ALTER TABLE grant_application DROP COLUMN application_json;
