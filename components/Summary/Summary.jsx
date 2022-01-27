@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import SummaryList from '../SummaryList/SummaryList';
 import ExpandableDetails from '../ExpandableDetails/ExpandableDetails';
-import { getInputProps, hasAdminValidation } from '../Steps';
+import { getQuestionText, hasAdminValidation } from '../Steps';
 
 const MultiValue = (value) => (
   <div key={value}>
@@ -31,8 +31,8 @@ export const SummarySection = ({
         .filter(([, value]) => value != null)
         .map(([key, value]) => ({
           key,
-          adminValidation: hasAdminValidation(name, key),
-          title: getInputProps(name, key).label,
+          adminValidation: hasAdminValidation(name, key, formData.grantType),
+          title: getQuestionText(formData.grantType, name, key),
           value: Array.isArray(value)
             ? value.filter(Boolean).map((v) => MultiValue(v.split('/').pop()))
             : typeof value === 'object'

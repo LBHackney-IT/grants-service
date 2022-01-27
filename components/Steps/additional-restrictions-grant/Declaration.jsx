@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
-import { Button, Checkbox, Select, TextInput } from '../Form';
+import { Button, Checkbox, Select, TextInput } from '../../Form';
 import { getInputProps } from './index';
-import { FREE_TEXT } from '../../lib/dbMapping';
+import { FREE_TEXT } from '../../../lib/dbMapping';
 
 const Declaration = (props) => {
   const { register, errors, handleSubmit, watch } = useForm({
@@ -53,6 +53,16 @@ const Declaration = (props) => {
         {...getInputProps(
           'declaration',
           'authoriseOnBehalf',
+          {
+            register,
+          },
+          errors
+        )}
+      />
+      <Checkbox
+        {...getInputProps(
+          'declaration',
+          'cannotUseAsWageSupport',
           {
             register,
           },
