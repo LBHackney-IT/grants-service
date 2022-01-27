@@ -58,7 +58,7 @@ const AddressLookup = ({ name, label, hint, register, error }) => (
     })}
   >
     <label
-      className="govuk-label govuk-label--m"
+      className="govuk-label govuk-label--s"
       htmlFor={`${name}.streetNumber`}
     >
       {label}
