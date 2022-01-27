@@ -177,7 +177,7 @@ context('Omicron Hospitality and Leisure Grant', () => {
 
       cy.intercept('POST', `/api/**`, {
         fixture: 'file',
-      });
+      }).as('postFile');
 
       cy.fixture('document.jpg').then((fileContent) => {
         cy.get('[id="supplementaryInformation.bankStatement"]').attachFile({
@@ -187,9 +187,7 @@ context('Omicron Hospitality and Leisure Grant', () => {
         });
       });
 
-      cy.intercept('POST', `/api/**`, {
-        fixture: 'file',
-      });
+      cy.wait('@postFile');
 
       cy.get('button[type=submit]').click();
 
