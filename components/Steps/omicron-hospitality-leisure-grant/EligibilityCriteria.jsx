@@ -47,10 +47,13 @@ const Step1 = (props) => {
         </legend>
         <span id="step-hint" className="govuk-hint">
           <p>
-            Before making your application please follow this link to check your
-            eligibility for this grant. <h3>(link to website information)</h3>A
-            separate application form is required if you are applying for the
-            grant across multiple premises.
+            Before making your application please{' '}
+            <a href="https://hackney.gov.uk/business-grants" target="_blank">
+              follow this link
+            </a>
+            to check your eligibility for this grant. A separate application
+            form is required if you are applying for the grant across multiple
+            premises.
           </p>
 
           <p>

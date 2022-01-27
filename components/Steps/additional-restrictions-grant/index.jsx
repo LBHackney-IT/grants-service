@@ -226,7 +226,7 @@ export const inputLabels = {
       },
     },
     businessRatesAccountNumber: {
-      label: 'Business Rates Account Number',
+      label: 'Business Rates Account Number (if applicable)',
       hint: 'A nine digit number starting with a 6 - this is shown on your business rates bill. ',
       validation: {
         pattern: {
@@ -235,7 +235,7 @@ export const inputLabels = {
       },
     },
     businessRatesPayer: {
-      label: 'Name of Business Rates Payer',
+      label: 'Name of Business Rates Payer (if applicable)',
       hint: 'As shown on your business rates bill.',
     },
     businessTradingAddress: {
@@ -390,18 +390,18 @@ export const inputLabels = {
     },
     leaseOrRentalAgreement: {
       label: 'Business premises lease or rental agreement:',
-      hint: `For businesses operating from a commercial premises please provide a copy of your business premises lease, rental agreement, or mortgage statement.`,
+      hint: `Please provide a copy of your business premises lease, rental agreement, or mortgage statement.`,
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
     },
     employeesConfirmation: {
       label: 'Confirmation of the amount of PAYE employees in your business',
-      hint: `Please provide a copy of your most up to date business payroll record showing the number of people employed by your business. If a payroll record is not available please provide another form of evidence which verifies the number of people employed by your business.`,
+      hint: `If applicable please provide a copy of your most up to date business payroll record showing the number of people employed by your business. If a payroll record is not available please provide another form of evidence which verifies the number of people employed by your business.`,
     },
     photoId: {
       label: 'Photographic ID',
-      hint: 'Please provide a form of photo identification such as a passport or driving license.',
+      hint: 'Please provide a form of photo identification such as a passport or driving licence.',
       validation: {
         validate: (value) => value.length > 0 || 'Document required',
       },
