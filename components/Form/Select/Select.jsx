@@ -22,7 +22,7 @@ const Select = ({
       'govuk-form-group--error': error,
     })}
   >
-    <label className="govuk-label govuk-label--m" htmlFor={name}>
+    <label className="govuk-label govuk-label--s" htmlFor={name}>
       {label}{' '}
       {tag && (
         <span class="govuk-tag govuk-tag--green" data-testid="form-select-tag">

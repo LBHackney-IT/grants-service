@@ -15,7 +15,7 @@ const grants: Map<string, Grant> = new Map([
   [
     'arg',
     {
-      name: 'Additional Restrictions Grant – Round 3',
+      name: 'Omicron Additional Restrictions Grant',
       description: (
         <>
           <p>Additional Restrictions Grant Round 3</p>

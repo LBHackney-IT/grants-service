@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Summary from '../components/Summary/Summary';
 import WarningText from '../components/WarningText/WarningText';
 import { get } from '../utils/persistency';
+import { getGrantBySlug } from '../grants/grants';
 
 export default function confirmation() {
   const router = useRouter();
@@ -21,7 +22,7 @@ export default function confirmation() {
       </div>
       <div className="govuk-!-margin-9">
         <p className="govuk-body">
-          Thank you for completing the COVID-19 Additional Restrictions Grant
+          Thank you for completing the {getGrantBySlug(formData.grantType).name}{' '}
           application.
         </p>
         <p className="govuk-body">

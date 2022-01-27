@@ -21,7 +21,7 @@ const Radio = ({
       'govuk-form-group--error': error,
     })}
   >
-    <label className="govuk-label govuk-label--m" htmlFor={name}>
+    <label className="govuk-label govuk-label--s" htmlFor={name}>
       {label}
     </label>
     {hint && (
