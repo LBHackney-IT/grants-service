@@ -42,7 +42,7 @@ const Comments = ({
   });
   useEffect(() => {
     fetchData();
-  }, [applicationId, status, grantAmountAwarded, grantAmountAwardedRound2]);
+  }, [applicationId, status, grantAmountAwarded]);
   if (!applicationId) {
     return null;
   }
@@ -80,7 +80,6 @@ Comments.propTypes = {
   applicationId: PropTypes.string.isRequired,
   status: PropTypes.string,
   grantAmountAwarded: PropTypes.string,
-  grantAmountAwardedRound2: PropTypes.string,
 };
 
 export default Comments;

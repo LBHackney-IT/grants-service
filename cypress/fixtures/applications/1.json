@@ -1,12 +1,11 @@
 {
   "application": {
     "clientGeneratedId": "1",
+    "grantType": "arg",
     "applicationDate": "2020-04-12T10:37:54.284Z",
     "status": "Processed - Approved",
     "grantAmountAwarded": "2000.00",
-    "grantAmountAwardedRound2": "0.00",
-    "round1PaymentExported": true,
-    "round2PaymentExported": false,
+    "paymentExported": true,
     "eligibilityCriteria": {
       "tradingInHackney": false,
       "meetsArgCriteria": null,

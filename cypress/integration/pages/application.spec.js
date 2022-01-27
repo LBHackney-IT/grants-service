@@ -9,7 +9,7 @@ context('Admin application', () => {
     cy.intercept('GET', `/api/applications/1/comments`, {
       fixture: 'applications/comments/1',
     });
-    cy.visit('/admin/applications/1');
+    cy.visit('/admin/grant/arg/applications/1');
   });
   describe('page content', () => {
     it('displays correct application information', () => {

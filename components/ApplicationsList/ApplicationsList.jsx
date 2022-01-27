@@ -30,8 +30,6 @@ const ApplicationsList = ({
   businessPremises,
   applicationId,
   searchTerm,
-  groups,
-  csvDownloadGroup,
 }) => {
   const columns = useMemo(
     () => [
@@ -72,13 +70,6 @@ const ApplicationsList = ({
   const [loading, setLoading] = useState(false);
   const [pageCount, setPageCount] = useState(0);
   const [officers, setOfficers] = useState([]);
-
-  const canDownloadCsvs = groups.includes(csvDownloadGroup);
-  const csvExportProps = {};
-
-  if (!canDownloadCsvs) {
-    csvExportProps.disabled = true;
-  }
 
   useEffect(() => {
     const fetchOfficers = async () => {
@@ -150,18 +141,6 @@ const ApplicationsList = ({
     },
     []
   );
-
-  const handleCsvDownload = async (e) => {
-    try {
-      setError(null);
-      const round = e.target.getAttribute('round');
-      const csv = await patchApplications({ round });
-      window.open(encodeURI(`data:text/csv;charset=utf-8,${csv}`));
-    } catch (e) {
-      e.response.status = 400;
-      setError(e.response.data);
-    }
-  };
 
   const handleSearchTermChange = (event) => {
     setSearchTermInput(event.target.value);
@@ -264,7 +243,12 @@ const ApplicationsList = ({
           >
             Search
           </button>
-          <a className="govuk-link" role="button" onClick={resetFilters}>
+          <a
+            href="#"
+            className="govuk-link"
+            role="button"
+            onClick={resetFilters}
+          >
             Clear filters
           </a>
         </div>
@@ -280,44 +264,6 @@ const ApplicationsList = ({
         initialPageSize={pageSize}
         initialSortBy={sort ? sort : '+applicationDate'}
       />
-      <hr className="govuk-section-break govuk-section-break--l govuk-section-break--visible" />
-      <p>
-        <a
-          href={`/api/csv/applications?grantType=${grantType}`}
-          target="_blank"
-        >
-          Download Applications CSV
-        </a>
-      </p>
-      <h2>Export payment details</h2>
-      <div>
-        <p>
-          {!canDownloadCsvs &&
-            `These downloads are disabled as you are not part of the '${csvDownloadGroup}' user group`}
-        </p>
-        <div>
-          <button
-            className="govuk-button govuk-button--secondary govuk-!-margin-right-1"
-            data-module="govuk-button"
-            round={1}
-            onClick={handleCsvDownload}
-            {...csvExportProps}
-          >
-            Export Panel Approved Payments (Round 1)
-          </button>
-        </div>
-        <div>
-          <button
-            className="govuk-button govuk-button--secondary govuk-!-margin-right-1"
-            data-module="govuk-button"
-            round={2}
-            onClick={handleCsvDownload}
-            {...csvExportProps}
-          >
-            Export Panel Approved Payments (Round 2)
-          </button>
-        </div>
-      </div>
     </>
   ) : (
     <ErrorMessage text={error} />

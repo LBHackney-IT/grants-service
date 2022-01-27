@@ -19,7 +19,7 @@ export default async (req, res) => {
     case 'GET':
       try {
         res.setHeader('Content-Type', 'application/json');
-        let applicationDetailsResponse = await applicationDetails({
+        const applicationDetailsResponse = await applicationDetails({
           clientGeneratedId,
         });
         if (applicationDetailsResponse.error === APPLICATION_NOT_FOUND) {

@@ -1,14 +1,20 @@
 import { useRouter } from 'next/router';
-import ApplicationsList from '../../../components/ApplicationsList/ApplicationsList';
-import { getGrantBySlug } from '../../../grants/grants';
-import { redirectIfNotAuth } from '../../../utils/auth';
+import React from 'react';
 
-const AdminManageGrantPage = (props) => {
+import { redirectIfNotAuth } from '../../../../../utils/auth';
+import ApplicationView from '../../../../../components/ApplicationView/ApplicationView';
+import { getGrantBySlug } from '../../../../../grants/grants';
+
+const ApplicationViewPage: React.FC = () => {
   const { query } = useRouter();
 
   const slug = Array.isArray(query.slug) ? query.slug[0] : query.slug;
 
   const grant = getGrantBySlug(slug);
+
+  const clientGeneratedId = Array.isArray(query.clientGeneratedId)
+    ? query.clientGeneratedId[0]
+    : query.clientGeneratedId;
 
   return (
     <>
@@ -20,26 +26,19 @@ const AdminManageGrantPage = (props) => {
             </a>
           </li>
           <li className="govuk-breadcrumbs__list-item">
-            <a
-              className="govuk-breadcrumbs__link"
-              href={`/admin/grant/${slug}`}
-            >
+            <a className="govuk-breadcrumbs__link" href="/admin">
               {grant.name}
             </a>
           </li>
+          <li className="govuk-breadcrumbs__list-item">Application</li>
         </ol>
       </div>
 
-      <span className="govuk-caption-xl" data-testid="admin-page-subheading">
-        Hello {props.name}
-      </span>
-      <h1 className="govuk-heading-xl">{grant.name}</h1>
-
-      <ApplicationsList {...props} grantType={slug} grantName={grant.name} />
+      <ApplicationView applicationId={clientGeneratedId} />
     </>
   );
 };
 
 export const getServerSideProps = redirectIfNotAuth;
 
-export default AdminManageGrantPage;
+export default ApplicationViewPage;
