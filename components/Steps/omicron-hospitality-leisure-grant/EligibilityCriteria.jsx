@@ -50,7 +50,7 @@ const Step1 = (props) => {
             Before making your application please{' '}
             <a href="https://hackney.gov.uk/business-grants" target="_blank">
               follow this link
-            </a>
+            </a>{' '}
             to check your eligibility for this grant. A separate application
             form is required if you are applying for the grant across multiple
             premises.
