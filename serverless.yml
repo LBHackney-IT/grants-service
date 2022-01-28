@@ -246,5 +246,5 @@ custom:
     production-1: subnet-056356c011224f114
     production-2: subnet-067865bb76395b74e
   allowed-groups:
-    staging: 'Additional Restrictions Grant - Staging'
-    production: 'Additional Restrictions Grant - Admin'
+    staging: 'Hackney Grants Service'
+    production: 'Hackney Grants Service'
