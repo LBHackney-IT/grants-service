@@ -197,8 +197,6 @@ context('Additional Restrictions Grant', () => {
           mimeType: 'image/jpeg',
         });
 
-        cy.wait('@postFile');
-
         cy.get(
           '[id="supplementaryInformation.leaseOrRentalAgreement"]'
         ).attachFile({
@@ -206,8 +204,6 @@ context('Additional Restrictions Grant', () => {
           fileName: 'document.jpg',
           mimeType: 'image/jpeg',
         });
-
-        cy.wait('@postFile');
 
         cy.get('[id="supplementaryInformation.photoId"]').attachFile({
           fileContent: fileContent.toString(),
@@ -224,7 +220,9 @@ context('Additional Restrictions Grant', () => {
 
       cy.get('button[type=submit]').click();
 
-      cy.get('[data-testid=step-heading]').should('contain', 'Declaration');
+      cy.get('[data-testid=step-heading]').should('contain', 'Declaration', {
+        timeout: 5000,
+      });
     });
   });
 
