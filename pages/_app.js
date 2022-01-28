@@ -11,18 +11,6 @@ export default class MyApp extends App {
 
   render() {
     const { Component, pageProps, environmentName } = this.props;
-
-    if (environmentName === 'production') {
-      return (
-        <>
-          <Layout>
-            <ErrorPage statusCode={404} />
-          </Layout>
-          <script src="/js/govuk.js"></script>
-        </>
-      );
-    }
-
     return (
       <>
         <Layout>
