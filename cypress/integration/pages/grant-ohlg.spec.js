@@ -195,6 +195,8 @@ context('Omicron Hospitality and Leisure Grant', () => {
 
       cy.get('button[type=submit]').click();
 
+      cy.wait('submitApplication');
+
       cy.get('[data-testid=step-heading]').should('contain', 'Declaration');
     });
   });
