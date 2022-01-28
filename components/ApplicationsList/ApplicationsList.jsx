@@ -70,6 +70,7 @@ const ApplicationsList = ({
   const [loading, setLoading] = useState(false);
   const [pageCount, setPageCount] = useState(0);
   const [officers, setOfficers] = useState([]);
+  const [totalRecords, setTotalRecords] = useState(0);
 
   useEffect(() => {
     const fetchOfficers = async () => {
@@ -124,6 +125,7 @@ const ApplicationsList = ({
         const { applications, pagination } = await fetchApplications(query);
         setData(applications);
         setPageCount(pagination.totalPages);
+        setTotalRecords(pagination.totalRecords);
         setLoading(false);
       } catch (e) {
         if (e.response.status === 400) {
@@ -260,6 +262,7 @@ const ApplicationsList = ({
         fetchData={setValues}
         loading={loading}
         pageCount={pageCount}
+        totalRecords={totalRecords}
         initialPage={page}
         initialPageSize={pageSize}
         initialSortBy={sort ? sort : '+applicationDate'}

@@ -3,6 +3,9 @@ import Router from 'next/router';
 import { useTable, useSortBy, usePagination } from 'react-table';
 import { getQueryParametersAsObject } from '../ApplicationsList/ApplicationsList.jsx';
 
+const recordFrom = (pageIndex, pageSize) =>
+  pageIndex * pageSize == 0 ? 1 : pageIndex * pageSize + 1;
+
 const Table = ({
   columns,
   data,
@@ -12,6 +15,7 @@ const Table = ({
   initialPage = 1,
   initialPageSize = 10,
   initialSortBy,
+  totalRecords = 0,
 }) => {
   const {
     getTableProps,
@@ -111,8 +115,15 @@ const Table = ({
               </td>
             ) : (
               <td className="govuk-table__cell" colSpan="10000">
-                Showing {page.length} of ~{controlledPageCount * pageSize}{' '}
-                results
+                {data.length == 0 ? (
+                  <>No results</>
+                ) : (
+                  <>
+                    Showing {recordFrom(pageIndex, pageSize)} to{' '}
+                    {recordFrom(pageIndex, pageSize) + data.length - 1} of{' '}
+                    {totalRecords}{' '}
+                  </>
+                )}
               </td>
             )}
           </tr>
