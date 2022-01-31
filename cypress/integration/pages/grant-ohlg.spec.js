@@ -185,17 +185,15 @@ context('Omicron Hospitality and Leisure Grant', () => {
           fileName: 'document.jpg',
           mimeType: 'image/jpeg',
         });
+
+        cy.wait('@postFile');
       });
-
-      cy.wait('@postFile');
-
-      cy.intercept('POST', `/api/**`, {
-        fixture: 'file',
-      }).as('submitApplication');
 
       cy.get('button[type=submit]').click();
 
-      cy.get('[data-testid=step-heading]').should('contain', 'Declaration');
+      cy.get('[data-testid=step-heading]').should('contain', 'Declaration', {
+        timeout: 5000,
+      });
     });
   });
 
