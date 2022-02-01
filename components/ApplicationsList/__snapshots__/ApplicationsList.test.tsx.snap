@@ -107,9 +107,9 @@ exports[`<ApplicationsList /> should render the search, filters, and results tab
               Processed - Requested Information
             </option>
             <option
-              value="LRSG Eligible"
+              value="OHLG Eligible"
             >
-              LRSG Eligible
+              OHLG Eligible
             </option>
           </select>
         </div>
@@ -354,37 +354,6 @@ exports[`<ApplicationsList /> should render the search, filters, and results tab
               value="Other (please state):"
             >
               Other (please state):
-            </option>
-          </select>
-        </div>
-        <div
-          class="govuk-form-group"
-        >
-          <label
-            class="govuk-label"
-            for="Filter by ARG round:"
-          >
-            Filter by ARG round:
-          </label>
-          <select
-            class="govuk-select"
-            data-testid="basic-select"
-            id="Filter by ARG round:"
-          >
-            <option
-              value=""
-            >
-              All
-            </option>
-            <option
-              value="Round 1"
-            >
-              Round 1
-            </option>
-            <option
-              value="Round 2"
-            >
-              Round 2
             </option>
           </select>
         </div>
