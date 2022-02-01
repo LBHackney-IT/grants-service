@@ -228,12 +228,6 @@ const ApplicationsList = ({
               value={filters.businessPremises}
               onChange={(businessPremises) => setValues({ businessPremises })}
             />
-
-            <BasicSelect
-              options={Object.keys(DATES)}
-              label="Filter by ARG round:"
-              onChange={(date) => setValues({ date: DATES[date] })}
-            />
           </div>
         </details>
 

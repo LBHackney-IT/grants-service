@@ -8,13 +8,13 @@ const AdminPage = ({ name }) => {
 
       <GrantPanel
         name="Omicron Hospitality and Leisure Grant"
-        summary="Some summary text for OGLG"
+        summary=" "
         slug="ohlg"
       />
 
       <GrantPanel
-        name="Additional Restrictions Grant"
-        summary="Some summary text for ARG"
+        name="Omicron Additional Restrictions Grant"
+        summary=" "
         slug="arg"
       />
     </>

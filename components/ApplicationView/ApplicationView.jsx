@@ -24,6 +24,7 @@ const ApplicationView = ({ applicationId }) => {
   const watcher = watch({ nest: true });
   const validations = JSON.stringify(watcher);
   const [legitValidation, setLegitValidation] = useState();
+  const [grantAmounts, setGrantAmounts] = useState([]);
 
   const fetchData = useCallback(async (applicationId) => {
     if (!applicationId) {
@@ -40,8 +41,10 @@ const ApplicationView = ({ applicationId }) => {
       setData(application);
       validations && reset(JSON.parse(validations));
       setValidationRecap(getValidationRecap(watcher));
+      setGrantAmounts(GRANT_AMOUNT[application.grantType]);
     } catch (e) {
-      setError(e.response.data);
+      console.log(e);
+      setError(e?.response?.data);
     }
   }, []);
 
@@ -157,7 +160,7 @@ const ApplicationView = ({ applicationId }) => {
                   storeAs="grantAmountAwarded"
                   name="arg"
                   label="Grant Amount"
-                  options={GRANT_AMOUNT}
+                  options={grantAmounts}
                   grantAmountAwarded={data.grantAmountAwarded}
                   applicationId={applicationId}
                   onChange={setGrantAwardedAmount}
