@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 
-import { GRANT_AMOUNT, GRANT_AMOUNT_ROUND_2 } from '../../lib/dbMapping';
+import { GRANT_AMOUNT } from '../../lib/dbMapping';
 import {
   fetchApplication,
   patchApplication,
@@ -24,29 +24,38 @@ const ApplicationView = ({ applicationId }) => {
   const watcher = watch({ nest: true });
   const validations = JSON.stringify(watcher);
   const [legitValidation, setLegitValidation] = useState();
+  const [grantAmounts, setGrantAmounts] = useState([]);
+
   const fetchData = useCallback(async (applicationId) => {
     if (!applicationId) {
       return null;
     }
+
     setError(false);
+
     try {
       const { application, validations } = await fetchApplication(
         applicationId
       );
+
       setData(application);
       validations && reset(JSON.parse(validations));
       setValidationRecap(getValidationRecap(watcher));
+      setGrantAmounts(GRANT_AMOUNT[application.grantType]);
     } catch (e) {
-      setError(e.response.data);
+      console.log(e);
+      setError(e?.response?.data);
     }
   }, []);
+
   const saveValidation = useCallback(async (validations) => {
     try {
       await patchApplication(applicationId, { validations });
-    } catch {
+    } catch (error) {
       fetchData(applicationId);
     }
   });
+
   const getValidationRecap = useCallback((watcher) =>
     Object.entries(watcher).reduce(
       (acc, [key, value]) => ({
@@ -56,15 +65,18 @@ const ApplicationView = ({ applicationId }) => {
       {}
     )
   );
+
   useEffect(() => {
     fetchData(applicationId);
   }, [applicationId]);
+
   useEffect(() => {
     if (validations !== '{}') {
       legitValidation ? saveValidation(validations) : setLegitValidation(true);
       setValidationRecap(getValidationRecap(watcher));
     }
   }, [validations]);
+
   return (
     <>
       {data && (
@@ -148,7 +160,7 @@ const ApplicationView = ({ applicationId }) => {
                   storeAs="grantAmountAwarded"
                   name="arg"
                   label="Grant Amount"
-                  options={GRANT_AMOUNT}
+                  options={grantAmounts}
                   grantAmountAwarded={data.grantAmountAwarded}
                   applicationId={applicationId}
                   onChange={setGrantAwardedAmount}
