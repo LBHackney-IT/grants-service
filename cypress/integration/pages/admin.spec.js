@@ -50,11 +50,6 @@ context('Admin', () => {
         .eq(4)
         .children()
         .should('have.length', 10);
-
-      cy.get('[data-testid=basic-select]')
-        .eq(5)
-        .children()
-        .should('have.length', 3);
     });
   });
 });
