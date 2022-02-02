@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { string } from 'prop-types';
 import { useState } from 'react';
 import ApplicationsList from '../../../../components/ApplicationsList/ApplicationsList';
 import ErrorMessage from '../../../../components/ErrorMessage/ErrorMessage';
@@ -15,21 +16,6 @@ const AdminManageGrantPage = (props) => {
   const grant = getGrantBySlug(slug);
 
   const canDownloadCsvs = props.groups.includes(props.csvDownloadGroup);
-
-  const handlePaymentsExport = async (e) => {
-    try {
-      setPaymentsExportError(null);
-
-      const csvData = await patchApplications({
-        grantType: slug,
-      });
-
-      window.open(encodeURI(`data:text/csv;charset=utf-8,${csvData}`));
-    } catch (e) {
-      e.response.status = 400;
-      setPaymentsExportError(e.response.data);
-    }
-  };
 
   return (
     <>
@@ -82,13 +68,16 @@ const AdminManageGrantPage = (props) => {
 
           {paymentsExportError && <ErrorMessage text={paymentsExportError} />}
 
-          <button
+          <a
+            href={`/api/csv/applications/payments?grantType=${slug}`}
+            target="_blank"
+            role="button"
+            draggable="false"
             className="govuk-button govuk-button--secondary govuk-!-margin-right-1"
             data-module="govuk-button"
-            onClick={handlePaymentsExport}
           >
             Export Panel Approved Payments
-          </button>
+          </a>
         </>
       )}
     </>
