@@ -1,5 +1,6 @@
 import * as HttpStatus from 'http-status-codes';
 import AppContainer from '../../../../../containers/AppContainer';
+import { getUserStringFromCookie } from '../../../../../utils/auth';
 
 export default async (req, res) => {
   switch (req.method) {
@@ -17,6 +18,7 @@ export default async (req, res) => {
         res.setHeader('Content-Disposition', 'filename=payments.csv');
         const csvResult = await listApplicationsCSV({
           grantType,
+          author: getUserStringFromCookie(req.headers.cookie),
         });
         res.end(csvResult.csvString);
       } catch (error) {
