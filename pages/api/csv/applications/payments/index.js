@@ -1,6 +1,9 @@
 import * as HttpStatus from 'http-status-codes';
 import AppContainer from '../../../../../containers/AppContainer';
-import { getUserStringFromCookie } from '../../../../../utils/auth';
+import {
+  getUserStringFromCookie,
+  getUserFromCookie,
+} from '../../../../../utils/auth';
 
 export default async (req, res) => {
   switch (req.method) {
@@ -9,6 +12,12 @@ export default async (req, res) => {
         const grantType = req.query.grantType;
         if (!grantType) {
           throw new Error("Missing 'grantType' parameter");
+        }
+
+        const user = getUserFromCookie(req.headers.cookie);
+        if (!user.groups.includes(process.env.CSV_DOWNLOAD_GROUP)) {
+          res.statusCode = HttpStatus.FORBIDDEN;
+          res.end(JSON.stringify('Access forbidden'));
         }
 
         const container = AppContainer.getInstance();

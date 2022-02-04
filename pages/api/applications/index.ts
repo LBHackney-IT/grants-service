@@ -137,30 +137,6 @@ export default async (req, res) => {
       }
       break;
 
-    case 'PATCH':
-      try {
-        const container = AppContainer.getInstance();
-        const patchApplications = container.getPatchApplications();
-
-        res.statusCode = HttpStatus.OK;
-
-        res.setHeader('Content-Type', 'text/csv; charset=utf-8');
-        res.setHeader('Content-Disposition', 'filename=export.csv');
-
-        const patchResponse = await patchApplications({
-          author: getUserStringFromCookie(req.headers.cookie),
-          grantType: req.body.grantType,
-        });
-
-        res.end(patchResponse.csvString);
-      } catch (error) {
-        console.log('Applications patch error:', error);
-
-        res.statusCode = HttpStatus.BAD_REQUEST;
-        res.end(JSON.stringify(error.message));
-      }
-      break;
-
     default:
       res.statusCode = HttpStatus.BAD_REQUEST;
       res.end(JSON.stringify('Invalid request method'));
