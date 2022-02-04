@@ -192,7 +192,7 @@ context('Omicron Hospitality and Leisure Grant', () => {
       cy.get('button[type=submit]').click();
 
       cy.get('[data-testid=step-heading]').should('contain', 'Declaration', {
-        timeout: 5000,
+        timeout: 9000,
       });
     });
   });

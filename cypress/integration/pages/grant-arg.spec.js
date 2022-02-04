@@ -221,7 +221,7 @@ context('Additional Restrictions Grant', () => {
       cy.get('button[type=submit]').click();
 
       cy.get('[data-testid=step-heading]').should('contain', 'Declaration', {
-        timeout: 5000,
+        timeout: 9000,
       });
     });
   });
