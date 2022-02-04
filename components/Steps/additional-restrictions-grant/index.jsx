@@ -70,6 +70,7 @@ export const inputLabels = {
       ),
       validation: { required: true },
       validAnswer: 'Yes',
+      adminValidation: true,
     },
     servedLegalNotices: {
       label:
@@ -81,6 +82,7 @@ export const inputLabels = {
     businessIsTrading: {
       label: 'Is your business currently trading?',
       validation: { required: true },
+      adminValidation: true,
       validAnswer: 'Yes',
     },
     eligibleForOhlg: {
