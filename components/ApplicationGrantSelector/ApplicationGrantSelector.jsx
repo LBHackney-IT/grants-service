@@ -8,7 +8,7 @@ const ApplicationGrantSelector = ({ date, expirationDate }) => {
       <OhlgGrantSelector date={date} expirationDate={expirationDate} />
       <ArgGrantSelector
         date={new Date().getTime()}
-        expirationDate={'2022-02-15 00:00:00.000'}
+        expirationDate={'2022-02-15 00:00:00.001'}
       />
     </>
   );
