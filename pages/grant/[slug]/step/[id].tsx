@@ -4,6 +4,7 @@ import ErrorPage from 'next/error';
 
 import StepsWizard from '../../../../components/StepsWizard';
 
+import { isExpired } from '../../../../utils/date';
 import { getGrantBySlug } from '../../../../grants/grants';
 import { GetServerSideProps } from 'next';
 import { convertErrorToStatusCode } from '../../../../utils/errors';
@@ -21,6 +22,13 @@ const GrantStep: React.FC<{ slug: string; statusCode: number }> = ({
   }
 
   const grant = getGrantBySlug(slug);
+  if (slug == 'arg') {
+    const date = new Date().getTime();
+    const expirationDate = '2022-02-15 00:00:00.001';
+    if (isExpired(new Date(expirationDate), new Date(date))) {
+      return <ErrorPage statusCode={404} />;
+    }
+  }
 
   return <StepsWizard grantSlug={slug} grant={grant} stepId={id} />;
 };
