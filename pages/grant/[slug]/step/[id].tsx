@@ -22,14 +22,6 @@ const GrantStep: React.FC<{ slug: string; statusCode: number }> = ({
   }
 
   const grant = getGrantBySlug(slug);
-  if (slug == 'arg') {
-    const date = new Date().getTime();
-    const expirationDate = '2022-02-15 00:00:00.001';
-    if (isExpired(new Date(expirationDate), new Date(date))) {
-      return <ErrorPage statusCode={404} />;
-    }
-  }
-
   return <StepsWizard grantSlug={slug} grant={grant} stepId={id} />;
 };
 
