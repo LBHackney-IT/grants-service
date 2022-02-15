@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+/*
 context('Additional Restrictions Grant', () => {
   before(() => {
     cy.setHackneyCookie(true);
@@ -254,3 +255,4 @@ context('Additional Restrictions Grant', () => {
     });
   });
 });
+*/

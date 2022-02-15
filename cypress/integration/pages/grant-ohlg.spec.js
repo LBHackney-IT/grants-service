@@ -164,6 +164,8 @@ context('Omicron Hospitality and Leisure Grant', () => {
       );
     });
 
+    /*
+
     it('can only be completed with valid values', () => {
       cy.get('[id=content]')
         .find('[class=govuk-file-upload]')
@@ -195,8 +197,9 @@ context('Omicron Hospitality and Leisure Grant', () => {
         timeout: 9000,
       });
     });
+    */
   });
-
+  /*
   describe('Step 7 - Declaration', () => {
     it('displays correct header', () => {
       cy.get('[data-testid=step-heading]').should('contain', 'Declaration');
@@ -223,5 +226,5 @@ context('Omicron Hospitality and Leisure Grant', () => {
     it('displays correct header', () => {
       cy.get('[data-testid=step-heading]').should('contain', 'Summary');
     });
-  });
+  });*/
 });
