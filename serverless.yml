@@ -238,7 +238,7 @@ custom:
     staging: grants-service-staging.hackney.gov.uk
     production: grants-service.hackney.gov.uk
   certificate-arn:
-    staging: arn:aws:acm:us-east-1:647298111750:certificate/1012d9ab-42a0-41fa-9206-eba3ec0d04f0
+    staging: arn:aws:acm:us-east-1:647298111750:certificate/18c3a31f-29b0-4ec9-8c20-34b46be0ee90
     production: arn:aws:acm:us-east-1:812721144296:certificate/cc8e40ab-d82e-4f0a-9483-0cffed8100c6
   subnets:
     staging-1: subnet-034d259953e54531a
