@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
 
-/*
 context('Additional Restrictions Grant', () => {
   before(() => {
     cy.setHackneyCookie(true);
@@ -166,7 +165,7 @@ context('Additional Restrictions Grant', () => {
       );
     });
   });
-
+  /*
   describe('Step 6 - Supplementary Information', () => {
     it('displays correct header', () => {
       cy.get('[data-testid=step-heading]').should(
@@ -253,6 +252,5 @@ context('Additional Restrictions Grant', () => {
     it('displays correct header', () => {
       cy.get('[data-testid=step-heading]').should('contain', 'Summary');
     });
-  });
+  });*/
 });
-*/
