@@ -1,7 +1,11 @@
 import * as HttpStatus from 'http-status-codes';
 import AppContainer from '../../../../containers/AppContainer';
 import { APPLICATION_NOT_FOUND } from '../../../../lib/constants';
-import { getUserStringFromCookie } from '../../../../utils/auth';
+import {
+  getUserStringFromCookie,
+  getUserFromCookie,
+  userInAllowedGroup,
+} from '../../../../utils/auth';
 import { NOTES_MUST_NOT_BE_EMPTY } from '../../../../lib/usecases/addApplicationComment';
 
 export default async (req, res) => {
@@ -31,6 +35,14 @@ export default async (req, res) => {
 
     case 'POST':
       try {
+        const user = getUserFromCookie(req.headers.cookie);
+
+        // Move to authorizer.
+        if (!userInAllowedGroup(user.groups)) {
+          res.statusCode = HttpStatus.FORBIDDEN;
+          res.end(JSON.stringify('Access forbidden'));
+        }
+
         const addApplicationComment = container.getAddApplicationComment();
         res.setHeader('Content-Type', 'application/json');
         let addCommentResult = await addApplicationComment({

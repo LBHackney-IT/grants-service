@@ -23,6 +23,15 @@ export const getUserStringFromCookie = (cookie) => {
   return `${user.name} <${user.email}>`;
 };
 
+export const userInAllowedGroup = (userGroups) => {
+  const allowedGroups = process.env.ALLOWED_GROUPS.split(',');
+  return (
+    userGroups &&
+    (userGroups.some((g) => allowedGroups.includes(g)) ||
+      userGroups.includes(process.env.CSV_DOWNLOAD_GROUP))
+  );
+};
+
 export const redirectIfNotAuth = async ({ req, query }) => {
   try {
     return {
