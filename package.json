@@ -31,6 +31,7 @@
     "db-migrate": "^0.11.13",
     "db-migrate-pg": "^1.2.2",
     "file-type": "^17.1.1",
+    "formidable": "^2.0.1",
     "google-spreadsheet": "^3.0.13",
     "govuk-frontend": "^4.0.0",
     "http-status-codes": "^1.4.0",
