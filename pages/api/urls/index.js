@@ -32,7 +32,7 @@ export default async (req, res) => {
     });
 
     const { clientGeneratedId, fileName } = data.fields;
-    const fileType = await fileTypeFromFile(data?.files.file.path);
+    const fileType = await fileTypeFromFile(data?.files?.file.filepath);
 
     if (fileType && !allowedMimes.includes(fileType.mime))
       throw new Error('Disallowed mime type');
