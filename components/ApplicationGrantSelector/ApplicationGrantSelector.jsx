@@ -5,7 +5,10 @@ import { stepKeys } from '../Steps';
 const ApplicationGrantSelector = ({ date, expirationDate }) => {
   return (
     <>
-      <OhlgGrantSelector date={date} expirationDate={expirationDate} />
+      <OhlgGrantSelector
+        date={new Date().getTime()}
+        expirationDate={'2022-03-19 00:00:00.001'}
+      />
       <ArgGrantSelector
         date={new Date().getTime()}
         expirationDate={'2022-02-15 00:00:00.001'}
