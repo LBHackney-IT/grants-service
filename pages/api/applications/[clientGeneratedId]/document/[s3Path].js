@@ -11,7 +11,8 @@ export default async (req, res) => {
       const fileType = mimeType(s3Path);
 
       try {
-        const readableObject = readStream({ s3Path });
+        const readableObject = await readStream({ s3Path });
+
         res.setHeader('Content-Type', fileType);
         res.setHeader(
           'Content-Disposition',
