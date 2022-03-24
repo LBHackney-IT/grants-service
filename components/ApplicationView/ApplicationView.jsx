@@ -184,7 +184,7 @@ const ApplicationView = ({ applicationId }) => {
                 <div key={s3Path} className="govuk-body">
                   <a
                     className="govuk-link"
-                    href={`/api/applications/${applicationId}/document/${s3Path}`}
+                    href={`/api/applications/${applicationId}/document/${s3Path}?ts=${new Date().getMilliseconds()}`}
                     target="_blank"
                   >
                     {documentType}
