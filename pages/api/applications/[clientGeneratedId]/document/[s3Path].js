@@ -19,7 +19,6 @@ export default async (req, res) => {
         if (!response.ok)
           throw new Error(`unexpected response ${response.statusText}`);
 
-        console.log(response);
         res.setHeader('Content-Type', fileType);
         res.setHeader(
           'Content-Disposition',
