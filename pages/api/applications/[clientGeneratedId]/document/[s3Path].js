@@ -1,12 +1,7 @@
 /* eslint-disable no-case-declarations */
 import * as HttpStatus from 'http-status-codes';
-import { signedUrl } from '../../../../../lib/usecases/getSignedDocumentUrl';
-import fetch from 'node-fetch';
+import { readStream } from '../../../../../lib/usecases/getDocumentReadStream';
 import { mimeType } from '../../../../../utils/mimeTypes';
-import stream from 'stream';
-import { promisify } from 'util';
-
-const pipeline = promisify(stream.pipeline);
 
 export default async (req, res) => {
   switch (req.method) {
@@ -16,24 +11,16 @@ export default async (req, res) => {
       const fileType = mimeType(s3Path);
 
       try {
-        const url = await signedUrl({ s3Path });
-
-        const response = await fetch(url);
-
-        if (!response.ok)
-          throw new Error(`unexpected response ${response.statusText}`);
-
+        const readableObject = readStream({ s3Path });
         res.setHeader('Content-Type', fileType);
         res.setHeader(
           'Content-Disposition',
           'attachment; filename=' + filename
         );
 
-        await pipeline(response.body, res);
-
-        res.send(response.body);
+        readableObject.pipe(res);
       } catch (error) {
-        console.log('Document Signed URL error:', error, 'request:', req);
+        console.log('Document download error:', error);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
         res.end(JSON.stringify('Unable to create a signed s3 document url'));
       }
