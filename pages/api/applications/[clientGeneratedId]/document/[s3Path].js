@@ -13,6 +13,7 @@ export default async (req, res) => {
 
       try {
         const url = await signedUrl({ s3Path });
+
         const response = await fetch(url);
 
         if (!response.ok)
