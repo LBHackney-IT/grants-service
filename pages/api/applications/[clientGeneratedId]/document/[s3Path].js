@@ -3,6 +3,10 @@ import * as HttpStatus from 'http-status-codes';
 import { signedUrl } from '../../../../../lib/usecases/getSignedDocumentUrl';
 import fetch from 'node-fetch';
 import { mimeType } from '../../../../../utils/mimeTypes';
+import stream from 'stream';
+import { promisify } from 'util';
+
+const pipeline = promisify(stream.pipeline);
 
 export default async (req, res) => {
   switch (req.method) {
@@ -24,6 +28,8 @@ export default async (req, res) => {
           'Content-Disposition',
           'attachment; filename=' + filename
         );
+
+        await pipeline(response.body, res);
 
         res.send(response.body);
       } catch (error) {
