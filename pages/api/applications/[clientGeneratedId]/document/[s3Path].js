@@ -1,27 +1,18 @@
-/* eslint-disable no-case-declarations */
 import * as HttpStatus from 'http-status-codes';
-import { readStream } from '../../../../../lib/usecases/getDocumentReadStream';
-import { mimeType } from '../../../../../utils/mimeTypes';
+import { signedUrl } from '../../../../../lib/usecases/getSignedDocumentUrl';
 
 export default async (req, res) => {
   switch (req.method) {
     case 'GET':
+      // eslint-disable-next-line no-case-declarations
       const s3Path = req.query.s3Path;
-      const filename = s3Path.split('/').slice(-1)[0];
-      const fileType = mimeType(s3Path);
-
       try {
-        const readableObject = readStream({ s3Path });
-
-        res.setHeader('Content-Type', fileType);
-        res.setHeader(
-          'Content-Disposition',
-          'attachment; filename=' + filename
-        );
-
-        readableObject.pipe(res);
+        res.writeHead(HttpStatus.MOVED_TEMPORARILY, {
+          Location: await signedUrl({ s3Path }),
+        });
+        res.end();
       } catch (error) {
-        console.log('Document download error:', error);
+        console.log('Document Signed URL error:', error, 'request:', req);
         res.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
         res.end(JSON.stringify('Unable to create a signed s3 document url'));
       }
