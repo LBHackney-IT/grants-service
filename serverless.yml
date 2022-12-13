@@ -240,7 +240,7 @@ custom:
     production: grants-service.hackney.gov.uk
   certificate-arn:
     staging: arn:aws:acm:us-east-1:647298111750:certificate/18c3a31f-29b0-4ec9-8c20-34b46be0ee90
-    production: arn:aws:acm:us-east-1:812721144296:certificate/cc8e40ab-d82e-4f0a-9483-0cffed8100c6
+    production: arn:aws:acm:us-east-1:812721144296:certificate/b9e6e444-a896-4548-92ee-b439cf2f2ce7
   subnets:
     staging-1: subnet-034d259953e54531a
     staging-2: subnet-0e0152a2fc2b42498
