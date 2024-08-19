@@ -155,11 +155,17 @@ workflows:
       - owasp-zap-baseline-scan:
           requires:
             - install-dependencies-and-test
+      - permit-deploy-staging:
+          type: approval
+          requires:
+            - install-dependencies-and-test
+          filters:
+            branches:
+              only: main
       - assume-role-staging:
           context: api-assume-role-regen-apps-staging-context
           requires:
-            - install-dependencies-and-test
-            - owasp-zap-baseline-scan
+            - permit-deploy-staging
           filters:
             branches:
               only: main
