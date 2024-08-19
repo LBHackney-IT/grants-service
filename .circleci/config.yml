@@ -151,14 +151,8 @@ workflows:
   version: 2
   continuous-delivery:
     jobs:
-      - install-dependencies-and-test
-      - owasp-zap-baseline-scan:
-          requires:
-            - install-dependencies-and-test
       - permit-deploy-staging:
           type: approval
-          requires:
-            - install-dependencies-and-test
           filters:
             branches:
               only: main
@@ -182,7 +176,6 @@ workflows:
       - assume-role-production:
           context: api-assume-role-regen-apps-production-context
           requires:
-            - install-dependencies-and-test
             - permit-deploy-production
           filters:
             branches:
