@@ -26,7 +26,7 @@ jobs:
       - *attach_workspace
       - run:
           name: add-dependencies
-          command: yarn --production=true && yarn add serverless
+          command: yarn add serverless
       - run:
           name: deploy
           command: yarn deploy --stage staging
@@ -38,7 +38,7 @@ jobs:
       - *attach_workspace
       - run:
           name: add-dependencies
-          command: yarn --production=true && yarn add serverless
+          command: yarn add serverless
       - run:
           name: deploy
           command: yarn deploy --stage production
