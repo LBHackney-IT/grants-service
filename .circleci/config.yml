@@ -26,10 +26,10 @@ jobs:
       - *attach_workspace
       - run:
           name: add-dependencies
-          command: yarn add serverless
+          command: yarn global add serverless@^3
       - run:
           name: deploy
-          command: yarn deploy --stage staging
+          command: sls deploy --stage staging
           no_output_timeout: 45m
 
   build-deploy-production:
@@ -38,10 +38,10 @@ jobs:
       - *attach_workspace
       - run:
           name: add-dependencies
-          command: yarn add serverless
+          command: yarn global add serverless@^3
       - run:
           name: deploy
-          command: yarn deploy --stage production
+          command: sls deploy --stage production
           no_output_timeout: 45m
 
   assume-role-staging:
