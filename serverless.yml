@@ -179,6 +179,10 @@ resources:
         Tags:
           - Key: 'Name'
             Value: 'grantsServiceGrantDb'
+          - Key: 'STAGE'
+            Value: ${self:provider.stage}
+          - Key: 'Test'
+            Value: 'staging-cci-applied'
       DeletionPolicy: 'Snapshot'
 
     CloudFrontDistribution:
