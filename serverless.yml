@@ -160,7 +160,7 @@ resources:
       Properties:
         AllocatedStorage: 5
         DBInstanceIdentifier: '${self:service}-db-${self:provider.stage}'
-        DBInstanceClass: 'db.t2.small'
+        DBInstanceClass: 'db.t3.small'
         DBName: ${self:custom.dbname}
         DeletionProtection: true
         Engine: 'postgres'
