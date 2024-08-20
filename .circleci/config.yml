@@ -131,7 +131,6 @@ workflows:
   version: 2
   continuous-delivery:
     jobs:
-      - install-dependencies-and-test
       - permit-deploy-staging:
           type: approval
           filters:
