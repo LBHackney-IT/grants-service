@@ -20,16 +20,6 @@ references:
       at: *workspace_root
 
 jobs:
-  install-dependencies-and-test:
-    executor: node-executor
-    steps:
-      - *attach_workspace
-      - checkout
-      - run:
-          name: Install dependencies
-          command: exit 0
-
-
   owasp-zap-baseline-scan:
     machine:
       image: ubuntu-2004:202104-01
