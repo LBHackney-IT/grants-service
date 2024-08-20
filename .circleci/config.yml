@@ -38,7 +38,7 @@ jobs:
       - *attach_workspace
       - run:
           name: add-dependencies
-          command: yarn add serverless
+          command: yarn global add serverless
       - run:
           name: deploy
           command: yarn deploy --stage production
