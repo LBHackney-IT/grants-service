@@ -2,7 +2,6 @@ service: grants-service
 
 provider:
   name: aws
-  runtime: nodejs14.x
   region: eu-west-2
   stage: ${opt:stage}
   iamRoleStatements:
@@ -12,97 +11,6 @@ provider:
         - s3:ListBucket
         - s3:GetObject
       Resource: 'arn:aws:s3:::${self:custom.bucket}/*'
-
-package:
-  individually: true
-  exclude:
-    - ./**
-
-functions:
-  grants-service-function:
-    name: ${self:service}-${self:provider.stage}
-    handler: lambda.handler
-    timeout: 20
-    package:
-      include:
-        - lambda.js
-        - next.config.js
-        - pages/**
-        - public/**
-        - build/_next/**
-        - node_modules/**
-    events:
-      - http:
-          path: api/{proxy+}
-          method: ANY
-          authorizer:
-            name: authorizer
-            type: request
-            identitySource: ''
-            resultTtlInSeconds: 0
-      - http: ANY /
-      - http: ANY /{proxy+}
-    vpc:
-      securityGroupIds:
-        - ${self:custom.security-group-id.${self:provider.stage}}
-      subnetIds:
-        - ${self:custom.subnets.${self:provider.stage}-1}
-        - ${self:custom.subnets.${self:provider.stage}-2}
-    environment:
-      ENV: ${self:provider.stage}
-      HOST:
-        Fn::GetAtt:
-          - grantsServiceGrantDb
-          - Endpoint.Address
-      USERNAME: ${env:MASTER_USERNAME}
-      PASSWORD: ${env:MASTER_USER_PASSWORD}
-      DATABASE: ${self:custom.dbname}
-      SUPPORTING_DOCUMENTS_BUCKET: ${self:custom.bucket}
-      APP_DOMAIN: ${self:custom.aliases.${self:provider.stage}}
-      HTTPS_ENABLED: 'true'
-      HACKNEY_AUTH_URL: ${env:HACKNEY_AUTH_URL}
-      GOV_NOTIFY_API_KEY: ${env:GOV_NOTIFY_API_KEY}
-      EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID: ${env:EMAIL_APPLICATION_RECEIVED_TEMPLATE_ID}
-      CSV_DOWNLOAD_GROUP: ${env:CSV_DOWNLOAD_GROUP}
-      NEXT_PUBLIC_EQUALITIES_GOOGLE_FORM_URL: ${env:NEXT_PUBLIC_EQUALITIES_GOOGLE_FORM_URL}
-      ALLOWED_GROUPS: ${self:custom.allowed-groups.${self:provider.stage}}
-
-  authorizer:
-    name: ${self:service}-authorizer-${self:provider.stage}
-    handler: authorizer.handler
-    package:
-      include:
-        - authorizer/**
-        - node_modules/**
-    environment:
-      ALLOWED_GROUPS: ${self:custom.allowed-groups.${self:provider.stage}}
-      JWT_SECRET: ${ssm:/grants-service/${self:provider.stage}/hackney-jwt-secret}
-
-  database-migrator:
-    name: ${self:service}-database-migrator-${self:provider.stage}
-    handler: database-migrator.handler
-    timeout: 180
-    vpc:
-      securityGroupIds:
-        - ${self:custom.security-group-id.${self:provider.stage}}
-      subnetIds:
-        - ${self:custom.subnets.${self:provider.stage}-1}
-        - ${self:custom.subnets.${self:provider.stage}-2}
-    package:
-      include:
-        - database.json
-        - database-migrator/**
-        - db/**
-        - node_modules/**
-    environment:
-      ENV: ${self:provider.stage}
-      HOST:
-        Fn::GetAtt:
-          - grantsServiceGrantDb
-          - Endpoint.Address
-      USERNAME: ${env:MASTER_USERNAME}
-      PASSWORD: ${env:MASTER_USER_PASSWORD}
-      DATABASE: ${self:custom.dbname}
 
 resources:
   Resources:
@@ -160,11 +68,12 @@ resources:
       Properties:
         AllocatedStorage: 5
         DBInstanceIdentifier: '${self:service}-db-${self:provider.stage}'
-        DBInstanceClass: 'db.t2.small'
+        DBInstanceClass: 'db.t3.small'
         DBName: ${self:custom.dbname}
         DeletionProtection: true
         Engine: 'postgres'
-        EngineVersion: '11.12'
+        EngineVersion: '11.22'
+        CACertificateIdentifier: 'rds-ca-rsa2048-g1'
         MasterUsername: ${env:MASTER_USERNAME}
         MasterUserPassword: ${env:MASTER_USER_PASSWORD}
         MultiAZ: true
@@ -178,74 +87,20 @@ resources:
         Tags:
           - Key: 'Name'
             Value: 'grantsServiceGrantDb'
+          - Key: 'STAGE'
+            Value: ${self:provider.stage}
+          - Key: 'Test'
+            Value: 'staging-cci-applied'
       DeletionPolicy: 'Snapshot'
-
-    CloudFrontDistribution:
-      Type: AWS::CloudFront::Distribution
-      Properties:
-        DistributionConfig:
-          Aliases:
-            - ${self:custom.aliases.${self:provider.stage}}
-          PriceClass: PriceClass_100
-          ViewerCertificate:
-            AcmCertificateArn: ${self:custom.certificate-arn.${self:provider.stage}}
-            MinimumProtocolVersion: TLSv1.2_2018
-            SslSupportMethod: sni-only
-          DefaultCacheBehavior:
-            TargetOriginId: ${self:service}-${self:provider.stage}-custom-origin
-            ViewerProtocolPolicy: 'redirect-to-https'
-            AllowedMethods:
-              - GET
-              - HEAD
-              - OPTIONS
-              - PUT
-              - PATCH
-              - POST
-              - DELETE
-            DefaultTTL: 0
-            MaxTTL: 0
-            MinTTL: 0
-            ForwardedValues:
-              QueryString: true
-              Cookies:
-                Forward: all
-          Enabled: true
-          Origins:
-            - Id: ${self:service}-${self:provider.stage}-custom-origin
-              DomainName: ${self:custom.domain-name}
-              OriginPath: /${self:provider.stage}
-              CustomOriginConfig:
-                HTTPPort: 80
-                HTTPSPort: 443
-                OriginProtocolPolicy: https-only
 
 custom:
   dbname: grantsServiceGrantDb
   bucket: ${self:service}-supporting-documents-${self:provider.stage}
-  domain-name:
-    Fn::Join:
-      - '.'
-      - - Ref: ApiGatewayRestApi
-        - execute-api
-        - eu-west-2
-        - amazonaws.com
   vpc-id:
     staging: vpc-0047c1ec06d524b64
     production: vpc-0c9c2cbf1865adb9e
-  security-group-id:
-    staging: sg-073fdfc54e08c0b7f
-    production: sg-0bc53a349b857295c
-  aliases:
-    staging: grants-service-staging.hackney.gov.uk
-    production: grants-service.hackney.gov.uk
-  certificate-arn:
-    staging: arn:aws:acm:us-east-1:647298111750:certificate/18c3a31f-29b0-4ec9-8c20-34b46be0ee90
-    production: arn:aws:acm:us-east-1:812721144296:certificate/cc8e40ab-d82e-4f0a-9483-0cffed8100c6
   subnets:
     staging-1: subnet-034d259953e54531a
     staging-2: subnet-0e0152a2fc2b42498
     production-1: subnet-056356c011224f114
     production-2: subnet-067865bb76395b74e
-  allowed-groups:
-    staging: 'Omicron Business Grants - Back office system access'
-    production: 'Omicron Business Grants - Back office system access'
