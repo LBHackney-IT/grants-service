@@ -2,7 +2,6 @@ service: grants-service
 
 provider:
   name: aws
-  runtime: nodejs14.x
   region: eu-west-2
   stage: ${opt:stage}
   iamRoleStatements:
