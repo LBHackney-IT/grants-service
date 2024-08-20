@@ -25,10 +25,6 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          name: build
-          command: yarn build
-          no_output_timeout: 45m
-      - run:
           name: add-dependencies
           command: yarn --production=true && yarn add serverless
       - run:
@@ -40,10 +36,6 @@ jobs:
     executor: aws-cli/default
     steps:
       - *attach_workspace
-      - run:
-          name: build
-          command: yarn build
-          no_output_timeout: 45m
       - run:
           name: add-dependencies
           command: yarn --production=true && yarn add serverless
