@@ -30,14 +30,11 @@ jobs:
           no_output_timeout: 45m
       - run:
           name: add-dependencies
-          command: yarn --production=true && yarn add serverless db-migrate db-migrate-pg
+          command: yarn --production=true && yarn add serverless
       - run:
           name: deploy
           command: yarn deploy --stage staging
           no_output_timeout: 45m
-      - run:
-          name: migrate
-          command: yarn remote:migrate --stage staging
 
   build-deploy-production:
     executor: aws-cli/default
@@ -49,14 +46,11 @@ jobs:
           no_output_timeout: 45m
       - run:
           name: add-dependencies
-          command: yarn --production=true && yarn add serverless db-migrate db-migrate-pg
+          command: yarn --production=true && yarn add serverless
       - run:
           name: deploy
           command: yarn deploy --stage production
           no_output_timeout: 45m
-      - run:
-          name: migrate
-          command: yarn remote:migrate --stage production
 
   assume-role-staging:
     executor: docker-python
