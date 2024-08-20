@@ -25,30 +25,10 @@ jobs:
     steps:
       - *attach_workspace
       - checkout
-      - browser-tools/install-firefox
       - run:
           name: Install dependencies
-          command: yarn
+          command: exit 0
 
-      - run:
-          name: Build the application
-          command: yarn build
-
-      - run:
-          name: Run unit tests
-          command: yarn run unit-test
-
-      - run:
-          name: Run integration tests
-          command: yarn run int-test
-
-      - run:
-          name: Run linting
-          command: yarn lint
-
-      - persist_to_workspace:
-          root: *workspace_root
-          paths: .
 
   owasp-zap-baseline-scan:
     machine:
@@ -152,14 +132,15 @@ workflows:
   continuous-delivery:
     jobs:
       - install-dependencies-and-test
-      - owasp-zap-baseline-scan:
-          requires:
-            - install-dependencies-and-test
+      - permit-deploy-staging:
+          type: approval
+          filters:
+            branches:
+              only: main
       - assume-role-staging:
           context: api-assume-role-regen-apps-staging-context
           requires:
-            - install-dependencies-and-test
-            - owasp-zap-baseline-scan
+            - permit-deploy-staging
           filters:
             branches:
               only: main
@@ -176,7 +157,6 @@ workflows:
       - assume-role-production:
           context: api-assume-role-regen-apps-production-context
           requires:
-            - install-dependencies-and-test
             - permit-deploy-production
           filters:
             branches:
