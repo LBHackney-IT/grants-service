@@ -29,7 +29,7 @@ jobs:
           command: sudo npm i -g serverless@^3
       - run:
           name: deploy
-          command: sls deploy --stage staging
+          command: sls deploy --verbose --stage staging
           no_output_timeout: 45m
 
   build-deploy-production:
@@ -41,7 +41,7 @@ jobs:
           command: sudo npm i -g serverless@^3
       - run:
           name: deploy
-          command: sls deploy --stage production
+          command: sls deploy --verbose --stage production
           no_output_timeout: 45m
 
   assume-role-staging:
