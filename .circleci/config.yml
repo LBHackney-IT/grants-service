@@ -24,6 +24,7 @@ jobs:
     executor: aws-cli/default
     steps:
       - *attach_workspace
+      - checkout
       - run:
           name: add-dependencies
           command: sudo npm i -g serverless@^3
@@ -36,6 +37,7 @@ jobs:
     executor: aws-cli/default
     steps:
       - *attach_workspace
+      - checkout
       - run:
           name: add-dependencies
           command: sudo npm i -g serverless@^3
