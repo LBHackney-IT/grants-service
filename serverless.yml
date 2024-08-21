@@ -16,6 +16,7 @@ resources:
   Resources:
     grantsServiceGrantSupportingDocumentsBucket:
       Type: AWS::S3::Bucket
+      DeletionPolicy: Retain
       Properties:
         BucketName: ${self:custom.bucket}
         PublicAccessBlockConfiguration:
@@ -70,7 +71,7 @@ resources:
         DBInstanceIdentifier: '${self:service}-db-${self:provider.stage}'
         DBInstanceClass: 'db.t3.small'
         DBName: ${self:custom.dbname}
-        DeletionProtection: true
+        DeletionProtection: false
         Engine: 'postgres'
         EngineVersion: '11.22'
         CACertificateIdentifier: 'rds-ca-rsa2048-g1'
@@ -91,7 +92,7 @@ resources:
             Value: ${self:provider.stage}
           - Key: 'Test'
             Value: 'staging-cci-applied'
-      DeletionPolicy: 'Snapshot'
+      DeletionPolicy: Delete
 
 custom:
   dbname: grantsServiceGrantDb
