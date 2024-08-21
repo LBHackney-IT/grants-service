@@ -70,7 +70,7 @@ resources:
         DBInstanceIdentifier: '${self:service}-db-${self:provider.stage}'
         DBInstanceClass: 'db.t3.small'
         DBName: ${self:custom.dbname}
-        DeletionProtection: true
+        DeletionProtection: false
         Engine: 'postgres'
         EngineVersion: '11.22'
         CACertificateIdentifier: 'rds-ca-rsa2048-g1'
