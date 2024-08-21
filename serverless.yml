@@ -16,6 +16,7 @@ resources:
   Resources:
     grantsServiceGrantSupportingDocumentsBucket:
       Type: AWS::S3::Bucket
+      DeletionPolicy: Retain
       Properties:
         BucketName: ${self:custom.bucket}
         PublicAccessBlockConfiguration:
