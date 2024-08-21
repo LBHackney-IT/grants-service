@@ -24,24 +24,26 @@ jobs:
     executor: aws-cli/default
     steps:
       - *attach_workspace
+      - checkout
       - run:
           name: add-dependencies
           command: sudo npm i -g serverless@^3
       - run:
           name: deploy
-          command: sls deploy --stage staging
+          command: sls deploy --verbose --stage staging
           no_output_timeout: 45m
 
   build-deploy-production:
     executor: aws-cli/default
     steps:
       - *attach_workspace
+      - checkout
       - run:
           name: add-dependencies
           command: sudo npm i -g serverless@^3
       - run:
           name: deploy
-          command: sls deploy --stage production
+          command: sls deploy --verbose --stage production
           no_output_timeout: 45m
 
   assume-role-staging:
