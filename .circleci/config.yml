@@ -20,7 +20,7 @@ references:
       at: *workspace_root
 
 jobs:
-  build-deploy-staging:
+  deploy-staging:
     executor: aws-cli/default
     steps:
       - *attach_workspace
@@ -29,9 +29,13 @@ jobs:
           name: add-dependencies
           command: sudo npm i -g serverless@^3
       - run:
-          name: deploy
-          command: sls remove --verbose --stage staging
+          name: clear the S3 bucket
           no_output_timeout: 45m
+          command: aws s3 rm s3://grants-service-supporting-documents-staging --recursive
+      - run:
+          name: delete the empty S3 bucket
+          no_output_timeout: 45m
+          command: aws s3api delete-bucket --bucket grants-service-supporting-documents-staging
 
   build-deploy-production:
     executor: aws-cli/default
@@ -88,7 +92,7 @@ workflows:
           filters:
             branches:
               only: main
-      - build-deploy-staging:
+      - deploy-staging:
           requires:
             - assume-role-staging
           filters:
@@ -97,7 +101,7 @@ workflows:
       - permit-deploy-production:
           type: approval
           requires:
-            - build-deploy-staging
+            - deploy-staging
       - assume-role-production:
           context: api-assume-role-regen-apps-production-context
           requires:
