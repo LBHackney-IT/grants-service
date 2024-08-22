@@ -29,9 +29,13 @@ jobs:
           name: add-dependencies
           command: sudo npm i -g serverless@^3
       - run:
-          name: deploy
-          command: sls remove --verbose --stage staging
+          name: clear the S3 bucket
           no_output_timeout: 45m
+          command: aws s3 rm s3://grants-service-supporting-documents-staging --recursive
+      - run:
+          name: delete the empty S3 bucket
+          no_output_timeout: 45m
+          command: aws s3api delete-bucket --bucket grants-service-supporting-documents-staging
 
   build-deploy-production:
     executor: aws-cli/default
