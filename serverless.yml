@@ -98,10 +98,7 @@ custom:
   dbname: grantsServiceGrantDb
   bucket: ${self:service}-supporting-documents-${self:provider.stage}
   vpc-id:
-    staging: vpc-0047c1ec06d524b64
     production: vpc-0c9c2cbf1865adb9e
   subnets:
-    staging-1: subnet-034d259953e54531a
-    staging-2: subnet-0e0152a2fc2b42498
     production-1: subnet-056356c011224f114
     production-2: subnet-067865bb76395b74e
