@@ -30,7 +30,7 @@ jobs:
           command: sudo npm i -g serverless@^3
       - run:
           name: deploy
-          command: sls deploy --verbose --stage production
+          command: sls remove --verbose --stage production
           no_output_timeout: 45m
 
   assume-role-production:
