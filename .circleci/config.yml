@@ -99,6 +99,9 @@ workflows:
     jobs:
       - permit-deploy-production:
           type: approval
+          filters:
+            branches:
+              only: main
       - assume-role-production:
           context: api-assume-role-regen-apps-production-context
           requires:
@@ -109,3 +112,6 @@ workflows:
       - build-deploy-production:
           requires:
             - assume-role-production
+          filters:
+            branches:
+              only: main
