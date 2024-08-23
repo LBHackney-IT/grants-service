@@ -20,40 +20,6 @@ references:
       at: *workspace_root
 
 jobs:
-  deploy-staging:
-    executor: aws-cli/default
-    steps:
-      - *attach_workspace
-      - aws-cli/install
-      - checkout
-      - run:
-          name: add-dependencies
-          command: sudo npm i -g serverless@^3
-      - run:
-          name: clear the S3 bucket
-          no_output_timeout: 45m
-          command: |
-            #aws s3 rm s3://grants-service-supporting-documents-staging --recursive
-            # Clear versioned, see: https://docs.aws.amazon.com/cli/latest/reference/s3api/list-object-versions.html#examples
-
-            bucket_name="grants-service-supporting-documents-staging"
-
-            # List all object versions in the bucket and delete them
-            aws s3api list-object-versions --bucket $bucket_name --query 'Versions[].[Key,VersionId]' --output text | \
-            while IFS=$'\t' read -r key version_id; do
-              aws s3api delete-object --bucket $bucket_name --key "$key" --version-id "$version_id"
-            done
-
-            # List all delete markers in the bucket and delete them
-            aws s3api list-object-versions --bucket $bucket_name --query 'DeleteMarkers[].[Key,VersionId]' --output text | \
-            while IFS=$'\t' read -r key version_id; do
-              aws s3api delete-object --bucket $bucket_name --key "$key" --version-id "$version_id"
-            done
-      - run:
-          name: delete the empty S3 bucket
-          no_output_timeout: 45m
-          command: aws s3api delete-bucket --bucket grants-service-supporting-documents-staging
-
   build-deploy-production:
     executor: aws-cli/default
     steps:
@@ -66,19 +32,6 @@ jobs:
           name: deploy
           command: sls deploy --verbose --stage production
           no_output_timeout: 45m
-
-  assume-role-staging:
-    executor: docker-python
-    steps:
-      - checkout
-      - aws_assume_role/assume_role:
-          account: $AWS_ACCOUNT_STAGING
-          profile_name: default
-          role: 'LBH_Circle_CI_Deployment_Role'
-      - persist_to_workspace:
-          root: *workspace_root
-          paths:
-            - .aws
 
   assume-role-production:
     executor: docker-python
