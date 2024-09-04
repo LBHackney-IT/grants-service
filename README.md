@@ -1,10 +1,11 @@
 # Grants Service
 
-> Web app and API for creating grant application forms and managing responses
-
-**This application & all of its resources except for an S3 bucket have been decommissioned.**
+This application & all of its resources except for an S3 bucket have been decommissioned.
 
 <!--
+
+> Web app and API for creating grant application forms and managing responses
+
 ## Overview
 
 This application was developed for [Hackney Council](https://hackney.gov.uk/) to allow for the creation of different grant forms, and to support staff in managing the review and approval of applications. It is based on the original code from the [Additional Restrictions Grant](https://github.com/LBHackney-IT/arg-business-grants) codebase, with a number of enhancements to support multiple grant types within a single deployed application.
