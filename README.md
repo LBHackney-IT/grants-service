@@ -1,5 +1,9 @@
 # Grants Service
 
+This application & all of its resources except for an S3 bucket have been decommissioned.
+
+<!--
+
 > Web app and API for creating grant application forms and managing responses
 
 ## Overview
@@ -177,3 +181,4 @@ A suite of [Cypress](https://www.cypress.io/) tests can be run with:
 A dedicated migration Lambda is deployed alongside the application code, and is invoked as part of the CI/CD pipeline. This will run any new migrations since the last deployment.
 
 You can optionally run the database seeds by uncommenting the `seedDatabase()` call in `./database-migrator/index.js`.
+-->
